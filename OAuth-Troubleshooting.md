@@ -125,7 +125,7 @@ Any of these errors can prevent the agent from acquiring the credentials it need
   - `client_name`
   - `redirect_uris`
   - `grant_types`
-  - Scope
+  - `Scope`
 - [ ] Check the client is locally storing the client ID (and secret if provided)
 - [ ] Use cURL or your browser to confirm the client is accurately reading the server’s metadata for the registration endpoint
 - [ ] Check that the dynamic/anonymous client registration is enabled in the MCP server - confirm this via the server config and/or logged registration attempts
