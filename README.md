@@ -1,6 +1,13 @@
 # MCP-Checklists
 
-Here we (the [MCP Manager](https://mcpmanager.ai) team) will publish a range of guides, checklists, indexes and other resources to help people adopt and use AI agents and MCP servers securely - without losing pace in the AI race.
+Here we (the [MCP Manager](https://mcpmanager.ai) team) will publish a range of checklists, indexes, and other resources to help people adopt and use AI agents and MCP servers securely - without losing pace in the AI race.
+
+## 📚 Table of Contents
+
+- [Authentication](#-authentication)
+- [Logging, Auditing, and Observability](#-logging,-auditing,-and-observability)
+- [Threats and Mitigation](#-threats-and-Mitigation)
+- [AI Agent Building & Security](#-ai-agent-building-and-security)
 
 ## 🔐 Authentication 
 
@@ -16,7 +23,7 @@ Here we (the [MCP Manager](https://mcpmanager.ai) team) will publish a range of 
 -
 -
 
-## 👁️ Logging, Auditing, and Observability 
+## 👁️ Logging, Auditing, and Observability
 
 ### Checklists
 
@@ -28,7 +35,7 @@ Here we (the [MCP Manager](https://mcpmanager.ai) team) will publish a range of 
 -
 -
 
-## ⚠️ Threats and Mitigation 
+## 🛡️ Threats and Mitigation
 
 ### Checklists
 
@@ -47,7 +54,7 @@ Here we (the [MCP Manager](https://mcpmanager.ai) team) will publish a range of 
 -
 
 
-## 🤖 AI Agent Building 
+## 🤖 AI Agent Building and Security
 
 ### Checklists
 
