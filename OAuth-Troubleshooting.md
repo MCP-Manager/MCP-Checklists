@@ -1,10 +1,24 @@
 # MCP OAuth Troubleshooting Checklist
 
-Created by the team at: [MCP Manager](https://mcpmanager.ai/)
-
 Use this checklist to help you resolve common issues when adding OAuth to MCP servers.
 
 Along with the checklist items below you can also use [OAuth Debugger](https://oauthdebugger.com/) to help troubleshoot and fix issues with your setup.
+
+## Author Information
+Created by the team at: [MCP Manager](https://mcpmanager.ai/).
+
+MCP Manager is an MCP gateway which acts as a safety net for your organization's AI agents and their interractions with MCP servers and connected resources.
+
+## Table of Contents
+- [OAuth Overview](#overview-of-the-oauth-authorization-flow)
+- [MCP OAuth Checklist](#mcp-oauth-checklist)
+  - [Correct Endpoints Exist and Are Discoverable](#correct-endpoints-exist-and-are-discoverable)
+  - [Correct Token Format & Header Setup](#correct-token-format--header-setup)
+  - [Correct Setup of HTTP 401 Error](#correct-setup-of-http-401-error)
+  - [Issues with audience/claims validation](#issues-with-audienceclaims-validation)
+  - [Check Client Registration](#check-client-registration)
+  - [PKCE (Proof Key for Code Exchange) support issues](#pkce-proof-key-for-code-exchange-support-issues)
+- [More Reading and Resources](#more-reading-and-resources)
 
 ## OAuth Overview
 
@@ -18,7 +32,6 @@ The OAuth authorization flow (sometimes called the OAuth handshake) is a process
 - The **application** presents the access token to the **resource server**
 
 ### Diagram of the OAuth Authorization Flow:
-
 
 ![Diagram of the OAuth process flow, sometimes known as the OAuth handshake](https://assets.digitalocean.com/articles/oauth/abstract_flow.png "Diagram from Digitalocean.com")
 
