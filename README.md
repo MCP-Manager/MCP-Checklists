@@ -39,7 +39,7 @@ Here we (the [MCP Manager](https://mcpmanager.ai) team) will publish a range of 
 
 ### Checklists
 
-- Prompt Sanitization Measures Checklist
+- Prompt Sanitization Measures
 - 
 -
 
@@ -61,6 +61,7 @@ Here we (the [MCP Manager](https://mcpmanager.ai) team) will publish a range of 
 - Building AI Agents
 - AI Agent Regulatory Compliance
 - AI Agent Identity Management
+- Streamlining AI Agent Tool Availability and Selection
 
 ### Index Lists
 
