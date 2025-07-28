@@ -7,7 +7,7 @@ Along with the checklist items below you can also use [OAuth Debugger](https://o
 ## Author Information
 Created by the team at: [MCP Manager](https://mcpmanager.ai/).
 
-MCP Manager is an MCP gateway which acts as a safety net for your organization's AI agents and their interractions with MCP servers and connected resources.
+MCP Manager is an MCP gateway which acts as a safety net for your organization's AI agents and their interactions with MCP servers and connected resources.
 
 ## Table of Contents
 - [OAuth Overview](#overview-of-the-oauth-authorization-flow)
