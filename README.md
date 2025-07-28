@@ -4,19 +4,17 @@ Here we (the [MCP Manager](https://mcpmanager.ai) team) will publish a range of 
 
 ## 📚 Table of Contents
 
-- [Authentication](#-authentication)
+- [Authentication and Authorization](#-authentication-and-authorization)
 - [Logging, Auditing, and Observability]([#logging,-auditing-and-observability])
 - [Threats and Mitigation](#%EF%B8%8F-threats-and-mitigation)  
 - [AI Agent Building & Security](#-ai-agent-building-and-security)
 
-## 🔐 Authentication 
+## 🔐 Authentication and Authorization 
 
 ### Checklists
 
 - [Troubleshooting OAuth in MCP Checklist](https://github.com/MCP-Manager/MCP-Checklists/blob/main/OAuth-Troubleshooting.md)
-- Checklist Two
-- Checklist Three
-- Checklist Four
+- MCP Identity Management
 
 ### Index Lists
 
@@ -40,8 +38,8 @@ Here we (the [MCP Manager](https://mcpmanager.ai) team) will publish a range of 
 ### Checklists
 
 - Prompt Sanitization Measures
+- Evaluating MCP Servers For Threats and Risks
 - 
--
 
 ### Index Lists
 
