@@ -9,7 +9,7 @@ Created by the team at: [MCP Manager](https://mcpmanager.ai/).
 
 MCP Manager is an MCP gateway which acts as a safety net for your organization's AI agents and their interactions with MCP servers and connected resources.
 
-## Table of Contents
+## 📚 Table of Contents
 - [OAuth Overview](#overview-of-the-oauth-authorization-flow)
 - [MCP OAuth Checklist](#mcp-oauth-checklist)
   - [Correct Endpoints Exist and Are Discoverable](#correct-endpoints-exist-and-are-discoverable)
@@ -35,9 +35,13 @@ The OAuth authorization flow (sometimes called the OAuth handshake) is a process
 
 ![Diagram of the OAuth process flow, sometimes known as the OAuth handshake](https://assets.digitalocean.com/articles/oauth/abstract_flow.png "Diagram from Digitalocean.com")
 
+Diagram from [Digital Ocean](https://www.digitalocean.com) 
+
 ### Diagram of the OAuth Authorization Flow With MCP Servers:
 
 ![Diagram of the OAuth process flow with MCP servers](https://images.ctfassets.net/23aumh6u8s0i/SThohuyEi51pqc2l0dbyt/27aa3ea282d2c66e280a8633b33c2d88/Uploaded_from_MCP_Leadership_Blog "Digram from Auth0.com")
+
+Diagram from [Auth0.com](https://www.auth0.com)
 
 ## MCP OAuth Checklist
 
