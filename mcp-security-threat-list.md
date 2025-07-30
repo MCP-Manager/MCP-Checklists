@@ -16,7 +16,7 @@ MCP Manager is an MCP gateway which acts as a safety net for your organization's
 - [Server Spoofing](#-server-spoofing)
 - [Token Theft and Account Takeover](#-token-theft-and-account-takeover)
 
-## ✔️ General Mitigations Against Security Threats and Risks
+## ✅ General Mitigations Against Security Threats and Risks
 
 In addition to the specific mitigations against each MCP-based attack vector which you’ll find in the sections below, there are also general security measures*, that help prevent or reduce the impact, severity, and longevity of most MCP-based attacks. 
 
