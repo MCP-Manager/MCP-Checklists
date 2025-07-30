@@ -5,7 +5,7 @@ Here we (the [MCP Manager](https://mcpmanager.ai) team) will publish a range of 
 ## 📚 Table of Contents
 
 - [Authentication and Authorization](#-authentication-and-authorization)
-- [Logging, Auditing, and Observability](#-logging-auditing-and-observability)
+- [Logging, Auditing, and Observability](#logging-auditing-and-observability)
 - [Threats and Mitigation](#%EF%B8%8F-threats-and-mitigation)  
 - [AI Agent Building & Security](#-ai-agent-building-and-security)
 
@@ -21,7 +21,7 @@ Here we (the [MCP Manager](https://mcpmanager.ai) team) will publish a range of 
 -
 -
 
-## 👁️ Logging, Auditing, and Observability
+## Logging, Auditing, and Observability
 
 ### Checklists
 
