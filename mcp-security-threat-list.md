@@ -8,7 +8,7 @@ Created by the team at: [MCP Manager](https://mcpmanager.ai/).
 MCP Manager is an MCP gateway which acts as a safety net for your organization's AI agents and their interactions with MCP servers and connected resources.
 
 ## 📚 Threat-List/Contents
-- [General Mitigations Against Security Threats/Risks](#-general-mitigations-against-security-threats-and-risks) https://github.com/MCP-Manager/MCP-Checklists/edit/main/mcp-security-threat-list.md#general-mitigations-against-security-threats-and-risks
+- [General Mitigations Against Security Threats/Risks](#-general-mitigations-against-security-threats-and-risks)
 - [Tool Poisoning](#-tool-poisoning)
 - [Rug-Pull Updates](#-rug-pull-updates)
 - [Retrieval Agent Deception (RADE)](#-retrieval-agent-deception-rade)
