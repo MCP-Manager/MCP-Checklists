@@ -9,12 +9,12 @@ MCP Manager is an MCP gateway which acts as a safety net for your organization's
 
 ## 📚 Threat-List/Contents
 - General Mitigations Against Security Threats/Risks
-- [Tool Poisoning](#%EF%B8%8F-tool-poisoning)
-- Rug-Pull Updates
-- Retrieval Agent Deception (RADE)
-- Cross-Server Shadowing
-- Server Spoofing
-- Token Theft and Account Takeover
+- [Tool Poisoning](#-tool-poisoning)
+- [Rug-Pull Updates](#-rug-pull-updates)
+- [Retrieval Agent Deception (RADE)](#-retrieval-agent-deception-rade)
+- [Cross-Server Shadowing](#-cross-server-shadowing)
+- [Server Spoofing](#-server-spoofing)
+- [Token Theft and Account Takeover](#token-theft-and-account-takeover)
 
 [Back to Threat-List/Contents](#-threat-listcontents)
 
@@ -34,7 +34,7 @@ In addition to the specific mitigations against each MCP-based attack vector whi
 
 [Back to Threat-List/Contents](#-threat-listcontents)
 
-## ⚠️ Tool Poisoning
+## 🔺 Tool Poisoning
 
 ### Description
 An indirect prompt injection attack where malicious and/or deceptive instructions or code are placed within a tool’s metadata (such as the tool’s description field) or within tool outputs (such as error messages or “helpful” tips for the LLM). 
@@ -49,7 +49,7 @@ An indirect prompt injection attack where malicious and/or deceptive instruction
 - **Sanitize Tool Metadata:** Ongoing, automated scanning of tool metadata for malicious or harmful instructions
 - **Sanitize Tool Outputs:** Ongoing, automated interception and scanning (via a gateway) of tool outputs for malicious, harmful, or suspicious instructions
 
-## ⚠️ Rug-Pull Updates
+## 🔺 Rug-Pull Updates
 
 ### Description
 
@@ -62,7 +62,7 @@ The rug-pull method can be paired with attacks like tool poisoning to circumvent
 - **Hash-checking:** Use an MCP gateway to store the full text/cryptographic hashes of tool metadata and automatically detect any/malicious changes in the diff
 - **Server Re-Approval Process:** When changes are detected in server metadata, servers are temporarily quarantined and reinspected for instructions that are malicious or could unintentionally cause undesirable AI agent behavior.
 
-## ⚠️ Retrieval Agent Deception (RADE)
+## 🔺 Retrieval Agent Deception (RADE)
 
 ### Description
 Retrieval-Agent Deception (RADE) is a sophisticated attack where malicious commands or prompts are planted in data that the AI will later retrieve, causing the AI to unknowingly execute those commands. 
@@ -80,7 +80,7 @@ Retrieval-Agent Deception (RADE) is a sophisticated attack where malicious comma
 - **Logging and auditing:** Maintaining complete logs of all MCP exchanges (tool calls and their results is critical to diagnosing and remedying the cause of any breach
 
 
-## ⚠️ Cross-Server Shadowing
+## 🔺 Cross-Server Shadowing
 
 ### Description
 A malicious server contains hidden instructions that manipulate the AI agent’s use of another (benign) server’s tools. For example, a calculator tool can contain hidden prompts in the description 
@@ -96,7 +96,7 @@ A malicious server contains hidden instructions that manipulate the AI agent’s
 - **Tool Filtering/Limiting:** Limit agents range of available tools to those which are relevant to its tasks. This reduces the probability of cross-server shadowing occurring but does not prevent it entirely. 
 
 
-## ⚠️ Server Spoofing
+## 🔺 Server Spoofing
 
 ### Description
 An attacker creates a malicious MCP server that impersonates a legitimate MCP server or intercepts the communications to it. The aim of server spoofing is to trick AI agents into interacting with the spoof server and to send requests or sensitive data to it.
@@ -115,7 +115,7 @@ Server spoofing can result in a **“man in the middle”** scenario where the m
 - **Duplicate Tool Detection:** Use an MCP gateway to identify tools that mimic approved/known servers, based on similarities in tool names and other tool metadata
 - **Two-Way Authentication Handshakes:** Enforce policies that only allow users and agents to use MCP servers that have mutual TLS (mTLS) authentication, which requires the MCP client to cryptographically verify the identity of the MCP server (and vice versa)
 
-## ⚠️ Token Theft and Account Takeover
+## 🔺 Token Theft and Account Takeover
 
 ### Description
 Attackers exploit session management flaws, compromised MCP server code, malware, poor storage practices, or weak authentication to steal access tokens embedded in headers, request URLs, or environment variables. 
