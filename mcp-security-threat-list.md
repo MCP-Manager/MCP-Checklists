@@ -30,7 +30,7 @@ In addition to the specific mitigations against each MCP-based attack vector whi
 
 *Some of these capabilities are only possible through the use of an MCP gateway like [MCP Manager](https://mcpmanager.ai/).
 
-⬆️[Back to Threat-List/Contents](#-threat-listcontents)
+⬆️ [Back to Threat-List/Contents](#-threat-listcontents)
 
 ## 🔺 Tool Poisoning
 
@@ -47,7 +47,7 @@ An indirect prompt injection attack where malicious and/or deceptive instruction
 - **Sanitize Tool Metadata:** Ongoing, automated scanning of tool metadata for malicious or harmful instructions
 - **Sanitize Tool Outputs:** Ongoing, automated interception and scanning (via a gateway) of tool outputs for malicious, harmful, or suspicious instructions
 
-⬆️[Back to Threat-List/Contents](#-threat-listcontents)
+⬆️ [Back to Threat-List/Contents](#-threat-listcontents)
 
 ## 🔺 Rug-Pull Updates
 
@@ -62,7 +62,7 @@ The rug-pull method can be paired with attacks like tool poisoning to circumvent
 - **Hash-checking:** Use an MCP gateway to store the full text/cryptographic hashes of tool metadata and automatically detect any/malicious changes in the diff
 - **Server Re-Approval Process:** When changes are detected in server metadata, servers are temporarily quarantined and reinspected for instructions that are malicious or could unintentionally cause undesirable AI agent behavior.
 
-⬆️[Back to Threat-List/Contents](#-threat-listcontents)
+⬆️ [Back to Threat-List/Contents](#-threat-listcontents)
 
 ## 🔺 Retrieval Agent Deception (RADE)
 
@@ -81,7 +81,7 @@ Retrieval-Agent Deception (RADE) is a sophisticated attack where malicious comma
 - **Data Masking:** Specifically as a fallback mitigation against data exfiltration, mask sensitive data so it is not exposed even if exfiltrated by a corrupted AI
 - **Logging and auditing:** Maintaining complete logs of all MCP exchanges (tool calls and their results is critical to diagnosing and remedying the cause of any breach
 
-⬆️[Back to Threat-List/Contents](#-threat-listcontents)
+⬆️ [Back to Threat-List/Contents](#-threat-listcontents)
 
 ## 🔺 Cross-Server Shadowing
 
@@ -98,7 +98,7 @@ A malicious server contains hidden instructions that manipulate the AI agent’s
 - **Scoped Namespaces:** Use an MCP gateway to add namespace prefixes to bind each tool to its source server and help the AI treat them as specific to the source server, rather than applicable to other servers.
 - **Tool Filtering/Limiting:** Limit agents range of available tools to those which are relevant to its tasks. This reduces the probability of cross-server shadowing occurring but does not prevent it entirely. 
 
-⬆️[Back to Threat-List/Contents](#-threat-listcontents)
+⬆️ [Back to Threat-List/Contents](#-threat-listcontents)
 
 ## 🔺 Server Spoofing
 
@@ -119,7 +119,7 @@ Server spoofing can result in a **“man in the middle”** scenario where the m
 - **Duplicate Tool Detection:** Use an MCP gateway to identify tools that mimic approved/known servers, based on similarities in tool names and other tool metadata
 - **Two-Way Authentication Handshakes:** Enforce policies that only allow users and agents to use MCP servers that have mutual TLS (mTLS) authentication, which requires the MCP client to cryptographically verify the identity of the MCP server (and vice versa)
 
-⬆️[Back to Threat-List/Contents](#-threat-listcontents)
+⬆️ [Back to Threat-List/Contents](#-threat-listcontents)
 
 ## 🔺 Token Theft and Account Takeover
 
@@ -136,4 +136,4 @@ Attackers exploit session management flaws, compromised MCP server code, malware
 - **Just-In-Time (JIT) Access Tokens:** Implement authorization methods that support JIT task-specific tokens, which are short-lived and expire after the completion of the task they were generated to facilitate.
 - **Sender-Constrained Tokens:** Use proof-of-posession authentication methods (such as DPoP or mTLS) that require both the access token and a unique cryptographic key pair
 
-⬆️[Back to Threat-List/Contents](#-threat-listcontents)
+⬆️ [Back to Threat-List/Contents](#-threat-listcontents)
