@@ -43,7 +43,7 @@ Here we (the [MCP Manager](https://mcpmanager.ai) team) will publish a range of 
 
 ### Index Lists
 
-- MCP Server Cybersecurity Threat-List (With Mitigations)
+- [MCP Server Cybersecurity Threat-List (With Mitigations)[(https://github.com/MCP-Manager/MCP-Checklists/blob/main/mcp-security-threat-list.md)
 - MCP Server Attack Index
 
 ### Policy Templates
