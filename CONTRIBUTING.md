@@ -2,7 +2,7 @@
 
 Contributions are welcome and encouraged! Whether you're fixing a typo, adding a new checklist item, or suggesting other alterations or improvements, your help is appreciated.
 
-##How to Contribute
+## How to Contribute
 Fork the file: Click the "Fork" button in the top right corner of the GitHub page of the resource you want to contribute to.
 
 Create a new branch: Create a new branch for your changes. This keeps your changes separate from the main project until they're ready to be merged. A good branch name describes the changes you're making, e.g., add-checklist-item or fix-typo.
