@@ -20,9 +20,6 @@ We welcome contributions and sugguestions - here's the [instructions for contrib
 
 ### Index Lists
 
--
--
-
 ## 📝 Logging, Auditing, and Observability
 
 ### Checklists
@@ -32,8 +29,6 @@ We welcome contributions and sugguestions - here's the [instructions for contrib
 - MCP Observability Checklist
 
 ### Index Lists
--
--
 
 ## 🛡️ Threats and Mitigation
 
@@ -41,7 +36,6 @@ We welcome contributions and sugguestions - here's the [instructions for contrib
 
 - Prompt Sanitization Measures
 - Evaluating MCP Servers For Threats and Risks
-- 
 
 ### Index Lists
 
@@ -49,10 +43,6 @@ We welcome contributions and sugguestions - here's the [instructions for contrib
 - MCP Server Attack Index
 
 ### Policy Templates
-
--
--
-
 
 ## 🤖 AI Agent Building and Security
 
@@ -64,7 +54,3 @@ We welcome contributions and sugguestions - here's the [instructions for contrib
 - Streamlining AI Agent Tool Availability and Selection
 
 ### Index Lists
-
--
--
--
