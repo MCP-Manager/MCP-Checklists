@@ -1,6 +1,8 @@
 # MCP-Checklists
 
-Here we (the [MCP Manager](https://mcpmanager.ai) team) will publish a range of checklists, indexes, and other resources to help people adopt and use AI agents and MCP servers securely - without losing pace in the AI race.
+We (the [MCP Manager](https://mcpmanager.ai) team) will publish a range of checklists, indexes, and other resources here. They will help people and organizations adopt and use AI agents and MCP servers securely - without losing pace in the AI race.
+
+We welcome contributions and sugguestions - here's the [instructions for contributing](https://github.com/MCP-Manager/MCP-Checklists/blob/main/CONTRIBUTING.md).
 
 ## 📚 Table of Contents
 
@@ -56,7 +58,7 @@ Here we (the [MCP Manager](https://mcpmanager.ai) team) will publish a range of 
 
 ### Checklists
 
-- Building AI Agents
+- [Building AI Agents](https://github.com/MCP-Manager/MCP-Checklists/blob/main/ai-agent-building.md)
 - AI Agent Regulatory Compliance
 - AI Agent Identity Management
 - Streamlining AI Agent Tool Availability and Selection
