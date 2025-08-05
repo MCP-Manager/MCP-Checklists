@@ -14,7 +14,7 @@ Created by the team at: [MCP Manager](https://mcpmanager.ai/).
 
 ## Why You Need a Logging Solution For Your MCP Servers
 
-Built in, standard MCP server logs are fine for ad-hoc, on the spot debugging when you’re configuring servers and clients, but they aren’t suitable for large scale monitoring and audits, particularly when you need to see interactions across multiple servers, or are interested in tracking more advanced events like security breaches or policy violations. 
+Built-in, standard MCP server logs are fine for ad-hoc, on the spot debugging when you’re configuring servers and clients, but they aren’t suitable for large scale monitoring and audits, particularly when you need to see interactions across multiple servers, or are interested in tracking more advanced events like security breaches or policy violations. 
 
 Use this checklist to enhance the logging solution you are creating for your own MCP ecosystem, in order to make it suitable for business use or for a particularly big MCP stack.
 
