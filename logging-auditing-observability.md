@@ -5,12 +5,12 @@ Created by the team at: [MCP Manager](https://mcpmanager.ai/).
 [MCP Manager](https://mcpmanager.ai/) is an MCP gateway which acts as a safety net for your organization's AI agents, and their interactions with MCP servers and connected resources.
 
 ## 📚 Table of Contents
-- [Why You Need a Logging Solution For Your MCP Servers](why-you-need-a-logging-solution-for-your-mcp-servers)
-- [Why Enrich Your Logs With Contextual Metadata?](why-enrich-your-logs-with-contextual-metadata)
-- [MCP Logging Checklist](mcp-logging-checklist)
-- [Logging Implementation Best Practices](logging-implementation-best-practices)
-- [Higher-Level Logs/Server Inventory](higher-level-logs-server-inventory)
-- [Using an MCP Gateway For Robust, High-Fidelity Logging](using-an-mcp-gateway-for-robust-high-fidelity-logging)
+- [Why You Need a Logging Solution For Your MCP Servers](#why-you-need-a-logging-solution-for-your-mcp-servers)
+- [Why Enrich Your Logs With Contextual Metadata?](#why-enrich-your-logs-with-contextual-metadata)
+- [MCP Logging Checklist](#mcp-logging-checklist)
+- [Logging Implementation Best Practices](#logging-implementation-best-practices)
+- [Higher-Level Logs/Server Inventory](#higher-level-logs-server-inventory)
+- [Using an MCP Gateway For Robust, High-Fidelity Logging](#using-an-mcp-gateway-for-robust-high-fidelity-logging)
 
 ## Why You Need a Logging Solution For Your MCP Servers
 
@@ -28,7 +28,7 @@ Enriching your logs with contextual metadata improves your ability to:
 - **Set Triggerable Alerts:** Captured metadata in logs can be used to trigger automated alerts and actions.
 - **Precision Filter/Structure Large Logs:** Quickly isolate and group meaningful events from vast volumes of information, reducing noise and speeding up audit/issue response times.
 
-⬆️ [Jump to Table of Contents](-table-of-contents)
+⬆️ [Jump to Table of Contents](#-table-of-contents)
 
 ## MCP Logging Checklist
 ### Contextual Metadata to Include In Your Logs:
