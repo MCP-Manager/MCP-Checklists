@@ -1,6 +1,6 @@
 # MCP Logging, Auditing, and Observability Checklist
 ## Author Information
-Created by the team at: [MCP Manager](https://mcpmanager.ai/).
+Created by the team at: [MCP Manager](https://mcpmanager.ai/). Our team will be adding lots of valuable checklists and other resources for people creating and securing their MCP ecosystem. **Star this repo to stay up to date and avoid missing that guide you know you'll need in the future!**
 
 [MCP Manager](https://mcpmanager.ai/) is an MCP gateway which acts as a safety net for your organization's AI agents, and their interactions with MCP servers and connected resources.
 
