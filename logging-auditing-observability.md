@@ -65,6 +65,8 @@ The list below doesn’t represent the totality of all the data you should captu
 - Consider using libraries like [Pinot Logging](https://getpino.io/) to implement most of these best practices.
 - Ensure any middleware (such as an MCP gateway) preserves header content, particularly, but don’t forget to sanitize sensitive headers like “authorization”.
 
+⬆️ [Jump to Table of Contents](#-table-of-contents)
+
 ### Higher-Level Logs/Server Inventory
 In addition to logging interactions between MCP servers and clients you should also maintain an inventory-style record of the servers that are currently added to your network/organization, including:
 
@@ -98,6 +100,8 @@ An MCP Gateway like MCP Manager also enables you to achieve a secure level of go
 - Which versions of MCP servers are allowed/blocked (to guard against rug-pull tool poisoning and similar attack vectors that use tool metadata updates to add malicious or dangerous prompts)
 
 If you want a more DIY approach you can also create your own system using something as simple as a spreadsheet which can be populated by an agent when new MCP servers are added. Taking this route won’t give you the governance capabilities of an MCP gateway but it will at least give you a record of what MCP servers are being used, and who you should contact if they are found to be vulnerable and need to be removed.
+
+⬆️ [Jump to Table of Contents](#-table-of-contents)
 
 ## Using an MCP Gateway For Robust, High-Fidelity Logging
 
