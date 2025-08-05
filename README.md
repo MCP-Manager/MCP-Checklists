@@ -24,9 +24,9 @@ We welcome contributions and sugguestions - here's the [instructions for contrib
 
 ### Checklists
 
-- MCP Logging Checklist
+- [MCP Logging, Auditing, and Observability Checklist](https://github.com/MCP-Manager/MCP-Checklists/blob/main/logging-auditing-observability.md)
 - MCP Enterprise Auditing Checklist
-- MCP Observability Checklist
+- MCP Reports You Need
 
 ### Index Lists
 
