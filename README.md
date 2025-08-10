@@ -2,7 +2,7 @@
 
 We (the [MCP Manager](https://mcpmanager.ai) team) will publish a range of checklists, indexes, and other resources here. They will help people and organizations adopt and use AI agents and MCP servers securely - without losing pace in the AI race.
 
-We welcome contributions and sugguestions - here's the [instructions for contributing](https://github.com/MCP-Manager/MCP-Checklists/blob/main/CONTRIBUTING.md).
+We welcome contributions and sugguestions - here's the [instructions for contributing](./infrastructure/docs/CONTRIBUTING.md).
 
 ## 📚 Table of Contents
 
@@ -15,7 +15,7 @@ We welcome contributions and sugguestions - here's the [instructions for contrib
 
 ### Checklists
 
-- [Troubleshooting OAuth in MCP Checklist](https://github.com/MCP-Manager/MCP-Checklists/blob/main/OAuth-Troubleshooting.md)
+- [Troubleshooting OAuth in MCP Checklist](./infrastructure/docs/OAuth-Troubleshooting.md)
 - MCP Identity Management
 
 ### Index Lists
@@ -24,7 +24,7 @@ We welcome contributions and sugguestions - here's the [instructions for contrib
 
 ### Checklists
 
-- [MCP Logging, Auditing, and Observability Checklist](https://github.com/MCP-Manager/MCP-Checklists/blob/main/logging-auditing-observability.md)
+- [MCP Logging, Auditing, and Observability Checklist](./infrastructure/docs/logging-auditing-observability.md)
 - MCP Enterprise Auditing Checklist
 - MCP Reports You Need
 
@@ -39,7 +39,7 @@ We welcome contributions and sugguestions - here's the [instructions for contrib
 
 ### Index Lists
 
-- [MCP Server Cybersecurity Threat-List (With Mitigations)](https://github.com/MCP-Manager/MCP-Checklists/blob/main/mcp-security-threat-list.md)
+- [MCP Server Cybersecurity Threat-List (With Mitigations)](./infrastructure/docs/mcp-security-threat-list.md)
 - MCP Server Attack Index
 
 ### Policy Templates
@@ -48,7 +48,7 @@ We welcome contributions and sugguestions - here's the [instructions for contrib
 
 ### Checklists
 
-- [Building AI Agents](https://github.com/MCP-Manager/MCP-Checklists/blob/main/ai-agent-building.md)
+- [Building AI Agents](./infrastructure/docs/ai-agent-building.md)
 - AI Agent Regulatory Compliance
 - AI Agent Identity Management
 - Streamlining AI Agent Tool Availability and Selection
