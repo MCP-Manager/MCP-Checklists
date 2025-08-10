@@ -15,7 +15,7 @@ We welcome contributions and sugguestions - here's the [instructions for contrib
 
 ### Checklists
 
-- [Troubleshooting OAuth in MCP Checklist](./infrastructure/docs/OAuth-Troubleshooting.md)
+- [Troubleshooting OAuth in MCP Checklist](./infrastructure/docs/troubleshooting-oauth.md)
 - MCP Identity Management
 
 ### Index Lists
