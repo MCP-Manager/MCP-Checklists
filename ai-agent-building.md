@@ -11,11 +11,11 @@ Created by the team at: [MCP Manager](https://mcpmanager.ai).
 
 ## 📚 Table of Contents
 
-- Part One: [Defining Your Agent](#part-one-defining-your-agent)
-- Part Two: [Services, Data, and Tools](#part-two-services-data-and-tools)
-- Part Three: [Implementation](#part-three-implementation)
-- Part Four: [Testing](#part-four-testing) 
-- Part Five: [Improvements and Refinement](#part-five-improvements-and-refinements)
+- **Part One:** [Defining Your Agent](#part-one-defining-your-agent)
+- **Part Two:** [Services, Data, and Tools](#part-two-services-data-and-tools)
+- **Part Three:** [Implementation](#part-three-implementation)
+- **Part Four:** [Testing](#part-four-testing) 
+- **Part Five:** [Improvements and Refinement](#part-five-improvements-and-refinements)
 
 ## Part One: Defining Your Agent
 - **Primary Purpose:** What is your agent’s main job?
