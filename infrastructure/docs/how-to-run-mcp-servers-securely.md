@@ -1,31 +1,41 @@
-# Risks of running MCP servers locally
+# How to Run Local MCP Servers Securely
 
-Locally running MCP servers have unlimited access to your personal files, creating risks of data exfiltration, virus implantation & propagation, or data encryption attacks (aka Ransomware).
+Read this guide to understand why running MCP servers locally creates an abundance of severe security risks, and how to mitigate these risks with a simple mix of containerization (or sandboxing) and MCP server-network isolation. 
 
-You should take precautions to make sure the MCP server you're running doesn't have unfettered access to your local file system and / or corporate network.
+## 📚 Table of Contents
 
-One of the solutions you can employ to run MCP servers more securely is Docker. [Docker](https://www.docker.com/get-started/) is a containerization solution that is free, open source and widely supported across all the major operating systems.
 
-Running MCP servers inside of Docker containers allows you to run them in a sandboxed environment that you have full control over. You decide which files and folders to expose to the container, can define rules for HTTP and Websocket traffic, and selectively expose environment variables as opposed to leaking unintended secrets.
 
-Running MCP servers inside Docker increases their security and gives you more control on what data and capabilities the server has access to.
+## Risks of Running MCP Servers Locally
 
-Note that it's not a complete bulletproof solution, an MCP server running inside a docker container in your computer won't have access to your files, but it will be able to make network calls unless you lock down traffic from the container. For maximum security, you should containerize your MCP servers, and run them outside of your corporate / private network.
+Locally running MCP servers have unlimited access to your personal files, creating risks of data exfiltration, virus implantation & propagation, or data encryption attacks  (Ransomware).
 
-To summarize, running MCP servers inside Docker containers solves 2 problems:
+You should take precautions to make sure the MCP server you're running **doesn't have unfettered access to your local file system and / or corporate network.**
 
-- Data exfiltration via filesystem access is blocked, container cannot read host files unless users explicitely expose them to the container.
-- Accessing corporate network can be mitigated by running untrusted MCP servers outside of a corporate / private network.
+## Using Docker to Secure Local MCP Servers
 
-The following tiered list offers an idea on how to quickly access the security of an MCP solution:
+One of the solutions you can use to run MCP servers more securely is Docker. [Docker](https://www.docker.com/get-started/) is a containerization solution that is free, open source, and widely supported across all major operating systems.
 
-1. Highest security is running MCP server outside corporate network with sandboxing.
-2. Medium security is running MCP server locally with sandboxing.
-3. Lowest security is running MCP server locally without sandboxing.
+Running local MCP servers inside Docker containers allows you to run them in a sandboxed environment that you have complete control over. You decide which files and folders to expose to the container, can define rules for HTTP and WebSocket traffic, and selectively expose environment variables instead of unintentionally leaking secrets.
 
-# Use Docker to sandbox your MCP server and expose it securely with Supergateway
+Running MCP servers inside Docker increases their security and gives you more control over what data and capabilities the server has access to.
 
-> These are simplified steps to save you time, more details below:
+Note that it's not a complete bulletproof solution, an MCP server running inside a docker container in your computer won't have access to your files, but it will be able to make network calls unless you lock down traffic from the container. **For maximum security,** you should containerize your MCP servers, and run them outside of your corporate / private network.
+
+### Running MCP servers inside Docker containers solves 2 problems:
+
+1. Data exfiltration via filesystem is blocked - the container cannot read host files unless users explicitely expose those files to it.
+2. Accessing corporate network can be mitigated by running untrusted MCP servers outside of your corporate / private network.
+
+This tiered list shows how to quickly assess the security of a locally deployed MCP server:
+
+1. **Highest Security/Lowest Risk:** Running an MCP server outside corporate network with sandboxing.
+2. **Medium security/Medium Risk:** Running an MCP server locally with sandboxing.
+3. **Lowest security/Highest Risk:** Running an MCP server locally without sandboxing.
+
+# How To Use Docker to Sandbox Your MCP Server and Expose It Securely (With Supergateway)	
+
+> These are simplified steps to save you time, you can find more details on each of these steps below:
 ```bash
 # TLDR:
 #1. Copy your desired Dockerfile into the root of the project
@@ -36,27 +46,25 @@ npm run build
 npm run start
 ```
 
-In order to help you run your containerized MCP servers, we've created several docker files that allow you to launch and expose any Node JS MCP server securely (Python servers will follow). 
-
-We currently give you 3 example Docker files that give you options on how you expose your MCP server to the outside world:
+In order to help you run your containerized MCP servers, we've created three Docker files that allow you to launch and expose any Node JS MCP server securely (Python servers will follow later). Here are your three options:
 
 1. [NGinx proxy](../docker/node_mcp/nginx_proxy/Dockerfile): By creating a self-signed SSL certificate, and using a combination of [NGinx](https://nginx.org/) with [Supergateway](https://github.com/supercorp-ai/supergateway), we can safely expose port 443 (HTTPS traffic), and protect it with a secret token.
-2. [NGrok secure tunnel](../docker/ngrok_tunnel/nginx_proxy/Dockerfile): [NGrok](https://ngrok.com/) is an established company in the network security industry, they offer Secure Tunnel support with many methods of securing the connection (Basic Auth, OAuth, OIDC, JWTs), but for our simple use case, we demonstrate securing the connection with [Basic Auth](https://ngrok.com/docs/agent/cli/#ngrok-http).
-3. [Pinggy secure tunnel](../docker/pinggy_tunnel/nginx_proxy/Dockerfile): [Pinggy](https://pinggy.io/) is a smaller competitor with a focused Security Tunnelling offering. Their pricing is lower and the user interface is simpler and more intuitive to use than NGrok. While we were impressed with their web application, we cannot speak to their long term performance or reliability.
+2. [NGrok secure tunnel](../docker/ngrok_tunnel/nginx_proxy/Dockerfile): [NGrok](https://ngrok.com/) is an established leader in network security. They offer Secure Tunnel support with many methods of securing the connection, including Basic Auth, OAuth, OIDC, and JWTs. For our simple use case, we demonstrate how to secure the connection with [Basic Auth](https://ngrok.com/docs/agent/cli/#ngrok-http).
+3. [Pinggy secure tunnel](../docker/pinggy_tunnel/nginx_proxy/Dockerfile): [Pinggy](https://pinggy.io/) is a smaller provider with a focused Security Tunnelling offering. Their pricing is lower, and the user interface is simpler and more intuitive to use than NGrok. While we were impressed with their web application, we cannot speak to their long-term performance or reliability.
 
-# What are the differences between using NGinx proxy vs tunneling?
+## What are the differences between using NGinx proxy vs tunneling?
 
-Both proxy and tunnelling approaches use the same core security model. Docker sandboxes the MCP server, and Supergateway exposes it via HTTP on port 8000, which is internal to the container is not exposed to the host. This means that you cannot connect to Supergateway directly, and traffic within the container can flow securely without encryption.
+Both proxy and tunnelling approaches use the same core security model. Docker sandboxes the MCP server, and Supergateway exposes it via HTTP on port 8000, which is internal to the container and not exposed to the host. This means that you cannot connect to Supergateway directly, and traffic within the container can flow securely without encryption.
 
-Here is where the solutions differ:
+## How These Solutions Differ:
 
-## NGinx Proxy
+### NGinx Proxy
 
 The [NGinx Dockerfile](../docker/node_mcp/nginx_proxy/Dockerfile) creates a self-signed SSL certificate, and launches a webserver that listens to traffic from port 443 (the HTTPS port), and forwards it along to port 8000 if the request is correctly authorized with a Bearer token (aka provides a `authorization: Bearer {SECRET_KEY}` header). This is the simplest and most cost effective solution to secure your MCP servers, but it doesn't offer added benefits like logging and remote disconnect that a secure tunnel provides. 
 
 <img width="360" alt="NGinx Proxy Technical Diagram" src="../docs/images/Secured_MCP_via_Nginx_Proxy_Mermaid_Chart-2025-08-10-043951.png">
 
-## Secure Tunnel
+### Secure Tunnel
 
 A secure tunnel uses a combination of agents (one running inside the container, alongside your MCP server & Supergateway), and one on a remote data center. These agents connect on startup and form a tunnel that allows authorized traffic to enter the container. The Dockerfiles for secure tunnels work very similarly to NGinx, the only difference being that we don't need to open a port into the docker container, since inbound traffic will always go to thorugh the tunnel.
 
@@ -64,7 +72,7 @@ The [NGrok Dockerfile](../docker/node_mcp/ngrok_tunnel/Dockerfile) and [Pinggy D
 
 <img width="360" alt="Secure Tunnel Technical Diagram" src="../docs/images/Secured_MCP_via_Tunnel_Proxy_Mermaid_Chart-2025-08-10-043849.png">
 
-## Customize & build your MCP Server Docker image
+## Customize and Build Your MCP Server Docker Image
 
 The first step will be to prepare your machine to build and run Docker images. Even if you plan to deploy the Docker image remotely, it may still be helpful to build and run it locally to ensure everything is working as you expect.
 
@@ -82,13 +90,13 @@ npm install
 
 ### Prepare the Environment Variables & Dockerfile
 
-We recognize that learning Docker is a journey and can be intimidating for people unfamiliar with the technology. That's why we provide a basic CLI through NPM that largely abstracts away the complexity of dealing with Docker. Simply follow a few steps and you'll be establishing secure connections to sandboxed MCPs in no time.
+We recognize that learning Docker is a journey and can be intimidating for people unfamiliar with the technology. That's why we provide a basic CLI through NPM that largely abstracts away the complexity of dealing with Docker. Simply follow the steps below and you'll be establishing secure connections to sandboxed local MCPs in no time.
 
 > Pro tip: The command `npm run cli` prints the list of utility scripts our CLI provides, in addition you can pass `-h` to any command to read documentation about its function and parameters, ex: `npm run build -- -h`
 
-Step 1: Copy `.env.example` file at the root, and rename the copy to `.env`, you will place configuration and secrets here.
+**Step 1:** Copy `.env.example` file at the root, and rename the copy to `.env`, you will place configuration and secrets here.
 
-Step 2: Open `.env` file and assign values to the following environment variables (use `npm run gen_key` to generate secure secrets):
+**Step 2:** Open `.env` file and assign values to the following environment variables (use `npm run gen_key` to generate secure secrets):
 
 ```bash
 # (Required) The MCP server to run inside container
@@ -110,15 +118,15 @@ PINGGY_ACCESS_TOKEN="secret_key__please_change"
 PINGGY_BEARER_TOKEN="secret_key__please_change"
 ```
 
-Step 3: Depending on which approach you want to take, select one of the 3 Dockerfiles we provide and place it at the root of this repository (replacing the existing Dockerfile, which is a copy of the [NGinx proxy Dockerfile](../docker/node_mcp/nginx_proxy/Dockerfile)):
+**Step 3:** Depending on which approach you want to take, select one of the 3 Dockerfiles we provide and place it at the root of this repository (replacing the existing Dockerfile, which is a copy of the [NGinx proxy Dockerfile](../docker/node_mcp/nginx_proxy/Dockerfile)):
 
 - [NGinx proxy](../docker/node_mcp/nginx_proxy/Dockerfile)
 - [NGrok secure tunnel](../docker/ngrok_tunnel/nginx_proxy/Dockerfile)
 - [Pinggy secure tunnel](../docker/pinggy_tunnel/nginx_proxy/Dockerfile)
 
-Step 4: Build the docker image: `npm run build`
+**Step 4:** Build the docker image: `npm run build`
 
-Step 5: Start the docker image: `npm run start`
+**Step 5:** Start the docker image: `npm run start`
 
 You can also start the docker image in "detached mode", which means it will run in the background and start automatically, ex:
 
@@ -133,7 +141,7 @@ npm run stop
 
 You can find the source code for the [build](../package_scripts/build.mjs) and [start](../package_scripts/start.mjs) scripts in the [infrastructure/package_scripts](../package_scripts/) directory. These simple scripts load up environment variables from the `.env` file, and forward them along to the respective docker command (`docker build` & `docker run`).
 
-### Technical notes on building Docker images
+### Technical Notes on Building Docker Images
 
 If you can, base your Docker images from Alpine (ex: `FROM node:$NODE_VERSION-alpine`) which offers the smallest image size and therefore highest security.
 
@@ -141,7 +149,7 @@ If you need `apt` package manager or run into compatibility issues, base your Do
 
 If all else fails, basing your docker image from a widely popular linux distro like Ubuntu (ex: `FROM ubuntu:latest`) and then installing your needed dependencies is a solid idea.
 
-To give you an example of these decisions in action, we decided to base our NGinx Docker image from `node:$NODE_VERSION-alpine`, making it as compact and secure as possible. But we ran into challenges installing and running the NGrok and Pinggy applications in the alpine image, so we switched those images to be based off of `node:$NODE_VERSION-slim` instead, which fixed my compability issues, but also resulted in a Docker image that is approx. 100 MB larger than the alpine version.
+To give you an example of these decisions in action, we decided to base our NGinx Docker image from `node:$NODE_VERSION-alpine`, making it as compact and secure as possible. But we ran into challenges installing and running the NGrok and Pinggy applications in the Alpine image, so we switched those images to be based off of `node:$NODE_VERSION-slim` instead, which fixed my compability issues, but also resulted in a Docker image that is approx. 100 MB larger than the alpine version.
 
 One final thing to note, is that you should never access secrets during the build stage of Dockerfiles. Any variables you access while building the Docker image become embedded in it. All secrets should be passed to the MCP server at runtime, which happens automatically when you run: `npm run start` 
 
@@ -160,7 +168,7 @@ npm install @modelcontextprotocol/inspector@latest -g
 npx @modelcontextprotocol/inspector@latest
 ```
 
-# Conclusion
+## Conclusion
 
 You can sandbox almost any MCP server in minutes: pick a Dockerfile (start with the NGinx proxy for simplest), drop in the env vars, run build + start, then validate with Postman or the MCP Inspector.
 
