@@ -1,6 +1,6 @@
 # How to Run Local MCP Servers Securely
 
-Read this guide to understand why running MCP servers locally creates an abundance of severe security risks, and how to mitigate these risks with a simple mix of containerization (or sandboxing) and MCP server-network isolation. 
+Read this guide to understand why running MCP servers locally creates an abundance of severe security risks, and how you can mitigate those risks with a simple mix of containerization (or sandboxing) and MCP server-network isolation. 
 
 ## 📚 Table of Contents
 - [Introduction](#risks-of-running-mcp-servers-locally)
