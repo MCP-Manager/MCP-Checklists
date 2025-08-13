@@ -8,27 +8,27 @@ We welcome contributions and suggestions - here's the [instructions for contribu
 
 ## 📚 Table of Contents
 
-- [Use Docker to Secure MCP servers](#-use-docker-to-secure-mcp-servers)
+- [Use Docker to Secure MCP servers](#-using-docker-to-run-local-mcp-servers-securely)
 - [Authentication and Authorization](#-authentication-and-authorization)
 - [Logging, Auditing, and Observability](#-logging-auditing-and-observability)
 - [Threats and Mitigation](#%EF%B8%8F-threats-and-mitigation)  
 - [AI Agent Building & Security](#-ai-agent-building-and-security)
 
-## 🐳 Use Docker to Secure MCP servers
+## 🐳 Using Docker to Run Local MCP Servers Securely
 
 > TLDR: [How to Run MCP Servers Securely](./infrastructure/docs/how-to-run-mcp-servers-securely.md)
 
-Installing and running MCP servers on a computer is equivalent to installing and running any other software on it. Locally running MCP servers have unlimited access to your personal files, creating risks of data exfiltration, virus implantation & propagation, or data encryption attacks (aka Ransomware).
+Installing and running MCP servers locally is equivalent to installing and running any other software on your computer. Locally running MCP servers have unlimited access to all your files, creating risks of data exfiltration, token theft, virus infection and propagation, or data encryption attacks (Ransomware).
 
-[Docker](https://www.docker.com/get-started/) is a containerization solution that is free, open source and widely supported across all the major operating systems.
+[Docker](https://www.docker.com/get-started/) is a containerization solution that is free, open source, and widely supported across all major operating systems.
 
-Running MCP servers inside of Docker containers allows you to run them in a sandboxed environment that you have full control over. You decide which files and folders to expose to the container, can define rules for HTTP and Websocket traffic, and selectively expose environment variables as opposed to leaking unintended secrets.
+Running MCP servers inside Docker containers allows you to run them in a sandboxed environment that you have complete control over. You decide which files and folders to expose to the container, can define rules for HTTP and WebSocket traffic, and selectively expose environment variables instead of unintentionally leaking secrets.
 
-Running MCP servers inside Docker increases their security and gives you more control on what data and capabilities the server has access to. It's not a complete bulletproof solution however, if you're not careful you can still give docker containers running locally unfettered access to your VPN / private networks.
+Using Docker to containerize your MCP servers reduces security risks and gives you more control over what data and capabilities the server has access to. It's not a complete bulletproof solution, however, because if you're not careful, you can still give Docker containers running locally unfettered access to your VPN / private networks.
 
-We understand learning complex technologies like Docker can be intimidating, but we've made our best effort to offer you examples, documentation, and helpful scripts to get you started running MCPs securely.
+We understand that learning complex technologies like Docker can be intimidating, but we've made our best effort to provide you with examples, documentation, and helpful scripts to get you started running MCPs securely.
 
-Take a look at [How to Run MCP Servers Securely](./infrastructure/docs/how-to-run-mcp-servers-securely.md) guide to learn about our helpful scripts and Dockerfiles that will get you started running MCP Servers more securely in no time.
+Use [How to Run MCP Servers Securely](./infrastructure/docs/how-to-run-mcp-servers-securely.md) to learn about our helpful scripts and Dockerfiles that will get you started running local MCP Servers securely in no time.
 
 ## 🔐 Authentication and Authorization 
 
