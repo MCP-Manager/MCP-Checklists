@@ -1,6 +1,8 @@
-# How to Run Local MCP Servers Securely
+# Securing Local MCP Servers with Docker
 
-Read this guide to understand why running MCP servers locally creates an abundance of severe security risks, and how to mitigate these risks with a simple mix of containerization (or sandboxing) and MCP server-network isolation. 
+Read this guide to understand why running MCP servers locally creates an abundance of severe security risks, and how you can mitigate those risks with a simple mix of containerization (or sandboxing) and MCP server-network isolation. 
+
+This resource was produced by the team at [MCP Manager](https://mcpmanager.ai/) - the comprehensive security solution for enterprise MCP server use.
 
 ## 📚 Table of Contents
 - [Introduction](#risks-of-running-mcp-servers-locally)
@@ -10,9 +12,11 @@ Read this guide to understand why running MCP servers locally creates an abundan
 
 ## Risks of Running MCP Servers Locally
 
-Locally running MCP servers have unlimited access to your personal files, creating risks of data exfiltration, virus implantation & propagation, or data encryption attacks  (Ransomware).
+Locally running MCP servers have unlimited access to your personal files, creating risks of data exfiltration, virus implantation & propagation, or data encryption attacks (Ransomware).
 
-You should take precautions to make sure the MCP server you're running **doesn't have unfettered access to your local file system and / or corporate network.**
+Placing bearer tokens in plaintext in well-known locations on your file system (e.g. `.claude.json`) is a major risk.
+
+You should take precautions to make sure the MCP server you're running **doesn't have unfettered access to your local file system and / or corporate network** and **avoid storing bearer tokens in your MCP configurations**.
 
 ## Using Docker to Secure Local MCP Servers
 
@@ -22,12 +26,13 @@ Running local MCP servers inside Docker containers allows you to run them in a s
 
 Running MCP servers inside Docker increases their security and gives you more control over what data and capabilities the server has access to.
 
-Note that it's not a complete bulletproof solution, an MCP server running inside a docker container in your computer won't have access to your files, but it will be able to make network calls unless you lock down traffic from the container. **For maximum security,** you should containerize your MCP servers, and run them outside of your corporate / private network.
+Note that it's not a complete bulletproof solution, an MCP server running inside a docker container in your computer won't have access to your files, but it will be able to make network calls unless you lock down traffic from the container. **For maximum security,** you should containerize your MCP servers and run them outside of your corporate / private network.
 
-### Running MCP servers inside Docker containers solves 2 problems:
+### Running MCP servers inside Docker containers solves 3 problems:
 
 1. Data exfiltration via filesystem is blocked - the container cannot read host files unless users explicitely expose those files to it.
 2. Accessing corporate network can be mitigated by running untrusted MCP servers outside of your corporate / private network.
+3. Secret management is better, avoiding the need to store bearer tokens in your file system.
 
 This tiered list shows how to quickly assess the security of a locally deployed MCP server:
 
@@ -88,7 +93,7 @@ The first step will be to prepare your machine to build and run Docker images. E
 2. Install [Node](https://nodejs.org/) (used for helpful scripts and loading environment variables)
 
 ```bash
-# install our single dependency: @dotenvx/dotenvx (used to read values from .env files)
+# install the single dependency: @dotenvx/dotenvx (used to read values from .env files)
 npm install 
 ```
 
@@ -182,4 +187,6 @@ Using a Docker container with a gateway/tunnel enhances security in two importan
 
 Keep secrets out of image builds, only mount what you actually need, rotate tokens, and glance at logs now and then. Found a gap or have an idea? Open an issue or PR — we're looking forward to reading your feedback and / or suggestions.
 
-[MCP Manager Team](https://mcpmanager.ai/) - MCP Manager is a comprehensive, enterprise-level security solution for your MCP ecosystem.
+From the [MCP Manager Team](https://mcpmanager.ai/) 
+
+MCP Manager is a comprehensive, enterprise-level security solution for your MCP ecosystem.

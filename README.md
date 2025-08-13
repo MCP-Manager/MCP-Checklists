@@ -8,7 +8,7 @@ We welcome contributions and suggestions - here's the [instructions for contribu
 
 ## 📚 Table of Contents
 
-- [Use Docker to Secure MCP servers](#-using-docker-to-run-local-mcp-servers-securely)
+- [Using Docker to Secure Local MCP servers](#-using-docker-to-run-local-mcp-servers-securely)
 - [Authentication and Authorization](#-authentication-and-authorization)
 - [Logging, Auditing, and Observability](#-logging-auditing-and-observability)
 - [Threats and Mitigation](#%EF%B8%8F-threats-and-mitigation)  
