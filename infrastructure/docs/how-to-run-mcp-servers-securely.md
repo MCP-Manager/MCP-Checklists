@@ -2,6 +2,8 @@
 
 Read this guide to understand why running MCP servers locally creates an abundance of severe security risks, and how you can mitigate those risks with a simple mix of containerization (or sandboxing) and MCP server-network isolation. 
 
+This resource was produced by the team at [MCP Manager](https://mcpmanager.ai/) - the comprehensive security solution for enterprise MCP server use.
+
 ## 📚 Table of Contents
 - [Introduction](#risks-of-running-mcp-servers-locally)
 - [How to Use Docker to Sandbox and Securely Explose Local MCP Servers](#how-to-use-docker-to-sandbox-your-mcp-server-and-expose-it-securely)
