@@ -1,0 +1,28 @@
+{
+  "name": "mcp-security-toolkit",
+  "version": "0.0.1",
+  "description": "Documentation, checklists, useful tools and utilities to secure your MCP servers",
+  "keywords": [
+    "mcp",
+    "enterprise",
+    "security"
+  ],
+  "author": "Samuel Batista <sbatista@mcpmanager.ai> (https://sambatista.com)",
+  "contributors": [
+    "Becky Brooks <bbrooks@mcpmanager.ai>",
+    "James Taylor <jtaylor@mcpmanager.ai>"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "fnm use lts/latest --install-if-missing || : && node infrastructure/package_scripts/build.mjs",
+    "build_cli": "fnm use lts/latest --install-if-missing || : && node infrastructure/package_scripts/build_cli.mjs",
+    "cli": "fnm use lts/latest --install-if-missing || : && node infrastructure/package_scripts/cli.mjs",
+    "gen_key": "fnm use lts/latest --install-if-missing || : && node infrastructure/package_scripts/gen_key.mjs",
+    "start": "fnm use lts/latest --install-if-missing || : && node infrastructure/package_scripts/start.mjs",
+    "stop": "fnm use lts/latest --install-if-missing || : && node infrastructure/package_scripts/stop.mjs"
+  },
+  "dependencies": {
+    "@dotenvx/dotenvx": "1.48.3"
+  },
+  "packageManager": "pnpm@10.12.1+sha512.f0dda8580f0ee9481c5c79a1d927b9164f2c478e90992ad268bbb2465a736984391d6333d2c327913578b2804af33474ca554ba29c04a8b13060a717675ae3ac"
+}

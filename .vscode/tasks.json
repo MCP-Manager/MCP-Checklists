@@ -1,0 +1,74 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "shell",
+      "command": "bash",
+      "args": [
+        "-l",
+        "-c",
+        "\"fnm use lts/latest --install-if-missing || : && node infrastructure/package_scripts/build.mjs\""
+      ],
+      "label": "build",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "type": "shell",
+      "command": "bash",
+      "args": [
+        "-l",
+        "-c",
+        "\"fnm use lts/latest --install-if-missing || : && node infrastructure/package_scripts/build_cli.mjs\""
+      ],
+      "label": "build - cli",
+      "group": "build"
+    },
+    {
+      "type": "shell",
+      "command": "bash",
+      "args": [
+        "-l",
+        "-c",
+        "\"fnm use lts/latest --install-if-missing || : && node infrastructure/package_scripts/cli.mjs\""
+      ],
+      "label": "cli",
+      "group": "build"
+    },
+    {
+      "type": "shell",
+      "command": "bash",
+      "args": [
+        "-l",
+        "-c",
+        "\"fnm use lts/latest --install-if-missing || : && node infrastructure/package_scripts/gen_key.mjs\""
+      ],
+      "label": "gen - key",
+      "group": "build"
+    },
+    {
+      "type": "shell",
+      "command": "bash",
+      "args": [
+        "-l",
+        "-c",
+        "\"fnm use lts/latest --install-if-missing || : && node infrastructure/package_scripts/start.mjs\""
+      ],
+      "label": "start",
+      "group": "build"
+    },
+    {
+      "type": "shell",
+      "command": "bash",
+      "args": [
+        "-l",
+        "-c",
+        "\"fnm use lts/latest --install-if-missing || : && node infrastructure/package_scripts/stop.mjs\""
+      ],
+      "label": "stop",
+      "group": "build"
+    }
+  ]
+}

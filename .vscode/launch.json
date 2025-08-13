@@ -1,0 +1,113 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "build",
+      "type": "node",
+      "request": "launch",
+      "outputCapture": "std",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "internalConsoleOptions": "neverOpen",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": [
+        "-l",
+        "-c",
+        "fnm exec --using=lts/latest -- node infrastructure/package_scripts/build.mjs",
+        "--preserve-symlinks"
+      ],
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "build_cli",
+      "type": "node",
+      "request": "launch",
+      "outputCapture": "std",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "internalConsoleOptions": "neverOpen",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": [
+        "-l",
+        "-c",
+        "fnm exec --using=lts/latest -- node infrastructure/package_scripts/build_cli.mjs",
+        "--preserve-symlinks"
+      ],
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "cli",
+      "type": "node",
+      "request": "launch",
+      "outputCapture": "std",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "internalConsoleOptions": "neverOpen",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": [
+        "-l",
+        "-c",
+        "fnm exec --using=lts/latest -- node infrastructure/package_scripts/cli.mjs",
+        "--preserve-symlinks"
+      ],
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "gen_key",
+      "type": "node",
+      "request": "launch",
+      "outputCapture": "std",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "internalConsoleOptions": "neverOpen",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": [
+        "-l",
+        "-c",
+        "fnm exec --using=lts/latest -- node infrastructure/package_scripts/gen_key.mjs",
+        "--preserve-symlinks"
+      ],
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "start",
+      "type": "node",
+      "request": "launch",
+      "outputCapture": "std",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "internalConsoleOptions": "neverOpen",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": [
+        "-l",
+        "-c",
+        "fnm exec --using=lts/latest -- node infrastructure/package_scripts/start.mjs",
+        "--preserve-symlinks"
+      ],
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "stop",
+      "type": "node",
+      "request": "launch",
+      "outputCapture": "std",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "internalConsoleOptions": "neverOpen",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": [
+        "-l",
+        "-c",
+        "fnm exec --using=lts/latest -- node infrastructure/package_scripts/stop.mjs",
+        "--preserve-symlinks"
+      ],
+      "console": "integratedTerminal"
+    }
+  ]
+}
