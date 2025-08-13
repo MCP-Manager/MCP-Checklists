@@ -183,4 +183,5 @@ Using a Docker container with a gateway/tunnel enhances security in two importan
 Keep secrets out of image builds, only mount what you actually need, rotate tokens, and glance at logs now and then. Found a gap or have an idea? Open an issue or PR — we're looking forward to reading your feedback and / or suggestions.
 
 From the [MCP Manager Team](https://mcpmanager.ai/) 
+
 MCP Manager is a comprehensive, enterprise-level security solution for your MCP ecosystem.
