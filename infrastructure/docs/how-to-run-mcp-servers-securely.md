@@ -35,6 +35,8 @@ This tiered list shows how to quickly assess the security of a locally deployed 
 2. **Medium security/Medium Risk:** Running an MCP server locally with sandboxing.
 3. **Lowest security/Highest Risk:** Running an MCP server locally without sandboxing.
 
+⬆️ [Jump to Contents](#-table-of-contents)
+
 ## How To Use Docker to Sandbox Your MCP Server and Expose It Securely	
 
 > These are simplified steps to save you time, you can find more details on each of these steps below:
