@@ -41,7 +41,7 @@ try {
   /* noop */
 }
 
-await spawnPromise(`docker container run ${argv.detached ? '-d' : '-it'} -p 127.0.0.1:80:443/tcp -p 127.0.0.1:443:443/tcp --name ${argv.name} ${envVars} ${argv.tag}`, {
+await spawnPromise(`docker container run ${argv.detached ? '-d' : '-it'} ${argv.detached ? '--restart unless-stopped' : ''} -p 127.0.0.1:80:443/tcp -p 127.0.0.1:443:443/tcp --name ${argv.name} ${envVars} ${argv.tag}`, {
   forwardParams: false,
   outputPrefix,
 });
