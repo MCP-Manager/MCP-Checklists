@@ -3,6 +3,9 @@
 Read this guide to understand why running MCP servers locally creates an abundance of severe security risks, and how to mitigate these risks with a simple mix of containerization (or sandboxing) and MCP server-network isolation. 
 
 ## 📚 Table of Contents
+- [Introduction](#risks-of-running-mcp-servers-locally)
+- [How to Use Docker to Sandbox and Securely Explose Local MCP Servers](#how-to-use-docker-to-sandbox-your-mcp-server-and-expose-it-securely)
+- 
 
 
 
@@ -33,7 +36,7 @@ This tiered list shows how to quickly assess the security of a locally deployed 
 2. **Medium security/Medium Risk:** Running an MCP server locally with sandboxing.
 3. **Lowest security/Highest Risk:** Running an MCP server locally without sandboxing.
 
-# How To Use Docker to Sandbox Your MCP Server and Expose It Securely (With Supergateway)	
+## How To Use Docker to Sandbox Your MCP Server and Expose It Securely	
 
 > These are simplified steps to save you time, you can find more details on each of these steps below:
 ```bash
@@ -55,8 +58,6 @@ In order to help you run your containerized MCP servers, we've created three Doc
 ## What are the differences between using NGinx proxy vs tunneling?
 
 Both proxy and tunnelling approaches use the same core security model. Docker sandboxes the MCP server, and Supergateway exposes it via HTTP on port 8000, which is internal to the container and not exposed to the host. This means that you cannot connect to Supergateway directly, and traffic within the container can flow securely without encryption.
-
-## How These Solutions Differ:
 
 ### NGinx Proxy
 
