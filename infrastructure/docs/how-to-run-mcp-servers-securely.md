@@ -132,8 +132,8 @@ PINGGY_BEARER_TOKEN="secret_key__please_change"
 **Step 3:** Depending on which approach you want to take, select one of the 3 Dockerfiles we provide and place it at the root of this repository (replacing the existing Dockerfile, which is a copy of the [NGinx proxy Dockerfile](../docker/node_mcp/nginx_proxy/Dockerfile)):
 
 - [NGinx proxy](../docker/node_mcp/nginx_proxy/Dockerfile)
-- [NGrok secure tunnel](../docker/ngrok_tunnel/nginx_proxy/Dockerfile)
-- [Pinggy secure tunnel](../docker/pinggy_tunnel/nginx_proxy/Dockerfile)
+- [NGrok secure tunnel](..docker/node_mcp/ngrok_tunnel/Dockerfile)
+- [Pinggy secure tunnel](../docker/node_mcp/pinggy_tunnel/Dockerfile)
 
 **Step 4:** Build the docker image: `npm run build`
 
