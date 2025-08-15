@@ -1,5 +1,5 @@
 <!-- omit in toc -->
-# Contributing to MCP Security Toolkit
+# Contributing to MCP Security Checklists
 
 First off, thanks for taking the time to contribute! ❤️
 
