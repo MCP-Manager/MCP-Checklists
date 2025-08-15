@@ -63,7 +63,7 @@ Use [How to Run MCP Servers Securely](./infrastructure/docs/how-to-run-mcp-serve
 ### Index Lists
 
 - [MCP Server Cybersecurity Threat-List (With Mitigations)](./infrastructure/docs/mcp-security-threat-list.md)
-- MCP Server Attack Index
+- [MCP Server Reported Vulnerabilities Index](./infrastructure/docs/reported-vulnerability-index.md)
 
 ### Policy Templates
 
