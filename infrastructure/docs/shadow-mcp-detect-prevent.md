@@ -32,7 +32,7 @@ Of course, all of the below are just helpful, practical suggestions. It is ultim
 
 -   **Create and document a clear process (workflow)** for requesting, reviewing, and approving new MCP servers. This process should include what steps and/or utilities reviewing personnel should follow to detect security threats or other issues in MCP servers and their tools, such as checking tool metadata for malicious instructions.
 -  **Maintain an MCP server inventory** that includes details like the server's approval status, who has access rights to it, when it was added, who requested and approved it, and other key information that would be useful when auditing and evaluating your MCP server stack. If you are using an [MCP gateway](https://mcpmanager.ai/blog/mcp-gateway/) or proxy then your inventory will be created and updated automatically when you add servers to it.
-    -   Create a robust MCP server usage policy for your organization, which makes it clear that:
+- **Create a robust MCP server usage policy** for your organization, which makes it clear that:
     -   All MCP servers must be submitted to, reviewed, and approved by the information security team (or equivalent) before use.
     -   No one should use unauthorized MCP servers
     -   How to submit a new MCP server for review
