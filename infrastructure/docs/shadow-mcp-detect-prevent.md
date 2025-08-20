@@ -14,7 +14,6 @@ Our team will be adding lots of valuable checklists and other resources for peop
 - [Process and Policy Directives](#-process-and-policydirectives)
 - [Shadow Server Detection]([url](#%EF%B8%8F-shadow-server-detection))
     - [Network Traffic & Usage Monitoring](#-network-traffic-and-usage-monitoring)
-    - [Scripted Scanners](#-scripted-scanners)
     - [AI Agents]([url](#-ai-agents))
 
 
@@ -52,7 +51,31 @@ Below are some options you can use.
 
 If your organization uses a Next-Generation Firewall, IDS (Intrusion Detection System), IPS (Intrusion Prevention System), or other platform with deep packet inspection capabilities, you can configure it to identify MCP server use signatures and patterns, such as:
 
--   JSON messages including "jsonrpc": "2.0" and method calls including "initialize"
+-   JSON messages including "jsonrpc": "2.0" and **method** calls including any of the below:
+    -    initialize
+    -    tools/list
+    -    tools/call
+    -    sampling/complete
+    -    elicitation/request
+    -    notifications/tools/list_changed
+    -    _For example:_
+```
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "initialize",
+  "params": {
+    "protocolVersion": "2025-06-18",
+    "capabilities": {
+      "tools": {}
+    },
+    "clientInfo": {
+      "name": "example-client",
+      "version": "1.0.0"
+    }
+  }
+}
+```  
 -   Calls to typical MCP endpoints (e.g., /mcp, /api/mcp, /messages)
 -   Response headers that include values like "MCP-Session-ID" 
 -   Responses using Content-Type"text/event-stream" (used in SSE MCP transports)
@@ -62,42 +85,6 @@ If your organization uses an EDR (Endpoint Detection and Response) solution, or 
 -   Monitor for common MCP processes
 -   Use custom detection rules/YARA signature to flag typical MCP server launch procedures (e.g., python mcp-server.py, or node mcp-sever.js)
 -   Also use a file system watcher to flag when MCP config files or registration scripts are added (e.g. mcp_server.py)
-
-### 🔎 Scripted Scanners
-
-You can also run a script to scan for MCP servers in your organization, by mimicking the MCP handshake across common ports and endpoints used by MCP servers.
-
-This can be a riskier method, with its own potential security risks, and should not be attempted by anyone without the necessary authorization and expertise to do so.
-
--   Use a language supported by MCP SDKs (e.g., Java, Python, Typescript)
--   Install libraries for HTTP requests and JSON-RPC communications.
--   Identify the common ports where MCPs may be running (e.g., 3000,443, 8000)
--   Create a script that sends MCP JSON-RPC "initialize" handshake requests to network hosts on those common ports. For example:
-```
-{
-  "jsonrpc": "2.0",
-  "id": 1,
-  "method": "initialize",
-  "params": {
-    "capabilities": {}
-  }
-}
-```
--   Within the script use HTTP POST transport to those endpoints commonly used by MCP servers like /mcp or /api/mcp. You should have something like:
-```
-endpoints =
-[
-  "http://192.168.1.10:3000/mcp",
-
-  "http://192.168.1.15:8000/api/mcp"
-
-]
-```
-- Within the script specify what a successful response is (i.e. a valid MCP server response which includes that server's capabilities)
-- Add a value for a successful response (e.g. _"MCP Server Discovered at {endpoint} with capabilities: {capabilities}"_) and a value for no response/the response doesn't match the MCP JSON-RPC format  (e.g. _"No MCP Server at {endpoint}"_)
-- Consider whether you want to exclude known/allowed servers from your scan. This should make it faster to sift through the results, but it could leave a gap for detecting "spoof" or "imitation" servers so it may be better to filter the results of the scan, rather than filter the scan itself.
-- Ensure that your scan respects existing security policies, and does not risk data leakage or unauthorized access.
-- Plan out your scans- including timing, frequency, and followup actions - with your security and network teams
 
 ### 🤖 AI Agents
 
