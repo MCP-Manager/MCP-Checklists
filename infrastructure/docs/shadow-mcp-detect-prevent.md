@@ -21,7 +21,7 @@ Our team will be adding lots of valuable checklists and other resources for peop
 
 Deploy local MCPs easily at scale, and keep all your sensitive data secure. 
 
-## Intro/Disclaimer
+## 👋 Intro/Disclaimer
 
 Below is a mix of steps to follow and options to prevent and uncover shadow MCP server use in your organization.
 
@@ -31,7 +31,7 @@ Note that some of these recommendations are dependent on having specific technol
 
 Of course, all of the below are just helpful, practical suggestions. It is ultimately your responsibility to decide how you will secure your organization against shadow MCP server use and other MCP-based security risks. For comprehensive mitigation against MCP-based security risks use an MCP gateway like our own MCP Manager.
 
-### Process and Policy/Directives
+### 👮 Process and Policy/Directives
 
 -   **Create and document a clear process (workflow)** for requesting, reviewing, and approving new MCP servers. This process should include what steps and/or utilities reviewing personnel should follow to detect security threats or other issues in MCP servers and their tools, such as checking tool metadata for malicious instructions.
 -  **Maintain an MCP server inventory** that includes details like the server's approval status, who has access rights to it, when it was added, who requested and approved it, and other key information that would be useful when auditing and evaluating your MCP server stack. If you are using an [MCP gateway](https://mcpmanager.ai/blog/mcp-gateway/) or proxy then your inventory will be created and updated automatically when you add servers to it.
@@ -45,13 +45,13 @@ Of course, all of the below are just helpful, practical suggestions. It is ultim
 -  **Distribute easily accessible guidance** which explains your MCP Server Use Policy and process for requesting a new server or access to an existing server (if you have access policies in place).
 -  **Require explicit agreement** by creating a process (such as using a survey or forms software) to ensure that everyone in your organization reviews your guidance and policy, understands the reasons why following your policy and processes is essential, and formally agrees to abide by your policy and processes.
 
-## Shadow Server Detection
+## 👁️ Shadow Server Detection
 
 In addition to ensuring every team member knows how to add new MCP servers and how and why to report the use of unauthorized servers, there are automated methods you can use to scan your environment and identify unauthorized servers.
 
 Below are some options you can use.
 
-### Network Traffic and Usage Monitoring
+### 🚦 Network Traffic and Usage Monitoring
 
 If your organization uses a Next-Generation Firewall, IDS (Intrusion Detection System), IPS (Intrusion Prevention System), or other platform with deep packet inspection capabilities, you can configure it to identify MCP server use signatures and patterns, such as:
 
@@ -66,7 +66,7 @@ If your organization uses an EDR (Endpoint Detection and Response) solution, or 
 -   Use custom detection rules/YARA signature to flag typical MCP server launch procedures (e.g., python mcp-server.py, or node mcp-sever.js)
 -   Also use a file system watcher to flag when MCP config files or registration scripts are added (e.g. mcp_server.py)
 
-### Scripted Scanners
+### 🔎 Scripted Scanners
 
 You can also run a script to scan for MCP servers in your organization, by mimicking the MCP handshake across common ports and endpoints used by MCP servers.
 
@@ -100,7 +100,7 @@ This can be a riskier method, with its own potential security risks, and should 
 - Ensure that your scan respects existing security policies, and does not risk data leakage or unauthorized access.
 - Plan out your scans- including timing, frequency, and followup actions - with your security and network teams
 
-### AI Agents
+### 🤖 AI Agents
 
 In the near-future you will be able to use an AI agent to scan for MCP usage signals in your organization. These agents use most of the same detection methods as you would build into a script (see above).
 
