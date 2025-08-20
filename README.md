@@ -48,6 +48,7 @@ Use [How to Run MCP Servers Securely](./infrastructure/docs/how-to-run-mcp-serve
 ### Checklists
 
 - [MCP Logging, Auditing, and Observability Checklist](./infrastructure/docs/logging-auditing-observability.md)
+- [Detecting & Prevening Shadow MCP Use](./infrastructure/docs/shadow-mcp-detect-prevent.md)
 - MCP Enterprise Auditing Checklist
 - MCP Reports You Need
 
