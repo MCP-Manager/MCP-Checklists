@@ -17,9 +17,6 @@ Our team will be adding lots of valuable checklists and other resources for peop
     - [Scripted Scanners](#-scripted-scanners)
     - [AI Agents]([url](#-ai-agents))
 
-[Add linked table of contents in the .md file]
-
-Deploy local MCPs easily at scale, and keep all your sensitive data secure. 
 
 ## 👋 Intro/Disclaimer
 
@@ -112,4 +109,6 @@ We're not able to provide comprehensive guidance on how to build your own shadow
 
 ## Securing MCP Server Use for Enterprise
 
-Shadow MCP use is just one of the many security risks that enterprises using AI and MCP servers need to protect themselves against. Here is a [list of the key MCP-based security risks](https://github.com/MCP-Manager/MCP-Checklists/blob/main/infrastructure/docs/mcp-security-threat-list.md) you should be aware of right now, and if you want to protect your organization use our MCP gateway - [MCP Manager](https://mcpmanager.ai/).
+Shadow MCP use is just one of the many security risks that enterprises using AI and MCP servers need to protect themselves against. Here is a [list of the key MCP-based security risks](https://github.com/MCP-Manager/MCP-Checklists/blob/main/infrastructure/docs/mcp-security-threat-list.md) you should be aware of right now.
+
+🛡️ For **comprehensive protection** against MCP and AI security risks use - [MCP Manager](https://mcpmanager.ai/).
