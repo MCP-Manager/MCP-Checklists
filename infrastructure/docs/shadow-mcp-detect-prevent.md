@@ -2,7 +2,7 @@
 
 ## Author Information
 
-Created by the team at: [MCP Manager](https://mcpmanager.ai/). MCP Manager is an MCP gateway which ensures secure enterprise adoption and usage of AI agents and MCP servers.
+Created by the team at: [MCP Manager](https://mcpmanager.ai/). MCP Manager is an MCP gateway which ensures secure enterprise adoption of AI agents and MCP servers.
 
 Our team will be adding lots of valuable checklists and other resources for people creating and securing their MCP ecosystem.
 
