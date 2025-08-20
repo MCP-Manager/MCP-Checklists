@@ -1,4 +1,4 @@
-# Preventing Shadow MCP Server Usage - Checklist
+# 👥 Detecting & Preventing Shadow MCP Server Usage
 
 ## Author Information
 
@@ -10,12 +10,12 @@ Our team will be adding lots of valuable checklists and other resources for peop
 
 ## 📚 Table of Contents
 
-- [Intro/Disclaimer](url)
-- [Process and Policy Directives]()
-- [Shadow Server Detection](url)
-    - [Network Traffic & Usage Monitoring](url)
-    - [Scripted Scanners](url)
-    - [AI Agents](url)
+- [Intro/Disclaimer](#-introdisclaimer)
+- [Process and Policy Directives](#-process-and-policydirectives)
+- [Shadow Server Detection]([url](#%EF%B8%8F-shadow-server-detection))
+    - [Network Traffic & Usage Monitoring](#-network-traffic-and-usage-monitoring)
+    - [Scripted Scanners](#-scripted-scanners)
+    - [AI Agents]([url](#-ai-agents))
 
 [Add linked table of contents in the .md file]
 
@@ -31,7 +31,7 @@ Note that some of these recommendations are dependent on having specific technol
 
 Of course, all of the below are just helpful, practical suggestions. It is ultimately your responsibility to decide how you will secure your organization against shadow MCP server use and other MCP-based security risks. For comprehensive mitigation against MCP-based security risks use an MCP gateway like our own MCP Manager.
 
-### 👮 Process and Policy/Directives
+## 👮 Process and Policy/Directives
 
 -   **Create and document a clear process (workflow)** for requesting, reviewing, and approving new MCP servers. This process should include what steps and/or utilities reviewing personnel should follow to detect security threats or other issues in MCP servers and their tools, such as checking tool metadata for malicious instructions.
 -  **Maintain an MCP server inventory** that includes details like the server's approval status, who has access rights to it, when it was added, who requested and approved it, and other key information that would be useful when auditing and evaluating your MCP server stack. If you are using an [MCP gateway](https://mcpmanager.ai/blog/mcp-gateway/) or proxy then your inventory will be created and updated automatically when you add servers to it.
@@ -87,7 +87,9 @@ This can be a riskier method, with its own potential security risks, and should 
 }
 ```
 -   Within the script use HTTP POST transport to those endpoints commonly used by MCP servers like /mcp or /api/mcp. You should have something like:
-``` endpoints = [
+```
+endpoints =
+[
   "http://192.168.1.10:3000/mcp",
 
   "http://192.168.1.15:8000/api/mcp"
@@ -109,4 +111,5 @@ However, unlike using a script, an agent based system can provide real-time dete
 We're not able to provide comprehensive guidance on how to build your own shadow MCP "guard dog" style agent right now. We plan to add some more detailed instructions soon, but for now check out our [AI agent building checklist](https://github.com/MCP-Manager/MCP-Checklists/blob/main/ai-agent-building.md).
 
 ## Securing MCP Server Use for Enterprise
+
 Shadow MCP use is just one of the many security risks that enterprises using AI and MCP servers need to protect themselves against. Here is a [list of the key MCP-based security risks](https://github.com/MCP-Manager/MCP-Checklists/blob/main/infrastructure/docs/mcp-security-threat-list.md) you should be aware of right now, and if you want to protect your organization use our MCP gateway - [MCP Manager](https://mcpmanager.ai/).
