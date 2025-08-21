@@ -59,7 +59,7 @@ Use [How to Run MCP Servers Securely](./infrastructure/docs/how-to-run-mcp-serve
 ### Checklists
 
 - Prompt Sanitization Measures
-- Evaluating MCP Servers For Threats and Risks
+- [Evaluating MCP Servers For Threats and Risks](./infrastructure/docs/security-screening-mcp-servers.md)
 
 ### Index Lists
 
