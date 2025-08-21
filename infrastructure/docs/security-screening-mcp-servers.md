@@ -75,7 +75,7 @@ Using OAuth 2.0 or higher for authentication, as recommended - but not mandated 
 
 OAuth greatly minimizes exposure to credential theft, unauthorized access, and limits impacts from token theft, and corrupted AI agents.
 
-However, the OAuth implementation in MCP is notoriously difficult. Configuration mistakes and limited support for fine-grained scoping
+However, the OAuth implementation in MCP is notoriously difficult, with an abundance of configuration mistakes, and varied support for different scoping parameters that you would like to use to impose fine-grained access controls.
 
 ### Inspection Methods
 
