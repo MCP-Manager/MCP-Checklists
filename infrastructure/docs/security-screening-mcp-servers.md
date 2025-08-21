@@ -1,4 +1,4 @@
-Evaluating MCP servers for security risks
+Evaluating MCP Servers for Security Risks
 =========================================
 
 This file contains some basic inspections and tests you can perform if you are unsure about the secureness of an MCP server you are considering using.
