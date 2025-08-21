@@ -8,11 +8,17 @@ We welcome contributions and suggestions - here's the [instructions for contribu
 
 ## 📚 Table of Contents
 
-- [Using Docker to Secure Local MCP servers](#-using-docker-to-run-local-mcp-servers-securely)
-- [Authentication and Authorization](#-authentication-and-authorization)
-- [Logging, Auditing, and Observability](#-logging-auditing-and-observability)
-- [Threats and Mitigation](#%EF%B8%8F-threats-and-mitigation)  
-- [AI Agent Building & Security](#-ai-agent-building-and-security)
+- **[Using Docker to Secure Local MCP servers](#-using-docker-to-run-local-mcp-servers-securely)**
+- **[Authentication and Authorization](#-authentication-and-authorization)**
+    - [Troubleshooting OAuth in MCP Checklist](./infrastructure/docs/troubleshooting-oauth.md)
+- **[Logging, Auditing, and Observability](#-logging-auditing-and-observability)**
+    - [MCP Logging, Auditing, and Observability Checklist](./infrastructure/docs/logging-auditing-observability.md)
+- **[Threats and Mitigation](#%EF%B8%8F-threats-and-mitigation)**
+    - [Detecting & Prevening Shadow MCP Use](./infrastructure/docs/shadow-mcp-detect-prevent.md)
+    -  [MCP Server Cybersecurity Threat-List (With Mitigations)](./infrastructure/docs/mcp-security-threat-list.md)
+    - [MCP Server Reported Vulnerabilities Index](./infrastructure/docs/reported-vulnerability-index.md)
+- **[AI Agent Building & Security](#-ai-agent-building-and-security)**
+    - [AI Agents Build Checklist](./infrastructure/docs/ai-agent-building.md)
 
 ## 🐳 Using Docker to Run Local MCP Servers Securely
 
