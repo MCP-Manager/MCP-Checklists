@@ -9,6 +9,8 @@ Created by the team at: [MCP Manager](https://mcpmanager.ai).
 
 [MCP Manager](https://mcpmanager.ai) is an MCP gateway which acts as a safety net for your organization's AI agents and their interactions with MCP servers and connected resources.
 
+**⭐Star this repo to stay up to date and avoid missing that guide you know you'll need in the future!**
+
 ## 📚 Table of Contents
 
 - **Part One:** [Defining Your Agent](#part-one-defining-your-agent)
