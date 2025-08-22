@@ -5,6 +5,8 @@ This file contains some basic inspections and tests you can perform if you are u
 
 This resource was produced by the team at [MCP Manager](https://mcpmanager.ai) - the comprehensive security solution for enterprise MCP server use.
 
+**⭐Star this repo to stay up to date and avoid missing that guide you know you'll need in the future!**
+
 ## :books: Contents
 
 - [MCP Security Risks Overview](#-what-are-the-main-security-risks-from-mcp-servers)
