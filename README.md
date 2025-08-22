@@ -4,6 +4,8 @@ We're a team of security and AI enthusiasts building [MCP Manager](https://mcpma
 
 In this repository we will publish a range of checklists, indexes, lessons learned and helpful utilities to help you adopt and use AI agents and MCP servers securely - without losing pace in the AI race.
 
+**⭐Star this repo to stay up to date and avoid missing that guide you know you'll need in the future!**
+
 We welcome contributions and suggestions - here's the [instructions for contributing](./CONTRIBUTING.md).
 
 ## 📚 Table of Contents
