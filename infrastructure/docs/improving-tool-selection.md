@@ -14,7 +14,7 @@ MCP Manager is an MCP gateway which acts as a safety net for your organization's
 - [Issues With How LLMs/AI Agents Select MCP Tools](#-issues-with-how-llmsai-agents-select-mcp-tools)
 - [How To Improve MCP Tool Selection](#-how-to-improve-mcp-tool-selection-1)
     - [Include Tool Selection Guidance In Your Prompts](#-include-tool-selection-guidance-in-your-prompts)
-    - [Tool Filtering](#%EF%B8%8F-tool-filtering))
+    - [Tool Filtering](#%EF%B8%8F-tool-filtering)
         -   [Tool Filtering Option 1: Use an MCP Gateway or Proxy](#-tool-filtering-option-1-use-an-mcp-gateway-or-proxy)
         -   [Tool Filtering Option 2: Offload Tool Discovery](#-tool-filtering-option-2-offload-tool-discovery-rag-mcp-framework))
         -   [Tool Filtering Option 3: Manual Client-Based Filtering](#-tool-filtering-option-3-manual-client-based-filtering))
