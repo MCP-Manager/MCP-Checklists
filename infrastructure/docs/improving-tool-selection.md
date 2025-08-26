@@ -37,13 +37,9 @@ Here are the different methods you can use to improve MCP tool selection, to red
 
 1. **[Use an MCP Gateway or Proxy](#-tool-filtering-option-1-use-an-mcp-gateway-or-proxy):** Use a proxy that sits between your MCP clients and servers to apply filters based on agent/user permissions, role, task type, and other criteria.The most scalable and reliable way to improve agent performance, and reduce context bloat/token usage, but requires more configuration.
 
-  -   [Tool Filtering Option 1: 
-        -   [Tool Filtering Option 2: Offload Tool Discovery](#-tool-filtering-option-2-offload-tool-discovery-rag-mcp-framework))
-        -   [Tool Filtering Option 3: Manual Client-Based Filtering](#-tool-filtering-option-3-manual-client-based-filtering))
+2. **[Retrieval-Augmented Generation](#-tool-filtering-option-2-offload-tool-discovery-rag-mcp-framework):** Use a secondary "retriever" LLM to search a vector database that contains tool metadata and selects the best tool for your agent. Convincing reduction in context use and successful tool selection with a small tool pool, but fails to sustain these results when scaling to larger groups of servers and tools.
 
-2. **Retrieval-Augmented Generation:** Use a secondary "retriever" LLM to search a vector database that contains tool metadata and selects the best tool for your agent. Convincing reduction in context use and successful tool selection with a small tool pool, but fails to sustain these results when scaling to larger groups of servers and tools.
-
-3. **Manual Client-Based Filtering:** Deselect tools via your MCP client if it allows you to do so. A reliable approach, but time-consuming, repetitive, and reliant upon the user to apply filters (and to apply them correctly), making it less scalable and less secure.
+3. **[Manual Client-Based Filtering](#-tool-filtering-option-3-manual-client-based-filtering):** Deselect tools via your MCP client if it allows you to do so. A reliable approach, but time-consuming, repetitive, and reliant upon the user to apply filters (and to apply them correctly), making it less scalable and less secure.
 
 To explore each option in more detail, simply click on each of the titles above or scroll down.
 
