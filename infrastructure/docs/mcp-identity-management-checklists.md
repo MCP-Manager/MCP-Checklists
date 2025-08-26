@@ -41,7 +41,7 @@ This means there is a mix of servers that:
 
 - [ ] Use another form of authorization (which is likely less secure than OAuth e.g., bearer tokens directly within HTTP headers)
 
-The responsibility to implement secure methods of accessing MCP servers in your organization falls on you. Follow the checklist below to help you do this.
+The responsibility to implement secure methods of accessing MCP servers in your organization falls on you. **Follow the checklist below to help you do this.**
 
 - [ ] Adopt approaches and policies that align with the principle of least privilege (PoLP)
 
