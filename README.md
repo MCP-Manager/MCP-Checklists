@@ -50,7 +50,7 @@ Use [How to Run MCP Servers Securely](./infrastructure/docs/how-to-run-mcp-serve
 ### Checklists
 
 - [Troubleshooting OAuth in MCP Checklist](./infrastructure/docs/troubleshooting-oauth.md)
-- MCP Identity Management
+- [MCP Identity Management Checklist](./infrastructure/docs/mcp-identity-management-checklist.md)
 
 ### Index Lists
 
@@ -86,6 +86,6 @@ Use [How to Run MCP Servers Securely](./infrastructure/docs/how-to-run-mcp-serve
 - [Building AI Agents](./infrastructure/docs/ai-agent-building.md)
 - AI Agent Regulatory Compliance
 - AI Agent Identity Management
-- Streamlining AI Agent Tool Availability and Selection
+- [How to Improve MCP Tool Selection](./infrastructure/docs/improving-tool-selection.md)
 
 ### Index Lists
