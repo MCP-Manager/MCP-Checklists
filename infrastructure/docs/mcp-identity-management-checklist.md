@@ -35,11 +35,9 @@ The MCP specification makes authorization optional, and recommends - but doesn't
 
 This means there is a mix of servers that:
 
-- [ ] Lack authorization
-
-- [ ] Use OAuth
-
-- [ ] Use another form of authorization (which is likely less secure than OAuth e.g., bearer tokens directly within HTTP headers)
+- Lack any authorization measures
+- Use OAuth
+- Use another form of authorization (which is likely less secure than OAuth e.g., bearer tokens directly within HTTP headers)
 
 The responsibility to implement secure methods of accessing MCP servers in your organization falls on you. **Follow the checklist below to help you do this.**
 
