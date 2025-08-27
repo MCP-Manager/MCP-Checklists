@@ -16,12 +16,12 @@ We welcome contributions and suggestions - here's the [instructions for contribu
     - [MCP Identity Management Checklist](./infrastructure/docs/mcp-identity-management-checklist.md)
 - **[Logging, Auditing, and Observability](#-logging-auditing-and-observability)**
     - [MCP Logging, Auditing, and Observability Checklist](./infrastructure/docs/logging-auditing-observability.md)
-- **[Threats and Mitigation](#%EF%B8%8F-threats-and-mitigation)**
+- **[Security Threats and Mitigation](#%EF%B8%8F-threats-and-mitigation)**
     - [Detecting & Prevening Shadow MCP Use](./infrastructure/docs/shadow-mcp-detect-prevent.md)
     - [MCP Server Cybersecurity Threat-List (With Mitigations)](./infrastructure/docs/mcp-security-threat-list.md)
     - [MCP Server Reported Vulnerabilities Index](./infrastructure/docs/reported-vulnerability-index.md)
     - [Evaluating MCP Servers For Threats and Risks](./infrastructure/docs/security-screening-mcp-servers.md)
-- **[AI Agent Building & Security](#-ai-agent-building-and-security)**
+- **[AI Agent Building, Optimization, & Security](#-ai-agent-building-and-security)**
     - [How to Improve MCP Tool Selection](./infrastructure/docs/improving-tool-selection.md)
     - [AI Agents Build Checklist](./infrastructure/docs/ai-agent-building.md)
 
