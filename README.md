@@ -52,24 +52,17 @@ Use [How to Run MCP Servers Securely](./infrastructure/docs/how-to-run-mcp-serve
 - [Troubleshooting OAuth in MCP Checklist](./infrastructure/docs/troubleshooting-oauth.md)
 - [MCP Identity Management Checklist](./infrastructure/docs/mcp-identity-management-checklist.md)
 
-### Index Lists
-
 ## 📝 Logging, Auditing, and Observability
 
 ### Checklists
 
 - [MCP Logging, Auditing, and Observability Checklist](./infrastructure/docs/logging-auditing-observability.md)
 - [Detecting & Prevening Shadow MCP Use](./infrastructure/docs/shadow-mcp-detect-prevent.md)
-- MCP Enterprise Auditing Checklist
-- MCP Reports You Need
-
-### Index Lists
 
 ## 🛡️ Threats and Mitigation
 
 ### Checklists
 
-- Prompt Sanitization Measures
 - [Evaluating MCP Servers For Threats and Risks](./infrastructure/docs/security-screening-mcp-servers.md)
 
 ### Index Lists
@@ -77,15 +70,10 @@ Use [How to Run MCP Servers Securely](./infrastructure/docs/how-to-run-mcp-serve
 - [MCP Server Cybersecurity Threat-List (With Mitigations)](./infrastructure/docs/mcp-security-threat-list.md)
 - [MCP Server Reported Vulnerabilities Index](./infrastructure/docs/reported-vulnerability-index.md)
 
-### Policy Templates
-
 ## 🤖 AI Agent Building and Security
 
 ### Checklists/Guides
 
 - [Building AI Agents](./infrastructure/docs/ai-agent-building.md)
-- AI Agent Regulatory Compliance
-- AI Agent Identity Management
 - [How to Improve MCP Tool Selection](./infrastructure/docs/improving-tool-selection.md)
 
-### Index Lists
