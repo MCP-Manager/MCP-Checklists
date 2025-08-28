@@ -69,8 +69,9 @@ The responsibility to implement secure methods of accessing MCP servers in your 
 
 - [ ] Consider adding user approval to agent workflows before executing high-risk actions (such as export, delete, write, or accessing sensitive data)
 
-- [ ] Containerize local MCP servers to prevent unintended access to files, and consider disconnecting from your corporate network to prevent unauthorized access to network resources. More details in our [Guide to Securing Local MCP Servers](https://github.com/MCP-Manager/MCP-Checklists/blob/main/infrastructure/docs/how-to-run-mcp-servers-securely.md)\
-If you're struggling to set up OAuth for MCP servers, you can use our [OAuth for MCP Troubleshooting Checklist](https://github.com/MCP-Manager/MCP-Checklists/blob/main/infrastructure/docs/troubleshooting-oauth.md)
+- [ ] Containerize local MCP servers to prevent unintended access to files, and consider disconnecting from your corporate network to prevent unauthorized access to network resources. (More details in our [Guide to Securing Local MCP Servers](https://github.com/MCP-Manager/MCP-Checklists/blob/main/infrastructure/docs/how-to-run-mcp-servers-securely.md))
+
+If you're **struggling to set up OAuth for MCP servers**, you can also use our [OAuth for MCP Troubleshooting Checklist](https://github.com/MCP-Manager/MCP-Checklists/blob/main/infrastructure/docs/troubleshooting-oauth.md)
 
 🪪 Authentication 
 ---------------
