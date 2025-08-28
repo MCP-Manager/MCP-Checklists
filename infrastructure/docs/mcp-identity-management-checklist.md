@@ -5,6 +5,10 @@ You can use this checklist to help you implement robust enterprise-level identit
 
 Some of the measures included may not be necessary for your aims/organization type, and may require the use of an [MCP gateway/proxy](https://mcpmanager.ai/blog/mcp-gateway/), or additional elements of security infrastructure such as an identity provider (IdP).
 
+This resource was produced by the team at [MCP Manager](https://mcpmanager.ai/) - the comprehensive security solution for enterprise MCP server use.
+
+**⭐Star this repo to stay up to date and avoid missing that guide you know you'll need in the future!**
+
 👤 Identity Provision
 ------------------
 
