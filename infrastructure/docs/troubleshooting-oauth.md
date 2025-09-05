@@ -49,27 +49,6 @@ Diagram from [Auth0.com](https://www.auth0.com)
 
 ## MCP OAuth Checklist
 
-### Correct Endpoints Exist and Are Discoverable
-Missing, inaccessible, or misconfigured discovery endpoints are among the most common reasons OAuth flows fail to initiate.
-
-Correct endpoints must exist and be discoverable for the OAuth flow to start and function properly. These well-known URLs provide clients with essential metadata (such as authorization and token endpoints) enabling them to interact dynamically with the OAuth server without hardcoding values.
-
-#### Common Symptoms:
-- Client fails to start the OAuth flow
-- “Not connected” message when initiating tool
-- “Failed to discover endpoints” error message
-
-#### Remediation:
-- [ ] Ensure that the endpoint `./well-known/oauth-authorization-server` is present and accessible - typically it should be at the base path of your MCP server
-- [ ] Visit this endpoint’s URL (e.g. [https://my-mcp-domain/.well-known/oauth-authorization-server](https://my-mcp-domain/.well-known/oauth-authorization-server)) - confirm the response:
-  - Uses HTTPS and the URL begins with `https://`
-  - Includes the HTTP header: `content-type: application/json`
-  - Returns well-formed JSON that contains all required OAuth metadata fields:
-    - issuer
-    - authorization_endpoint
-    - Token_enpoint
-- [ ] Verify there are no network restrictions preventing the client from reaching the endpoint
-- [ ] Check that the client’s configuration logic points to the correct base URL so that it can fetch the required metadata
 
 ### Correct Token Format & Header Setup
 The client must send the access token to the MCP server within the authorization header, with the scheme “Bearer”. The MCP server then uses this token to validate the request. Missing tokens, or incorrectly formatted tokens or headers can cause errors in the OAuth flow.
