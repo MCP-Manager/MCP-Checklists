@@ -40,7 +40,7 @@ RUN apk add dumb-init nginx openssl gettext
 
 # Copy nginx configuration and startup script
 COPY infrastructure/docker/nginx.conf /etc/nginx/nginx.conf
-COPY infrastructure/docker/node/nginx_proxy/startup.sh /usr/local/bin/startup.sh
+COPY infrastructure/docker/node/startup.sh /usr/local/bin/startup.sh
 RUN chmod +x /usr/local/bin/startup.sh
 RUN mkdir -p /etc/ssl/certs /etc/ssl/private
 

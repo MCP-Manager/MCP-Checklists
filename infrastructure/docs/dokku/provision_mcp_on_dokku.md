@@ -10,6 +10,7 @@ sudo dokku letsencrypt:cron-job --add # <- To enable auto-renew
 # Setup app
 dokku apps:create markitdown
 dokku ports:set markitdown http:80:5000 https:443:5000
+dokku config:set markitdown NGINX_ACCESS_TOKEN={NGINX_ACCESS_TOKEN}
 
 # Deploy / update (on local machine):
 pnpm run deploy -a markitdown
