@@ -4,15 +4,26 @@ We're a team of security and AI enthusiasts building [MCP Manager](https://mcpma
 
 In this repository we will publish a range of checklists, indexes, lessons learned and helpful utilities to help you adopt and use AI agents and MCP servers securely - without losing pace in the AI race.
 
+**⭐Star this repo to stay up to date and avoid missing that guide you know you'll need in the future!**
+
 We welcome contributions and suggestions - here's the [instructions for contributing](./CONTRIBUTING.md).
 
 ## 📚 Table of Contents
 
-- [Using Docker to Secure Local MCP servers](#-using-docker-to-run-local-mcp-servers-securely)
-- [Authentication and Authorization](#-authentication-and-authorization)
-- [Logging, Auditing, and Observability](#-logging-auditing-and-observability)
-- [Threats and Mitigation](#%EF%B8%8F-threats-and-mitigation)  
-- [AI Agent Building & Security](#-ai-agent-building-and-security)
+- **[Using Docker to Secure Local MCP servers](#-using-docker-to-run-local-mcp-servers-securely)**
+- **[Authentication and Authorization](#-authentication-and-authorization)**
+    - [Troubleshooting OAuth in MCP Checklist](./infrastructure/docs/troubleshooting-oauth.md)
+    - [MCP Identity Management Checklist](./infrastructure/docs/mcp-identity-management-checklist.md)
+- **[Logging, Auditing, and Observability](#-logging-auditing-and-observability)**
+    - [MCP Logging, Auditing, and Observability Checklist](./infrastructure/docs/logging-auditing-observability.md)
+- **[Security Threats and Mitigation](#%EF%B8%8F-threats-and-mitigation)**
+    - [Detecting & Prevening Shadow MCP Use](./infrastructure/docs/shadow-mcp-detect-prevent.md)
+    - [MCP Server Cybersecurity Threat-List (With Mitigations)](./infrastructure/docs/mcp-security-threat-list.md)
+    - [MCP Server Reported Vulnerabilities Index](./infrastructure/docs/reported-vulnerability-index.md)
+    - [Evaluating MCP Servers For Threats and Risks](./infrastructure/docs/security-screening-mcp-servers.md)
+- **[AI Agent Building, Optimization, & Security](#-ai-agent-building-and-security)**
+    - [How to Improve MCP Tool Selection](./infrastructure/docs/improving-tool-selection.md)
+    - [AI Agents Build Checklist](./infrastructure/docs/ai-agent-building.md)
 
 ## 🐳 Using Docker to Run Local MCP Servers Securely
 
@@ -39,41 +50,30 @@ Use [How to Run MCP Servers Securely](./infrastructure/docs/how-to-run-mcp-serve
 ### Checklists
 
 - [Troubleshooting OAuth in MCP Checklist](./infrastructure/docs/troubleshooting-oauth.md)
-- MCP Identity Management
-
-### Index Lists
+- [MCP Identity Management Checklist](./infrastructure/docs/mcp-identity-management-checklist.md)
 
 ## 📝 Logging, Auditing, and Observability
 
 ### Checklists
 
 - [MCP Logging, Auditing, and Observability Checklist](./infrastructure/docs/logging-auditing-observability.md)
-- MCP Enterprise Auditing Checklist
-- MCP Reports You Need
-
-### Index Lists
+- [Detecting & Prevening Shadow MCP Use](./infrastructure/docs/shadow-mcp-detect-prevent.md)
 
 ## 🛡️ Threats and Mitigation
 
 ### Checklists
 
-- Prompt Sanitization Measures
-- Evaluating MCP Servers For Threats and Risks
+- [Evaluating MCP Servers For Threats and Risks](./infrastructure/docs/security-screening-mcp-servers.md)
 
 ### Index Lists
 
 - [MCP Server Cybersecurity Threat-List (With Mitigations)](./infrastructure/docs/mcp-security-threat-list.md)
-- MCP Server Attack Index
-
-### Policy Templates
+- [MCP Server Reported Vulnerabilities Index](./infrastructure/docs/reported-vulnerability-index.md)
 
 ## 🤖 AI Agent Building and Security
 
-### Checklists
+### Checklists/Guides
 
 - [Building AI Agents](./infrastructure/docs/ai-agent-building.md)
-- AI Agent Regulatory Compliance
-- AI Agent Identity Management
-- Streamlining AI Agent Tool Availability and Selection
+- [How to Improve MCP Tool Selection](./infrastructure/docs/improving-tool-selection.md)
 
-### Index Lists

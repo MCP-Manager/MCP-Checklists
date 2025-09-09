@@ -9,7 +9,7 @@ Created by the team at: [MCP Manager](https://mcpmanager.ai/).
 
 Our team will be adding lots of valuable checklists and other resources for people creating and securing their MCP ecosystem.
 
-⭐ Star this repo to stay up to date and avoid missing that guide you know you'll need in the future!
+**⭐ Star this repo to stay up to date and avoid missing that guide you know you'll need in the future!**
 
 MCP Manager is an MCP gateway which acts as a safety net for your organization's AI agents and their interactions with MCP servers and connected resources.
 
@@ -47,7 +47,7 @@ Diagram from [Digital Ocean](https://www.digitalocean.com)
 
 Diagram from [Auth0.com](https://www.auth0.com)
 
-## MCP OAuth Checklist
+## MCP OAuth Troubleshooting Checklist
 
 ### Correct Endpoints Exist and Are Discoverable
 Missing, inaccessible, or misconfigured discovery endpoints are among the most common reasons OAuth flows fail to initiate.
@@ -70,6 +70,7 @@ Correct endpoints must exist and be discoverable for the OAuth flow to start and
     - Token_enpoint
 - [ ] Verify there are no network restrictions preventing the client from reaching the endpoint
 - [ ] Check that the client’s configuration logic points to the correct base URL so that it can fetch the required metadata
+
 
 ### Correct Token Format & Header Setup
 The client must send the access token to the MCP server within the authorization header, with the scheme “Bearer”. The MCP server then uses this token to validate the request. Missing tokens, or incorrectly formatted tokens or headers can cause errors in the OAuth flow.
