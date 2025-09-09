@@ -32,28 +32,38 @@ ENV NPM_MCP_ARGS=${NPM_MCP_ARGS}
 ENV NODE_VERSION=${NODE_VERSION}
 ENV SUPERGATEWAY_EXTRA_ARGS=${SUPERGATEWAY_EXTRA_ARGS}
 
-RUN npm install pnpm@latest -g
 RUN npm install supergateway@latest -g
+RUN npm install $NPM_MCP@latest -g
 
 # Install dependencies
-RUN apt-get update
-RUN apt-get install dumb-init nginx openssl gettext git bash curl -y
-# RUN apk add dumb-init nginx openssl gettext git bash curl
+# Update package lists and install necessary dependencies
+RUN apt-get update && apt-get install -y \
+    dumb-init \
+    nginx \
+    openssl \
+    gettext \
+    wget \
+    gnupg \
+    ca-certificates \
+    libssl-dev \
+    --no-install-recommends
 
-WORKDIR /var/www
-RUN git clone https://github.com/zcaceres/markdownify-mcp
-WORKDIR /var/www/markdownify-mcp
+RUN wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | gpg --no-default-keyring --keyring gnupg-ring:/etc/apt/trusted.gpg.d/google.gpg --import && \
+    chmod 644 /etc/apt/trusted.gpg.d/google.gpg && \
+    echo "deb https://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list
 
-RUN pnpm install
-RUN pnpm build
+# Update package lists again and install Google Chrome
+RUN apt-get update && apt-get install -y google-chrome-stable
 
 # Copy nginx configuration and startup script
 COPY infrastructure/dokku/nginx.conf /etc/nginx/nginx.conf
 COPY infrastructure/docker/node/startup.sh /usr/local/bin/startup.sh
+COPY infrastructure/docker/node/nginx_proxy_puppeteer/setup_virtual_display_then_run.sh /usr/local/bin/setup_virtual_display_then_run.sh
+RUN chmod +x /usr/local/bin/setup_virtual_display_then_run.sh
 RUN chmod +x /usr/local/bin/startup.sh
 RUN mkdir -p /etc/ssl/certs /etc/ssl/private
 
-ENTRYPOINT ["/usr/local/bin/startup.sh"]
+ENTRYPOINT ["/usr/local/bin/setup_virtual_display_then_run.sh", "/usr/local/bin/startup.sh"]
 
 # Nginx will listen on port 5000
 EXPOSE 5000

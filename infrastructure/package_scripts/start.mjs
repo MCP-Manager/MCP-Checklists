@@ -32,6 +32,7 @@ const dotEnvVars = {};
 config({ processEnv: dotEnvVars });
 
 const envVars = Object.keys(dotEnvVars).reduce((accumulator, key) => {
+  if(key.includes('SSH')) return accumulator;
   return accumulator + (accumulator ? ' ' : '') + `--env ${key}=${JSON.stringify(dotEnvVars[key])}`;
 }, '');
 
@@ -41,7 +42,12 @@ try {
   /* noop */
 }
 
-await spawnPromise(`docker container run ${argv.detached ? '-d' : '-it'} ${argv.detached ? '--restart unless-stopped' : ''} -p 127.0.0.1:80:443/tcp -p 127.0.0.1:443:443/tcp --name ${argv.name} ${envVars} ${argv.tag}`, {
+/* await spawnPromise(`docker container run ${argv.detached ? '-d' : '-it'} ${argv.detached ? '--restart unless-stopped' : ''} -p 127.0.0.1:80:443/tcp -p 127.0.0.1:443:443/tcp --name ${argv.name} ${envVars} ${argv.tag}`, {
+  forwardParams: false,
+  outputPrefix,
+}); */
+
+await spawnPromise(`docker container run ${argv.detached ? '-d' : '-it'} ${argv.detached ? '--restart unless-stopped' : ''} -p 127.0.0.1:80:5000/tcp -p 127.0.0.1:443:5000/tcp --name ${argv.name} ${envVars} ${argv.tag}`, {
   forwardParams: false,
   outputPrefix,
 });
