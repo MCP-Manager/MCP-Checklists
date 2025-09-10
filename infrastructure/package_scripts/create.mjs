@@ -21,7 +21,7 @@ const { values: argv, outputPrefix } = parseArgsWithHelp(import.meta.url, {
   },
 });
 
-if(
+if (
   !argv.app_name
 ) {
   throw new Error('App name is required, provide with -a argument, ex: -a appName');
@@ -70,21 +70,27 @@ try {
 
   // Build docker image
   console.log(`${outputPrefix}Creating app: '${appName}'`);
-  await sshCommand(`dokku apps:create ${appName}`);
+  try {
+    await sshCommand(`dokku apps:create ${appName}`);
+  } catch (error) {
+    console.warn(error);
+  }
+
+  // Set letsencrypt email before deployment in case something goes wrong with it 
+  console.log(`${outputPrefix}Setting letsecrypt contact email on: '${appName}'`);
+  await sshCommand(`dokku letsencrypt:set ${appName} email ${emailContact}`);
+
+  console.log(`${outputPrefix}Setting port mappings on: '${appName}'`);
+  await sshCommand(`dokku ports:set ${appName} http:80:5000 https:443:5000`);
 
   console.log(`${outputPrefix}Setting NGINX_ACCESS_TOKEN env var on: '${appName}'`);
   await sshCommand(`dokku config:set ${appName} NGINX_ACCESS_TOKEN=${process.env.NGINX_ACCESS_TOKEN || ''}`);
-  
-  console.log(`${outputPrefix}Setting port mappings on: '${appName}'`);
-  await sshCommand(`dokku ports:set ${appName} http:80:5000 https:443:5000`);
 
   await import('./deploy.mjs');
 
   console.log(`${outputPrefix}Enabling SSL (HTTPS) on: '${appName}'`);
-  await sshCommand(`dokku letsencrypt:set ${appName} email ${emailContact}`);
   await sshCommand(`dokku letsencrypt:enable ${appName}`);
 
-  // Save docker image to disk
   console.log(`${outputPrefix}App created: '${appName}'`);
   suceeded = true;
 } catch (error) {
@@ -93,4 +99,6 @@ try {
   ssh.dispose();
 }
 
-process.exit(suceeded ? 0 : 1);
+if (!suceeded) {
+  process.exit(1);
+}

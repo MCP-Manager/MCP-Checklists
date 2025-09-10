@@ -140,4 +140,6 @@ try {
   ssh.dispose();
 }
 
-process.exit(suceeded ? 0 : 1);
+if (!suceeded) {
+  process.exit(1);
+}
