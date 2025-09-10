@@ -17,6 +17,7 @@
     "build": "fnm use lts/latest --install-if-missing || : && node infrastructure/package_scripts/build.mjs",
     "build_cli": "fnm use lts/latest --install-if-missing || : && node infrastructure/package_scripts/build_cli.mjs",
     "cli": "fnm use lts/latest --install-if-missing || : && node infrastructure/package_scripts/cli.mjs",
+    "create": "fnm use lts/latest --install-if-missing || : && node infrastructure/package_scripts/create.mjs",
     "deploy": "fnm use lts/latest --install-if-missing || : && node infrastructure/package_scripts/deploy.mjs",
     "dotenv": "fnm use lts/latest --install-if-missing || : && node infrastructure/package_scripts/dotenv.mjs",
     "gen_key": "fnm use lts/latest --install-if-missing || : && node infrastructure/package_scripts/gen_key.mjs",

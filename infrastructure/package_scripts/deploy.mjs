@@ -13,8 +13,7 @@ const { outputPrefix, values: argv } = parseArgsWithHelp(import.meta.url, {
     dokkuApp: {
       type: 'string',
       short: 'a',
-      default: 'memory', //|| packageJson.name,
-      description: '(optional) Dokku app to deploy, defaults to the name in package.json.',
+      description: 'Dokku app to deploy, defaults to the name in package.json.',
     },
     production: {
       type: 'boolean',
@@ -30,6 +29,12 @@ const { outputPrefix, values: argv } = parseArgsWithHelp(import.meta.url, {
     },
   },
 });
+
+if(
+  !argv.dokkuApp
+) {
+  throw new Error('App name is required, provide with -a argument, ex: -a appName');
+}
 
 const answer = argv.areYouSure
   ? 'yes'

@@ -21,26 +21,26 @@
 ARG NODE_VERSION="lts"
 FROM node:$NODE_VERSION-alpine
 
-# NPM MCP server package
-ARG NPM_MCP=""
-# Extra args to send to NPM MCP Server
-ARG NPM_MCP_ARGS=""
-# Set to --stateful for stateful MCP servers, otherwise leave blank
-ARG SUPERGATEWAY_EXTRA_ARGS=""
-ENV NPM_MCP=${NPM_MCP}
-ENV NPM_MCP_ARGS=${NPM_MCP_ARGS}
 ENV NODE_VERSION=${NODE_VERSION}
-ENV SUPERGATEWAY_EXTRA_ARGS=${SUPERGATEWAY_EXTRA_ARGS}
+
+# NPM MCP server package
+ARG REMOTE_MCP_URL=""
+ENV REMOTE_MCP_URL=${REMOTE_MCP_URL}
+
+# Extra args to send to NPM MCP Server
+# https://www.npmjs.com/package/mcp-remote
+ARG REMOTE_MCP_EXTRA_ARGS=""
+ENV REMOTE_MCP_EXTRA_ARGS=${REMOTE_MCP_EXTRA_ARGS}
 
 RUN npm install supergateway@latest -g
-RUN npm install $NPM_MCP@latest -g
+RUN npm install mcp-remote@latest -g
 
 # Install dependencies
 RUN apk add dumb-init nginx openssl gettext
 
 # Copy nginx configuration and startup script
 COPY infrastructure/dokku/nginx.conf /etc/nginx/nginx.conf
-COPY infrastructure/docker/node/startup.sh /usr/local/bin/startup.sh
+COPY infrastructure/dokku/mcp_remote_on_dokku/startup.sh /usr/local/bin/startup.sh
 RUN chmod +x /usr/local/bin/startup.sh
 RUN mkdir -p /etc/ssl/certs /etc/ssl/private
 

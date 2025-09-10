@@ -56,6 +56,24 @@
       "console": "integratedTerminal"
     },
     {
+      "name": "create",
+      "type": "node",
+      "request": "launch",
+      "outputCapture": "std",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "internalConsoleOptions": "neverOpen",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": [
+        "-l",
+        "-c",
+        "fnm exec --using=lts/latest -- node infrastructure/package_scripts/create.mjs",
+        "--preserve-symlinks"
+      ],
+      "console": "integratedTerminal"
+    },
+    {
       "name": "deploy",
       "type": "node",
       "request": "launch",

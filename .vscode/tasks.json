@@ -43,6 +43,17 @@
       "args": [
         "-l",
         "-c",
+        "\"fnm use lts/latest --install-if-missing || : && node infrastructure/package_scripts/create.mjs\""
+      ],
+      "label": "create",
+      "group": "build"
+    },
+    {
+      "type": "shell",
+      "command": "bash",
+      "args": [
+        "-l",
+        "-c",
         "\"fnm use lts/latest --install-if-missing || : && node infrastructure/package_scripts/deploy.mjs\""
       ],
       "label": "deploy",
