@@ -58,7 +58,7 @@ If your organization uses a Next-Generation Firewall, IDS (Intrusion Detection S
     -    sampling/complete
     -    elicitation/request
     -    notifications/tools/list_changed
-    -    _For example:_
+_For example:_
 ```
 {
   "jsonrpc": "2.0",
