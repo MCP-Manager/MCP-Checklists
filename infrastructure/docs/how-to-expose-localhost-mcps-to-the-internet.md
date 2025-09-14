@@ -1,3 +1,5 @@
+# How to expose localhost MCPs to the internet
+
 In some cases, running MCP servers inside of a Docker container is not an option.
 
 A good example of this is [Figma's Dev Mode MCP](https://help.figma.com/hc/en-us/articles/32132100833559-Guide-to-the-Dev-Mode-MCP-Server), which is launched by Figma Desktop itself.
@@ -48,3 +50,13 @@ docker logs figma-tunnel
 ```
 
 If you have any questions or run into any issues don't hesitate to open an [Issue](https://github.com/MCP-Manager/MCP-Checklists/issues), or start a [Discussion](https://github.com/MCP-Manager/MCP-Checklists/discussions).
+
+## What if my server doesn't expose a StreamableHTTP endpoint
+
+If you're running a pure STDIO based MCP, or one that uses legacy SSE transport, but want to expose it to the internet as a StreamableHTTP MCP, you can use [Supergateway](https://github.com/supercorp-ai/supergateway) to do so, ex:
+
+```bash
+npx -y supergateway --stdio "npx -y @modelcontextprotocol/server-filesystem" --outputTransport streamableHttp --port 8000
+```
+
+This command will use Supergateway to expose a local STDIO MCP (in this case `npx -y @modelcontextprotocol/server-filesystem`) as a StreamableHTTP MCP on port 8000.
