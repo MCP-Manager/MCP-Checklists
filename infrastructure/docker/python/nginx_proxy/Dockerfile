@@ -10,12 +10,12 @@
 #
 # Run (shell):
 #   docker run \
-#       -e NGINX_ACCESS_TOKEN="secret_key__please_change" \
+#       -e ACCESS_TOKEN="secret_key__please_change" \
 #       -p 80:443 -p 443:443 -i -t mcp
 #
 # Run (detached):
 #   docker run \
-#       -e NGINX_ACCESS_TOKEN="secret_key__please_change" \
+#       -e ACCESS_TOKEN="secret_key__please_change" \
 #       -p 80:443 -p 443:443 -i -t -d mcp
 #
 # If you need a specific version of Node you can specify this build var

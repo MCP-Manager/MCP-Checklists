@@ -117,7 +117,7 @@ NPM_MCP="@modelcontextprotocol/server-filesystem"
 SUPERGATEWAY_EXTRA_ARGS="--stateful"
 
 # (Required if using NGinx Proxy) Set this if you're using nginx proxy to secure your connection
-NGINX_ACCESS_TOKEN="secret_key__please_change"
+ACCESS_TOKEN="secret_key__please_change"
 
 # (Required if using NGrok Secure Tunnel) Set this if you're using NGrok tunnel to secure your connection
 NGROK_URL="example-url.ngrok.app"

@@ -83,8 +83,13 @@ try {
   console.log(`${outputPrefix}Setting port mappings on: '${appName}'`);
   await sshCommand(`dokku ports:set ${appName} http:80:5000 https:443:5000`);
 
-  console.log(`${outputPrefix}Setting NGINX_ACCESS_TOKEN env var on: '${appName}'`);
-  await sshCommand(`dokku config:set ${appName} NGINX_ACCESS_TOKEN=${process.env.NGINX_ACCESS_TOKEN || ''}`);
+  console.log(`${outputPrefix}Setting ACCESS_TOKEN env var on: '${appName}'`);
+  await sshCommand(`dokku config:set ${appName} ACCESS_TOKEN=${process.env.ACCESS_TOKEN || ''}`);
+  await sshCommand(`dokku config:set ${appName} NEO4J_URI=${process.env.NEO4J_URI || ''}`);
+  await sshCommand(`dokku config:set ${appName} NEO4J_USERNAME=${process.env.NEO4J_USERNAME || ''}`);
+  await sshCommand(`dokku config:set ${appName} NEO4J_PASSWORD=${process.env.NEO4J_PASSWORD || ''}`);
+  await sshCommand(`dokku config:set ${appName} NEO4J_NAMESPACE=${process.env.NEO4J_NAMESPACE || ''}`);
+  await sshCommand(`dokku config:set ${appName} NEO4J_TRANSPORT=${process.env.NEO4J_TRANSPORT || ''}`);
 
   await import('./deploy.mjs');
 
