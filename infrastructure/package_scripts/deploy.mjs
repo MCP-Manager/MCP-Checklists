@@ -51,4 +51,4 @@ console.log(`${outputPrefix}Starting development deployment`);
 process.env.MODE = argv.production ? 'production' : 'development';
 process.argv.push(`--app_name=${argv.dokkuApp}`);
 
-await import('./dokku/dokku_deploy.mjs');
+await import('./utilities/dokku_deploy.mjs');

@@ -1,11 +1,12 @@
 {
-  "name": "mcp-security-toolkit",
-  "version": "0.0.1",
+  "name": "mcp-checklists",
+  "version": "0.0.2",
   "description": "Documentation, checklists, useful tools and utilities to secure your MCP servers",
   "keywords": [
     "mcp",
     "enterprise",
-    "security"
+    "security",
+    "docker"
   ],
   "author": "Samuel Batista <sbatista@mcpmanager.ai> (https://sambatista.com)",
   "contributors": [

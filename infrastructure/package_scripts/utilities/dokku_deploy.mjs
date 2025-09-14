@@ -2,9 +2,9 @@ import { NodeSSH } from 'node-ssh';
 import { mkdir, rm } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { next as generate_xid } from 'xid-js';
-import { parseArgsWithHelp } from '../utilities/parse_args_with_help.mjs';
-import { printDuration } from '../utilities/performance_utils.mjs';
-import { spawnPromise } from '../utilities/spawn_promise.mjs';
+import { parseArgsWithHelp } from './parse_args_with_help.mjs';
+import { printDuration } from './performance_utils.mjs';
+import { spawnPromise } from './spawn_promise.mjs';
 
 const { values: argv, outputPrefix } = parseArgsWithHelp(import.meta.url, {
   options: {
