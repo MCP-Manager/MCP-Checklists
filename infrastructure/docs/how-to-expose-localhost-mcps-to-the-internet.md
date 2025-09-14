@@ -29,7 +29,7 @@ docker run -n my-tunnel -d --net=host -it pinggy/pinggy -p 443 -R0:127.0.0.1:{MC
 
 Lets explore what each of the arguments does:
 
-- `-n my-tunnel`: Give your docker container a name so you can easily check its logs or stop it.
+- `-n my-tunnel`: (optional) Give your docker container a name so you can easily check its logs or stop it.
 - `-d`: (optional) Run the HTTPS Tunnel in the background and automatically start it when docker engine starts.
 - `-it pinggy/pinggy`: Give your docker container a name so you can easily check its logs or stop it.
 - `-p 443`: This instructs Pinggy to connect to its server on port 443 (HTTPS), this should never change.
