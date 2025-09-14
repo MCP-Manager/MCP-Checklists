@@ -32,19 +32,19 @@ Lets explore what each of the arguments does:
 - `-n my-tunnel`: (optional) Give your docker container a name so you can easily check its logs or stop it.
 - `-d`: (optional) Run the HTTPS Tunnel in the background and automatically start it when docker engine starts.
 - `-it pinggy/pinggy`: Give your docker container a name so you can easily check its logs or stop it.
-- `-p 443`: This instructs Pinggy to connect to its server on port 443 (HTTPS), this should never change.
-- `-R0:127.0.0.1:{MCP_PORT}`: Instruct Pinggy to forward incoming traffic to local port `{MCP_PORT}`, ex: 3845.
+- `-p 443`: This instructs Pinggy to connect to its server on port 443 (HTTPS).
+- `-R0:127.0.0.1:{MCP_PORT}`: Instruct Pinggy to forward incoming traffic to the specified local port.
 - `-o ServerAliveInterval=30`:  Instruct Pinggy to send a "keepalive" request to the server every 30 seconds, this ensures the connection remains open and stable.
 - `-t {PINGGY_TOKEN}`: This token authenticates the tunnel with Pinggy server.
 - `k:{ACCESS_TOKEN}`: This token secures access to the tunnel.
 - `x:https`: This flag ensures all traffic through the tunnel uses SSL (HTTPS).
 - `x:xff`: Instruct Pingggy to send the user's IP address on a `'X-Forwarded-For'` header to track who accessed the tunnel.
-- `a:Host:localhost:{MCP_PORT}`: Instruct Pinggy to proxy traffic from local port `{MCP_PORT}` to the tunnel.
+- `a:Host:localhost:{MCP_PORT}`: Instruct Pinggy to proxy traffic from the specified local port to the tunnel.
 
-Now let's put it all together for to demonstrate how to create a secure HTTPS Tunnel that exposes [Figma's Dev Mode MCP](https://help.figma.com/hc/en-us/articles/32132100833559-Guide-to-the-Dev-Mode-MCP-Server) as a secured HTTPS endpoint:
+Now let's put it all together to demonstrate how to create a secure HTTPS Tunnel that exposes [Figma's Dev Mode MCP](https://help.figma.com/hc/en-us/articles/32132100833559-Guide-to-the-Dev-Mode-MCP-Server) as a secured HTTPS endpoint:
 
 ```bash
-# Launch the tunnel in "background" mode
+# Launch the tunnel in "background" mode and proxy traffic to & from localhost:3845
 docker run --name figma-tunnel -d --net=host -it pinggy/pinggy -p 443 -R0:127.0.0.1:3845 -o ServerAliveInterval=30 -t ABCDEFGHIJK+force@pro.pinggy.io k:db938518de56a2790b53864123d2742f075989e8e2e655dc091721c19dc5aeee x:https x:xff a:Host:localhost:3845
 ```
 
