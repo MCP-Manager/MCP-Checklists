@@ -45,7 +45,7 @@ Now let's put it all together to demonstrate how to create a secure HTTPS tunnel
 
 ```bash
 # Launch the tunnel in "background" mode and proxy traffic to & from localhost:3845
-docker run --name figma-tunnel -d --net=host -it pinggy/pinggy -p 443 -R0:127.0.0.1:3845 -o ServerAliveInterval=30 -t ABCDEFGHIJK+force@pro.pinggy.io k:db938518de56a2790b53864123d2742f075989e8e2e655dc091721c19dc5aeee x:https x:xff a:Host:localhost:3845
+docker run -n figma-tunnel -d --net=host -it pinggy/pinggy -p 443 -R0:127.0.0.1:3845 -o ServerAliveInterval=30 -t ABCDEFGHIJK+force@pro.pinggy.io k:db938518de56a2790b53864123d2742f075989e8e2e655dc091721c19dc5aeee x:https x:xff a:Host:localhost:3845
 ```
 
 ## What if my MCP server doesn't expose a StreamableHTTP endpoint?
