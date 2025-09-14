@@ -4,9 +4,9 @@ In some cases, running MCP servers inside of a Docker container is not an option
 
 A good example of this is [Figma's Dev Mode MCP](https://help.figma.com/hc/en-us/articles/32132100833559-Guide-to-the-Dev-Mode-MCP-Server), which is launched by Figma Desktop itself.
 
-The only way to securely monitor localhost MCP servers is to establish an HTTP Tunnel that exposes the port used by that MCP server as a publicly accessible URL. Due to the inherent risks associated with exposing local resources to the internet, we strongly recommend using a strong access token to secure your tunnel.
+The only way to securely monitor localhost MCP servers is to establish an HTTP tunnel that exposes the port used by that MCP server as a publicly accessible URL. Due to the inherent risks associated with exposing local resources to the internet, we strongly recommend using a strong access token to secure your tunnel.
 
-Fortunately Pinggy makes this easy for us, since they provide [good documentation](https://pinggy.io/docs/) along with a lightweight Docker image to establish the Tunnel. Here's what you need to do:
+Fortunately Pinggy makes this easy for us, since they provide [good documentation](https://pinggy.io/docs/) along with a lightweight Docker image to establish the tunnel. Here's what you need to do:
 
 1. Login to Pinggy and obtain an access token: https://pinggy.io
 2. Create an access token to secure your tunnel, ex: `openssl rand -hex 32`
@@ -30,7 +30,7 @@ docker run -n my-tunnel -d --net=host -it pinggy/pinggy -p 443 -R0:127.0.0.1:{MC
 Lets explore what each of the arguments does:
 
 - `-n my-tunnel`: (optional) Give your docker container a name so you can easily check its logs or stop it.
-- `-d`: (optional) Run the HTTPS Tunnel in the background and automatically start it when docker engine starts.
+- `-d`: (optional) Run the HTTPS tunnel in the background and automatically start it when docker engine starts.
 - `-it pinggy/pinggy`: Give your docker container a name so you can easily check its logs or stop it.
 - `-p 443`: This instructs Pinggy to connect to its server on port 443 (HTTPS).
 - `-R0:127.0.0.1:{MCP_PORT}`: Instruct Pinggy to forward incoming traffic to the specified local port.
@@ -41,7 +41,7 @@ Lets explore what each of the arguments does:
 - `x:xff`: Instruct Pingggy to send the user's IP address on a `'X-Forwarded-For'` header to track who accessed the tunnel.
 - `a:Host:localhost:{MCP_PORT}`: Instruct Pinggy to proxy traffic from the specified local port to the tunnel.
 
-Now let's put it all together to demonstrate how to create a secure HTTPS Tunnel that exposes [Figma's Dev Mode MCP](https://help.figma.com/hc/en-us/articles/32132100833559-Guide-to-the-Dev-Mode-MCP-Server) as a secured HTTPS endpoint:
+Now let's put it all together to demonstrate how to create a secure HTTPS tunnel that exposes [Figma's Dev Mode MCP](https://help.figma.com/hc/en-us/articles/32132100833559-Guide-to-the-Dev-Mode-MCP-Server) as a secured HTTPS endpoint:
 
 ```bash
 # Launch the tunnel in "background" mode and proxy traffic to & from localhost:3845
