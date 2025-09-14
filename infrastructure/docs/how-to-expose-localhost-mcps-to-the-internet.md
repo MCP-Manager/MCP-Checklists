@@ -6,24 +6,26 @@ A good example of this is [Figma's Dev Mode MCP](https://help.figma.com/hc/en-us
 
 The only way to securely monitor localhost MCP servers is to establish an HTTP Tunnel that exposes the port used by that MCP server as a publicly accessible URL. Due to the inherent risks associated with exposing local resources to the internet, we strongly recommend using a strong access token to secure your tunnel.
 
-Fortunately Pinggy makes this easy for us, since they provide good documentation along with a lightweight Docker image.
+Fortunately Pinggy makes this easy for us, since they provide [good documentation](https://pinggy.io/docs/) along with a lightweight Docker image to establish the Tunnel. Here's what you need to do:
 
 1. Login to Pinggy and obtain an access token: https://pinggy.io
-2. Create an access token to secure your tunnel, ex: `npx -y @mcpmanager.ai/cli gen_key`
-3. Run one of the following docker commands in your terminal to create the Tunnel: 
+2. Create an access token to secure your tunnel, ex: `openssl rand -hex 32`
+3. Run one of the following docker commands in your terminal to create the tunnel: 
 
 
 ```bash
 # Run in the foreground (will terminate when console closes)
-docker run -n my-tunnel -d --net=host -it pinggy/pinggy -p 443 -R0:127.0.0.1:{MCP_PORT} -o ServerAliveInterval=30 -t {PINGGY_TOKEN} k:{ACCESS_TOKEN} x:https x:xff a:Host:localhost:{MCP_PORT}
+docker run -n my-tunnel --net=host -it pinggy/pinggy -p 443 -R0:127.0.0.1:{MCP_PORT} -o ServerAliveInterval=30 -t {PINGGY_TOKEN} k:{ACCESS_TOKEN} x:https x:xff a:Host:localhost:{MCP_PORT}
 
 # Run in the background (will automatically start and run indefinitely)
-docker run --name my-tunnel -d --net=host -it pinggy/pinggy -p 443 -R0:127.0.0.1:{MCP_PORT} -o ServerAliveInterval=30 -t {PINGGY_TOKEN} k:{ACCESS_TOKEN} x:https x:xff a:Host:localhost:{MCP_PORT}
+docker run -n my-tunnel -d --net=host -it pinggy/pinggy -p 443 -R0:127.0.0.1:{MCP_PORT} -o ServerAliveInterval=30 -t {PINGGY_TOKEN} k:{ACCESS_TOKEN} x:https x:xff a:Host:localhost:{MCP_PORT}
 ```
 
 - Replace `{MCP_PORT}` with the port that your localhost MCP is listening go, in this case: `3845`
 - Replace `{PINGGY_TOKEN}` with your Pinggy token, ex: `ABCDEFGHIJK+force@pro.pinggy.io`
 - Replace `{ACCESS_TOKEN}` with a secret key to protect access to your tunnel, ex: `db938518de56a2790b53864123d2742f075989e8e2e655dc091721c19dc5aeee`
+
+## Explanation & example
 
 Lets explore what each of the arguments does:
 
@@ -46,7 +48,7 @@ Now let's put it all together for to demonstrate how to create a secure HTTPS Tu
 docker run --name figma-tunnel -d --net=host -it pinggy/pinggy -p 443 -R0:127.0.0.1:3845 -o ServerAliveInterval=30 -t ABCDEFGHIJK+force@pro.pinggy.io k:db938518de56a2790b53864123d2742f075989e8e2e655dc091721c19dc5aeee x:https x:xff a:Host:localhost:3845
 ```
 
-## What if my server doesn't expose a StreamableHTTP endpoint
+## What if my MCP server doesn't expose a StreamableHTTP endpoint?
 
 If you're running a pure STDIO based MCP, or one that uses legacy SSE transport, but want to expose it to the internet as a StreamableHTTP MCP, you can use [Supergateway](https://github.com/supercorp-ai/supergateway) to do so, ex:
 
