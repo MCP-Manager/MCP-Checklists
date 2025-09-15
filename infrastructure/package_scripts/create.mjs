@@ -4,8 +4,7 @@ import { parseArgsWithHelp } from "./utilities/parse_args_with_help.mjs";
 import { printDuration } from "./utilities/performance_utils.mjs";
 import { config } from "@dotenvx/dotenvx";
 
-const envVars = Object.create(null);
-config({ override: true, processEnv: envVars });
+config({ override: true });
 
 const { values: argv, outputPrefix } = parseArgsWithHelp(import.meta.url, {
   options: {
@@ -86,19 +85,21 @@ try {
     console.log(`${outputPrefix}Setting port mappings on: '${appName}'`);
     await sshCommand(`dokku ports:set ${appName} http:80:5000 https:443:5000`);
   } catch (error) {
-    console.error(`${outputPrefix}Error setting port mappings on: '${appName}'`);
+    console.error(
+      `${outputPrefix}Error setting port mappings on: '${appName}'`
+    );
     throw error;
   }
 
   console.log(`${outputPrefix}Setting env vars on: '${appName}'`);
-  const command =
-    `dokku config:set ${appName} ` +
-    Object.entries(envVars)
-      .filter(([, value]) => !!value) // only truthy values
-      .map(([key, value]) => `${key}='${value.replace(/'/g, `'\\''`)}'`) // escape single quotes in values
-      .join(" ");
+  // const command =
+  //   `dokku config:set ${appName} ` +
+  //   Object.entries(process.env)
+  //     .filter(([, value]) => !!value) // only truthy values
+  //     .map(([key, value]) => `${key}='${value.replace(/'/g, `'\\''`)}'`) // escape single quotes in values
+  //     .join(" ");
 
-  await sshCommand(command);
+  // await sshCommand(command);
 
   try {
     await import("./deploy.mjs");
