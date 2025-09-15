@@ -9,9 +9,8 @@ import { spawnPromise } from './spawn_promise.mjs';
 const { values: argv, outputPrefix } = parseArgsWithHelp(import.meta.url, {
   options: {
     app_name: {
-      description: `(required) name of app to deploy, defaults to stock-tools`,
+      description: `(required) name of app to deploy`,
       type: `string`,
-      default: `cannastocks`,
       short: `a`,
     },
     local_directory: {
@@ -33,6 +32,12 @@ const { values: argv, outputPrefix } = parseArgsWithHelp(import.meta.url, {
     },
   },
 });
+
+if (!argv.app_name) {
+  throw new Error(
+    "App name is required, provide with -a argument, ex: -a appName"
+  );
+}
 
 const ssh = new NodeSSH();
 
