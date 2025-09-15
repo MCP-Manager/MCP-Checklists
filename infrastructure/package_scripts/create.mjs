@@ -1,9 +1,11 @@
 //@ts-check
-import { NodeSSH } from 'node-ssh';
-import { parseArgsWithHelp } from './utilities/parse_args_with_help.mjs';
-import { printDuration } from './utilities/performance_utils.mjs';
-import { config } from '@dotenvx/dotenvx';
-config({ override: true });
+import { NodeSSH } from "node-ssh";
+import { parseArgsWithHelp } from "./utilities/parse_args_with_help.mjs";
+import { printDuration } from "./utilities/performance_utils.mjs";
+import { config } from "@dotenvx/dotenvx";
+
+const envVars = Object.create(null);
+config({ override: true, processEnv: envVars });
 
 const { values: argv, outputPrefix } = parseArgsWithHelp(import.meta.url, {
   options: {
@@ -13,18 +15,22 @@ const { values: argv, outputPrefix } = parseArgsWithHelp(import.meta.url, {
       short: `a`,
     },
     ssl_email_contact: {
-      description: `(optional) email contact for letsencrypt`,
+      description: `(required) email contact for letsencrypt`,
       type: `string`,
-      default: 'g-alerts-engineering@mcpmanager.ai',
       short: `e`,
     },
   },
 });
 
-if (
-  !argv.app_name
-) {
-  throw new Error('App name is required, provide with -a argument, ex: -a appName');
+if (!argv.app_name) {
+  throw new Error(
+    "App name is required, provide with -a argument, ex: -a appName"
+  );
+}
+if (!argv.ssl_email_contact) {
+  throw new Error(
+    "SSL email contact is required, provide with -e argument, ex: -e email@example.com"
+  );
 }
 
 const ssh = new NodeSSH();
@@ -38,8 +44,8 @@ async function sshCommand(cmd, options) {
     const startTime = performance.now();
     console.log(`${outputPrefix}BEGIN_SSH: ${cmd}`);
     const result = await ssh.execCommand(cmd, {
-      onStdout: (chunk) => process.stdout.write(chunk.toString('utf8')),
-      onStderr: (chunk) => process.stderr.write(chunk.toString('utf8')),
+      onStdout: (chunk) => process.stdout.write(chunk.toString("utf8")),
+      onStderr: (chunk) => process.stderr.write(chunk.toString("utf8")),
       ...options,
     });
     if (result.code !== 0) {
@@ -56,7 +62,7 @@ async function sshCommand(cmd, options) {
 const appName = argv.app_name;
 const emailContact = argv.ssl_email_contact;
 
-let suceeded = false;
+let suceeded = true;
 try {
   // Check we have a good SSH connection
   await ssh.connect({
@@ -76,29 +82,46 @@ try {
     console.warn(error);
   }
 
-  // Set letsencrypt email before deployment in case something goes wrong with it 
-  console.log(`${outputPrefix}Setting letsecrypt contact email on: '${appName}'`);
-  await sshCommand(`dokku letsencrypt:set ${appName} email ${emailContact}`);
+  try {
+    console.log(`${outputPrefix}Setting port mappings on: '${appName}'`);
+    await sshCommand(`dokku ports:set ${appName} http:80:5000 https:443:5000`);
+  } catch (error) {
+    console.error(`${outputPrefix}Error setting port mappings on: '${appName}'`);
+    throw error;
+  }
 
-  console.log(`${outputPrefix}Setting port mappings on: '${appName}'`);
-  await sshCommand(`dokku ports:set ${appName} http:80:5000 https:443:5000`);
+  console.log(`${outputPrefix}Setting env vars on: '${appName}'`);
+  const command =
+    `dokku config:set ${appName} ` +
+    Object.entries(envVars)
+      .filter(([, value]) => !!value) // only truthy values
+      .map(([key, value]) => `${key}='${value.replace(/'/g, `'\\''`)}'`) // escape single quotes in values
+      .join(" ");
 
-  console.log(`${outputPrefix}Setting ACCESS_TOKEN env var on: '${appName}'`);
-  await sshCommand(`dokku config:set ${appName} ACCESS_TOKEN=${process.env.ACCESS_TOKEN || ''}`);
-  await sshCommand(`dokku config:set ${appName} NEO4J_URI=${process.env.NEO4J_URI || ''}`);
-  await sshCommand(`dokku config:set ${appName} NEO4J_USERNAME=${process.env.NEO4J_USERNAME || ''}`);
-  await sshCommand(`dokku config:set ${appName} NEO4J_PASSWORD=${process.env.NEO4J_PASSWORD || ''}`);
-  await sshCommand(`dokku config:set ${appName} NEO4J_NAMESPACE=${process.env.NEO4J_NAMESPACE || ''}`);
-  await sshCommand(`dokku config:set ${appName} NEO4J_TRANSPORT=${process.env.NEO4J_TRANSPORT || ''}`);
+  await sshCommand(command);
 
-  await import('./deploy.mjs');
+  try {
+    await import("./deploy.mjs");
+  } catch (error) {
+    console.error(`${outputPrefix}Error deploying: '${appName}'`);
+    throw error;
+  }
 
-  console.log(`${outputPrefix}Enabling SSL (HTTPS) on: '${appName}'`);
-  await sshCommand(`dokku letsencrypt:enable ${appName}`);
+  try {
+    console.log(
+      `${outputPrefix}Setting letsecrypt contact email on: '${appName}'`
+    );
+    await sshCommand(`dokku letsencrypt:set ${appName} email ${emailContact}`);
+    console.log(`${outputPrefix}Enabling SSL (HTTPS) on: '${appName}'`);
+    await sshCommand(`dokku letsencrypt:enable ${appName}`);
+  } catch (error) {
+    console.error(`${outputPrefix}Error enabling SSL on: '${appName}'`);
+    throw error;
+  }
 
   console.log(`${outputPrefix}App created: '${appName}'`);
-  suceeded = true;
 } catch (error) {
+  suceeded = false;
   console.error(error);
 } finally {
   ssh.dispose();
