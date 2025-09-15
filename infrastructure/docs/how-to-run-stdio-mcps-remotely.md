@@ -81,6 +81,13 @@ Configure your domain's DNS records to point to your Dokku server:
 
 This wildcard CNAME allows Dokku to serve apps on subdomains like `myapp.your-domain.com`.
 
+Note: Your DNS configuration may be different depdending on your cloud service provider.
+
+For AWS for example, it's a little different, you'd create records like so:
+
+- **CNAME record**: `your-domain.com` → `EC2 public DNS`
+- **CNAME record**: `*.your-domain.com` → `EC2 public DNS`
+
 ## Step 4: Locally configure your MCP server deployment
 
 ### Choose a Dockerfile
