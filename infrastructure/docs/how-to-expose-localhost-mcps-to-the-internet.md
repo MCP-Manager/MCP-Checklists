@@ -30,7 +30,7 @@ docker run --name my-tunnel --net=host -it pinggy/pinggy -p 443 -R0:127.0.0.1:{M
 - Replace `{PINGGY_TOKEN}` with your Pinggy token, ex: `ABCDEFGHIJK+force@pro.pinggy.io`
 - Replace `{ACCESS_TOKEN}` with a secret key to protect access to your tunnel, ex: `db938518de56a2790b53864123d2742f075989e8e2e655dc091721c19dc5aeee`
 
-*IMPORTANT:* If you want your tunnels to start automatically, use the `Run in the background` command and ensure your docker desktop or docker engine start automatically when your operating system starts up.
+*IMPORTANT:* If you want your tunnels to start automatically, run the tunnel in the background and ensure your docker desktop or docker engine start automatically when your operating system starts up.
 
 4. Securely connect to your MCP server using an MCP client or gateway:
 
