@@ -139,7 +139,7 @@ ACCESS_TOKEN="your-secure-token-here"
 
 **Security Note**: Use a unique, long `ACCESS_TOKEN` for each application to ensure maximum security. Each deployed MCP server should have its own token to prevent unauthorized access across applications. Use `pnpm gen_key` to create secure secret keys.
 
-## Step 5: Deploy your MCP server
+## Step 5 (local): Deploy your MCP server
 
 Create and deploy your Dokku application:
 
@@ -163,6 +163,36 @@ This command will:
 If you got this far, your application should be live and accessible at:
 
 `https://your-app-name.your-domain.com`
+
+## Step 6: Connect to your MCP server using an MCP client or gateway
+
+Once you have your remote server URL you will need to add `/mcp` to the end of the URL to reach your MCP server.
+
+For example, if your remote server's URL is `https://your-app-name.your-domain.com`, the URL to connect to the server is: `https://your-app-name.your-domain.com/mcp`
+
+> Note: This `/mcp` is not a standarized URL, but most MCP servers listen on this path. Adjust the path if your MCP server listens on a diffent endpoint.
+
+Finally, you'll need to provide the `ACCESS_TOKEN` in the Authorization header in order to authenticate your connection, here's an example of how you can set up the authorization header:
+
+```json
+// Use this as an example if you're connecting directly to the MCP server
+{
+  "servers": {
+    "my-authenticated-server": {
+      "type": "http",
+      "url": "https://your-app-name.your-domain.com/mcp",
+      "headers": {
+        "Authorization": "Bearer {ACCESS_TOKEN}"
+      }
+    }
+  }
+}
+```
+
+Here's a few screenshots that demonstrate how to configure your MCP server in MCP Manager:
+
+![inbound server setup](./images/mcp_manager_inbound_server_setup.png)
+![inbound server authorization](./images/mcp_manager_authorization.png)
 
 ## Helpful server administration commands
 

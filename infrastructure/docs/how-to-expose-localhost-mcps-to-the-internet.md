@@ -40,7 +40,7 @@ For example, if your tunnel's URL is `https://tunnel-tmymaeihyn.mcpmanager.ai`, 
 
 > Note: This `/mcp` is not a standarized URL, but most MCP servers listen on this path. Adjust the path if your MCP server listens on a diffent endpoint.
 
-Finally, you'll need to provide the access token in the Authorization header in order to pierce the tunnel, here's an example of how you can set up the authorization header:
+Finally, you'll need to provide the `ACCESS_TOKEN` in the Authorization header in order to pierce the tunnel, here's an example of how you can set up the authorization header:
 
 ```json
 // Use this as an example if you're connecting directly to the MCP server
