@@ -22,7 +22,7 @@ openssl rand -hex 32
 # Run in the background (recommended: will automatically start and run indefinitely)
 docker run --name my-tunnel -d --restart unless-stopped --net=host -it pinggy/pinggy -p 443 -R0:127.0.0.1:{MCP_PORT} -o ServerAliveInterval=30 -t {PINGGY_TOKEN} k:{ACCESS_TOKEN} x:https x:xff a:Host:localhost:{MCP_PORT}
 
-# Run in the foreground (will terminate when console closes)
+# Run in the foreground (will terminate when console closes, useful when testing or debugging connection issues)
 docker run --name my-tunnel --net=host -it pinggy/pinggy -p 443 -R0:127.0.0.1:{MCP_PORT} -o ServerAliveInterval=30 -t {PINGGY_TOKEN} k:{ACCESS_TOKEN} x:https x:xff a:Host:localhost:{MCP_PORT}
 ```
 
