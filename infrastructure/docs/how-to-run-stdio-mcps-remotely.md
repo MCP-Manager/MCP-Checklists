@@ -88,6 +88,8 @@ Copy the appropriate Dockerfile based on your MCP server runtime:
   cp infrastructure/docker/python/nginx_proxy/Dockerfile ./
   ```
 
+These Dockerfiles combine Supergateway (which exposes STDIO based MCPs as Streamable HTTP servers) with an NGinx reverse proxy that securely exposes your MCP server over HTTPS with token-based authentication. For detailed technical information about the security architecture and containerization approach, see the [complete security guide](./how-to-run-mcp-servers-securely.md).
+
 ### Configure environment variables
 
 Edit your `.env` file to configure the MCP server and security settings:
