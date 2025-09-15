@@ -7,14 +7,14 @@
 - SSH key pair for authentication
 - Node.js and pnpm installed locally
 
-## Step 1: Clone this repository
+## Step 1 (local): Clone this repository
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/MCP-Manager/MCP-Checklists
 cd MCP-Checklists
 ```
 
-## Step 2: Setup SSH connection
+## Step 2 (local): Setup SSH connection
 
 Configure your SSH connection by setting up the required environment variables. Copy `.env.example` to `.env` and configure the SSH settings:
 
@@ -39,17 +39,30 @@ SSH_PRIVATE_KEY_PATH="/path/to/your/private/key"
 SSH_PRIVATE_KEY_PASSWORD="passphrase-if-needed"
 ```
 
-## Step 3: Install Dokku on your server
+After you finish this step, you should be able to establish an interactive SSH connection to your remote using our pnpm utility script:
+
+```bash
+# Start an interactive shell to connect to your remote host (replace placeholders with your values)
+pnpm ssh
+```
+
+In addition, the Node CLI should also successfully connect to your remote host:
+
+```bash
+# This should also work
+```
+
+## Step 3 (remote): Install Dokku on your server
 
 Dokku is a Docker-powered Platform-as-a-Service that mimics Heroku's deployment workflow. It allows you to deploy applications without downtime and automatically handles container management, routing, and SSL certificates.
 
 SSH into your server and follow [the instructions on this page](https://dokku.com/docs/getting-started/installation/#1-install-dokku) to install Dokku.
 
 ```bash
-# start an interactive shell connected to your remote host (replace variables with your values)
-ssh -i /PATH/TO/SSH_KEY USERNAME@HOST
+# Start an interactive shell to connect to your remote host (replace placeholders with your values)
+ssh -i {PATH_TO_SSH_KEY} {USERNAME}@{HOST}
 
-# install Dokku, for the latest version visit: https://github.com/dokku/dokku/releases
+# Install Dokku, for the latest version visit: https://github.com/dokku/dokku/releases
 wget -NP . https://dokku.com/install/v0.36.7/bootstrap.sh
 sudo DOKKU_TAG=v0.36.7 bash bootstrap.sh
 
@@ -57,7 +70,7 @@ sudo DOKKU_TAG=v0.36.7 bash bootstrap.sh
 sudo dokku plugin:install https://github.com/dokku/dokku-letsencrypt.git
 sudo dokku letsencrypt:cron-job --add
 
-# create a docker user group and the ubuntu user to it
+# Create a docker user group and the ubuntu user to it
 sudo groupadd docker
 sudo usermod -aG docker ubuntu
 newgrp docker
