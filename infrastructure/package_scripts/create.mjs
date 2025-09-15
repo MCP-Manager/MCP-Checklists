@@ -92,14 +92,9 @@ try {
   }
 
   console.log(`${outputPrefix}Setting env vars on: '${appName}'`);
-  // const command =
-  //   `dokku config:set ${appName} ` +
-  //   Object.entries(process.env)
-  //     .filter(([, value]) => !!value) // only truthy values
-  //     .map(([key, value]) => `${key}='${value.replace(/'/g, `'\\''`)}'`) // escape single quotes in values
-  //     .join(" ");
-
-  // await sshCommand(command);
+  if (process.env.ACCESS_TOKEN) {
+    await sshCommand(`dokku config:set ${appName} ACCESS_TOKEN=${process.env.ACCESS_TOKEN || ""}`);
+  }
 
   try {
     await import("./deploy.mjs");

@@ -39,28 +39,24 @@ SSH_PRIVATE_KEY_PATH="/path/to/your/private/key"
 SSH_PRIVATE_KEY_PASSWORD="passphrase-if-needed"
 ```
 
-After you finish this step, you should be able to establish an interactive SSH connection to your remote using our pnpm utility script:
+After you finish this step, you should be able to establish an interactive SSH connection to your remote using our `ssh` utility script:
 
 ```bash
-# Start an interactive shell to connect to your remote host (replace placeholders with your values)
-pnpm ssh
-```
+# Connect to the remote host using ssh NPM script, and print: "working" 
+pnpm ssh echo working
 
-In addition, the Node CLI should also successfully connect to your remote host:
-
-```bash
-# This should also work
+# Should print: working
 ```
 
 ## Step 3 (remote): Install Dokku on your server
 
 Dokku is a Docker-powered Platform-as-a-Service that mimics Heroku's deployment workflow. It allows you to deploy applications without downtime and automatically handles container management, routing, and SSL certificates.
 
-SSH into your server and follow [the instructions on this page](https://dokku.com/docs/getting-started/installation/#1-install-dokku) to install Dokku.
+SSH into your server and follow [the instructions on this page](https://dokku.com/docs/getting-started/installation/#1-install-dokku) to install Dokku:
 
 ```bash
 # Start an interactive shell to connect to your remote host (replace placeholders with your values)
-ssh -i {PATH_TO_SSH_KEY} {USERNAME}@{HOST}
+pnpm ssh
 
 # Install Dokku, for the latest version visit: https://github.com/dokku/dokku/releases
 wget -NP . https://dokku.com/install/v0.36.7/bootstrap.sh
@@ -94,12 +90,16 @@ Configure your domain's DNS records to point to your Dokku server:
 
 This wildcard CNAME allows Dokku to serve apps on subdomains like `myapp.your-domain.com`.
 
-Note: Your DNS configuration may be different depdending on your cloud service provider.
+*Note:* Your DNS configuration may be different depending on your cloud service provider.
 
-For AWS for example, it's a little different, you'd create records like so:
+For AWS for example, you'd create records like so:
 
 - **CNAME record**: `your-domain.com` → `EC2 public DNS`
 - **CNAME record**: `*.your-domain.com` → `EC2 public DNS`
+
+At this point you should be able to visit your domain, and see the default Nginx server page, this indicates Dokku was properly setup and you're ready to move on to the next step:
+
+![default_nginx_langing_page](./images/default_nginx_landing_page.png)
 
 ## Step 4: Locally configure your MCP server deployment
 
@@ -124,6 +124,8 @@ These Dockerfiles combine Supergateway (which exposes STDIO based MCPs as Stream
 
 Edit your `.env` file to configure the MCP server and security settings:
 
+> Pro tip: Use `pnpm gen_key` to generate secure secret keys
+
 ```env
 # MCP Server Configuration
 NPM_MCP="@modelcontextprotocol/server-filesystem"
@@ -135,15 +137,9 @@ NODE_VERSION="lts"
 ACCESS_TOKEN="your-secure-token-here"
 ```
 
-Generate secure tokens:
-
-```bash
-pnpm gen_key
-```
+**Security Note**: Use a unique, long `ACCESS_TOKEN` for each application to ensure maximum security. Each deployed MCP server should have its own token to prevent unauthorized access across applications. Use `pnpm gen_key` to create secure secret keys.
 
 ## Step 5: Deploy your MCP server
-
-**Security Note**: Use a unique, long `ACCESS_TOKEN` for each application to ensure maximum security. Each deployed MCP server should have its own token to prevent unauthorized access across applications.
 
 Create and deploy your Dokku application:
 
@@ -164,7 +160,11 @@ This command will:
 - `-a, --app_name`: Name of the Dokku app to create (required)
 - `-e, --ssl_email_contact`: Email for Let's Encrypt SSL certificates (required)
 
-## Step 6: Manage your MCP server
+If you got this far, your application should be live and accessible at:
+
+`https://your-app-name.your-domain.com`
+
+## Helpful server administration commands
 
 Once deployed, you can manage your MCP server using these common Dokku commands:
 
@@ -198,12 +198,6 @@ pnpm ssh dokku ps:report your-app-name
 
 ```bash
 pnpm ssh dokku ps:scale your-app-name web=2
-```
-
-### Redeploy after configuration changes
-
-```bash
-pnpm run deploy -a your-app-name
 ```
 
 ## Troubleshooting
