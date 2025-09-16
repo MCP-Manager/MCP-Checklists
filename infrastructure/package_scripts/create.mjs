@@ -1,4 +1,4 @@
-//@ts-check
+// @ts-check
 import { NodeSSH } from "node-ssh";
 import { parseArgsWithHelp } from "./utilities/parse_args_with_help.mjs";
 import { printDuration } from "./utilities/performance_utils.mjs";
@@ -6,14 +6,18 @@ import { config } from "@dotenvx/dotenvx";
 
 config({ override: true });
 
+/** @description Builds a docker image that can later be run or deployed. */
+/** @example pnpm create ~ Build a docker image and deploy it to a remote Dokku host. */
+/** @example pnpm create -a|--dokkuApp example ~ Set the dokku app name. */
+/** @example pnpm create -e|--sslEmailContact example@email.com ~ Set the email contact for SSL certificate. */
 const { values: argv, outputPrefix } = parseArgsWithHelp(import.meta.url, {
   options: {
-    app_name: {
+    dokkuApp: {
       description: `(required) name of app to deploy`,
       type: `string`,
       short: `a`,
     },
-    ssl_email_contact: {
+    sslEmailContact: {
       description: `(required) email contact for letsencrypt`,
       type: `string`,
       short: `e`,
@@ -21,12 +25,12 @@ const { values: argv, outputPrefix } = parseArgsWithHelp(import.meta.url, {
   },
 });
 
-if (!argv.app_name) {
+if (!argv.dokkuApp) {
   throw new Error(
     "App name is required, provide with -a argument, ex: -a appName"
   );
 }
-if (!argv.ssl_email_contact) {
+if (!argv.sslEmailContact) {
   throw new Error(
     "SSL email contact is required, provide with -e argument, ex: -e email@example.com"
   );
@@ -58,8 +62,8 @@ async function sshCommand(cmd, options) {
   }
 }
 
-const appName = argv.app_name;
-const emailContact = argv.ssl_email_contact;
+const appName = argv.dokkuApp;
+const emailContact = argv.sslEmailContact;
 
 let suceeded = true;
 try {

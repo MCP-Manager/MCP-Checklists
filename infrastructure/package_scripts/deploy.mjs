@@ -5,21 +5,14 @@ import { parseArgsWithHelp } from './utilities/parse_args_with_help.mjs';
 config({ override: true });
 
 /** @description Build & deploy the docker application */
-/** @example pnpm deploy_dev                   ~ Deploy a development build to the development environment. */
-/** @example pnpm deploy_dev -p | --production ~ Deploy a production build to the development environment. */
-/** @example pnpm deploy_dev -y | --areYouSure ~ Deploy a development build to the development environment, skipping the "Are you sure?" check. */
+/** @example pnpm run deploy -a | --dokkuApp example ~ Build and deploy a docker image. */
+/** @example pnpm run deploy -a example -y | --areYouSure ~ Build and deploy a docker image, skipping the "Are you sure?" check. */
 const { outputPrefix, values: argv } = parseArgsWithHelp(import.meta.url, {
   options: {
     dokkuApp: {
       type: 'string',
       short: 'a',
       description: 'Dokku app to deploy, defaults to the name in package.json.',
-    },
-    production: {
-      type: 'boolean',
-      short: 'p',
-      default: false,
-      description: '(optional) Deploy to production environment.',
     },
     areYouSure: {
       type: 'boolean',
@@ -48,7 +41,6 @@ if (!answer.toLowerCase().startsWith('y')) {
 }
 console.log(`${outputPrefix}Starting development deployment`);
 
-process.env.MODE = argv.production ? 'production' : 'development';
 process.argv.push(`--app_name=${argv.dokkuApp}`);
 
 await import('./utilities/dokku_deploy.mjs');

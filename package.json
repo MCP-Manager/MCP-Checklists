@@ -13,14 +13,13 @@
     "Becky Brooks <bbrooks@mcpmanager.ai>",
     "James Taylor <jtaylor@mcpmanager.ai>"
   ],
-  "license": "MIT",
+  "license": "AGPL-3.0",
   "scripts": {
     "build": "fnm use lts/latest --install-if-missing || : && node infrastructure/package_scripts/build.mjs",
     "build_cli": "fnm use lts/latest --install-if-missing || : && node infrastructure/package_scripts/build_cli.mjs",
     "cli": "fnm use lts/latest --install-if-missing || : && node infrastructure/package_scripts/cli.mjs",
     "create": "fnm use lts/latest --install-if-missing || : && node infrastructure/package_scripts/create.mjs",
     "deploy": "fnm use lts/latest --install-if-missing || : && node infrastructure/package_scripts/deploy.mjs",
-    "dotenv": "fnm use lts/latest --install-if-missing || : && node infrastructure/package_scripts/dotenv.mjs",
     "gen_key": "fnm use lts/latest --install-if-missing || : && node infrastructure/package_scripts/gen_key.mjs",
     "ssh": "fnm use lts/latest --install-if-missing || : && node infrastructure/package_scripts/ssh.mjs",
     "start": "fnm use lts/latest --install-if-missing || : && node infrastructure/package_scripts/start.mjs",

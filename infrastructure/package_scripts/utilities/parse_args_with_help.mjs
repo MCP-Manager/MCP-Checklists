@@ -37,7 +37,7 @@ export function parseArgsWithHelp(fileUrl, config) {
       // @ts-ignore
       const { type, short, description } = config?.options?.[key] ?? {};
       return {
-        key: short ? `-${short}|--${key}` : `--${key}`,
+        key: short ? `-${short} | --${key}` : `--${key}`,
         value: `:${type}` + (description ? ' ' + description : ''),
       };
     });

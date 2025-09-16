@@ -65,17 +65,6 @@
       "args": [
         "-l",
         "-c",
-        "\"fnm use lts/latest --install-if-missing || : && node infrastructure/package_scripts/dotenv.mjs\""
-      ],
-      "label": "dotenv",
-      "group": "build"
-    },
-    {
-      "type": "shell",
-      "command": "bash",
-      "args": [
-        "-l",
-        "-c",
         "\"fnm use lts/latest --install-if-missing || : && node infrastructure/package_scripts/gen_key.mjs\""
       ],
       "label": "gen - key",
