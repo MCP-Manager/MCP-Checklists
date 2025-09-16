@@ -5,7 +5,7 @@
 - A remote server (Ubuntu/Debian recommended) with sudo access
 - A domain name that you control
 - SSH key pair for authentication
-- Node.js and pnpm installed locally
+- Node.js version 18 or greater
 
 ## Step 1 (local): Clone this repository & install pnpm
 
