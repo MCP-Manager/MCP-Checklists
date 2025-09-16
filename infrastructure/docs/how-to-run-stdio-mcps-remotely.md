@@ -59,7 +59,7 @@ pnpm ssh echo working
 
 Dokku is a Docker-powered Platform-as-a-Service that mimics Heroku's deployment workflow. It allows you to deploy applications without downtime and automatically handles container management, routing, and SSL certificates.
 
-SSH into your server and install Docker & Dokku to install Dokku ([more info here](https://dokku.com/docs/getting-started/installation/#1-install-dokku)):
+SSH into your server and install Docker & Dokku ([click here](https://dokku.com/docs/getting-started/installation/#1-install-dokku) for more info on Dokku setup):
 
 ```bash
 # Start an interactive shell to connect to your remote host (replace placeholders with your values)
