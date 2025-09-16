@@ -65,9 +65,7 @@ SSH into your server and install Docker & Dokku ([click here](https://dokku.com/
 # Start an interactive shell to connect to your remote host (replace placeholders with your values)
 pnpm ssh
 
-# Install Docker via one of the following means:
-# Docker Engine (CLI): https://docs.docker.com/engine/install/
-# Docker Desktop (GUI): https://docs.docker.com/desktop/
+# Install Docker Engine: https://docs.docker.com/engine/install/
 
 # After Docker Engine setup run the following commands if you're running on Mac or Linux
 sudo groupadd docker
