@@ -11,6 +11,11 @@ config({ override: true });
 /** @example pnpm ssh dokku ps:report syncado ~ Run a command remotely, in this case printing the status of the syncado dokku app. */
 const { outputPrefix } = parseArgsWithHelp(import.meta.url);
 
+/**
+ * 
+ * @param {string} cmd 
+ * @param {import('node-ssh').SSHExecCommandOptions & { outputPrefix: string; silent?: boolean; }} options 
+ */
 async function sshCommand(cmd, options) {
   const startTime = performance.now();
   await ssh.execCommand(cmd, {
