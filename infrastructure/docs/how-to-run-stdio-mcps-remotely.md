@@ -5,7 +5,7 @@
 - A remote server (Ubuntu/Debian recommended) with sudo access
 - A domain name that you control
 - SSH key pair for authentication
-- Node.js and pnpm installed locally (`corepack enable pnpm`)
+- Node.js and pnpm installed locally
 
 ## Step 1 (local): Clone this repository & install pnpm
 
