@@ -5,13 +5,20 @@
 - A remote server (Ubuntu/Debian recommended) with sudo access
 - A domain name that you control
 - SSH key pair for authentication
-- Node.js and pnpm installed locally
+- Node.js and pnpm installed locally (`corepack enable pnpm`)
 
-## Step 1 (local): Clone this repository
+## Step 1 (local): Clone this repository & install pnpm
 
 ```bash
+# Clone the repository
 git clone https://github.com/MCP-Manager/MCP-Checklists
 cd MCP-Checklists
+
+# Due to an issue with outdated signatures in Corepack, Corepack should be updated to its latest version first
+npm install --global corepack@latest
+
+# Install pnpm
+corepack enable pnpm
 ```
 
 ## Step 2 (local): Setup SSH connection
@@ -52,56 +59,65 @@ pnpm ssh echo working
 
 Dokku is a Docker-powered Platform-as-a-Service that mimics Heroku's deployment workflow. It allows you to deploy applications without downtime and automatically handles container management, routing, and SSL certificates.
 
-SSH into your server and follow [the instructions on this page](https://dokku.com/docs/getting-started/installation/#1-install-dokku) to install Dokku:
+SSH into your server and install Docker & Dokku to install Dokku ([more info here](https://dokku.com/docs/getting-started/installation/#1-install-dokku)):
 
 ```bash
 # Start an interactive shell to connect to your remote host (replace placeholders with your values)
 pnpm ssh
 
+# Install Docker via one of the following means:
+# Docker Engine (CLI): https://docs.docker.com/engine/install/
+# Docker Desktop (GUI): https://docs.docker.com/desktop/
+
+# After Docker Engine setup run the following commands if you're running on Mac or Linux
+sudo groupadd docker
+sudo usermod -aG docker ubuntu
+newgrp docker
+
 # Install Dokku, for the latest version visit: https://github.com/dokku/dokku/releases
 wget -NP . https://dokku.com/install/v0.36.7/bootstrap.sh
 sudo DOKKU_TAG=v0.36.7 bash bootstrap.sh
 
-# Install dokku letsencrypt (for SSL): https://github.com/dokku/dokku-letsencrypt
+# Install dokku letsencrypt plugin (for SSL): https://github.com/dokku/dokku-letsencrypt
 sudo dokku plugin:install https://github.com/dokku/dokku-letsencrypt.git
 sudo dokku letsencrypt:cron-job --add
 
-# Create a docker user group and the ubuntu user to it
-sudo groupadd docker
-sudo usermod -aG docker ubuntu
-newgrp docker
+
 ```
 
 ### Configure Dokku domain and SSH access
 
-Set up your global Dokku domain (apps will be accessible at `myapp.yourdomain.com`):
+Set up your global Dokku domain (apps will be accessible at `appname.yourdomain.com`):
 
 ```bash
 # Set your global domain (replace with your actual domain)
-dokku domains:set-global your-domain.com
+dokku domains:set-global yourdomain.com
+
+# You can also use a subdomain
+dokku domains:set-global example-subdomain.your-domain.com
 ```
 
 ### DNS Configuration
 
 Configure your domain's DNS records to point to your Dokku server:
 
-- **A record**: `your-domain.com` → `your-server-ip`
-- **CNAME record**: `*.your-domain.com` → `your-domain.com`
+- **A record**: `yourdomain.com` → `your-server-ip`
+- **CNAME record**: `*.yourdomain.com` → `your-domain.com`
 
-This wildcard CNAME allows Dokku to serve apps on subdomains like `myapp.your-domain.com`.
+This wildcard CNAME allows Dokku to serve apps on subdomains like `appname.yourdomain.com`.
 
 *Note:* Your DNS configuration may be different depending on your cloud service provider.
 
 For AWS for example, you'd create records like so:
 
-- **CNAME record**: `your-domain.com` → `EC2 public DNS`
-- **CNAME record**: `*.your-domain.com` → `EC2 public DNS`
+- **CNAME record**: `yourdomain.com` → `EC2 public DNS`
+- **CNAME record**: `*.yourdomain.com` → `EC2 public DNS`
 
 At this point you should be able to visit your domain, and see the default Nginx server page, this indicates Dokku was properly setup and you're ready to move on to the next step:
 
 ![default_nginx_langing_page](./images/default_nginx_landing_page.png)
 
-## Step 4: Locally configure your MCP server deployment
+## Step 4 (local): Configure your MCP server container
 
 ### Choose a Dockerfile
 
@@ -118,13 +134,13 @@ Copy the appropriate Dockerfile based on your MCP server runtime:
   cp infrastructure/dokku/python/nginx_proxy_on_dokku/Dockerfile ./
   ```
 
-These Dockerfiles combine Supergateway (which exposes STDIO based MCPs as Streamable HTTP servers) with an NGinx reverse proxy that securely exposes your MCP server over HTTPS with token-based authentication. For detailed technical information about the security architecture and containerization approach, see the [complete security guide](./how-to-run-mcp-servers-securely.md).
+These Dockerfiles combine Supergateway (which exposes STDIO based MCPs as Streamable HTTP servers) with an NGinx reverse proxy that securely exposes your MCP server over HTTPS with token-based authentication. For more information about the security architecture and containerization approach, see the [complete security guide](./how-to-run-mcp-servers-securely.md).
 
 ### Configure environment variables
 
 Edit your `.env` file to configure the MCP server and security settings:
 
-> Pro tip: Use `pnpm gen_key` to generate secure secret keys
+> Tip: Use `pnpm gen_key` to generate secure secret keys
 
 ```env
 # MCP Server Configuration
@@ -137,23 +153,24 @@ NODE_VERSION="lts"
 ACCESS_TOKEN="your-secure-token-here"
 ```
 
-**Security Note**: Use a unique, long `ACCESS_TOKEN` for each application to ensure maximum security. Each deployed MCP server should have its own token to prevent unauthorized access across applications. Use `pnpm gen_key` to create secure secret keys.
+**Security Note**: Use a unique, long `ACCESS_TOKEN` for each application to ensure maximum security. Each deployed MCP server should have its own token to prevent unauthorized access across applications. Use `pnpm gen_key` to create secure secrets.
 
 ## Step 5 (local): Deploy your MCP server
 
 Create and deploy your Dokku application:
 
 ```bash
-pnpm create -a your-app-name -e your-email@domain.com
+pnpm create -a example-app -e youremail@yourdomain.com
 ```
 
 This command will:
 
-- Create a Dokku application on your remote server
-- Configure port mappings (HTTP:80, HTTPS:443)
-- Set environment variables from your `.env` file
-- Deploy the Docker container
-- Enable SSL with Let's Encrypt using your provided email
+- Create a Dokku application on your remote server.
+- Configure dokku app's port mappings (HTTP:80, HTTPS:443) to proxy traffic to container's Nginx server listening on port 5000.
+- Set `ACCESS_TOKEN` environment variable with value from your `.env` file.
+- Build a docker image based on the root Dockerfile.
+- Deploy the Docker image to your remote host.
+- Enable SSL with Let's Encrypt using your provided email.
 
 ### Command parameters:
 
@@ -162,13 +179,13 @@ This command will:
 
 If you got this far, your application should be live and accessible at:
 
-`https://your-app-name.your-domain.com`
+`https://example-app.yourdomain.com`
 
 ## Step 6: Connect to your MCP server using an MCP client or gateway
 
 Once you have your remote server URL you will need to add `/mcp` to the end of the URL to reach your MCP server.
 
-For example, if your remote server's URL is `https://your-app-name.your-domain.com`, the URL to connect to the server is: `https://your-app-name.your-domain.com/mcp`
+For example, if your remote server's URL is `https://example-app.your-domain.com`, the URL to connect to the server is: `https://example-app.your-domain.com/mcp`
 
 > Note: This `/mcp` is not a standarized URL, but most MCP servers listen on this path. Adjust the path if your MCP server listens on a diffent endpoint.
 
@@ -189,7 +206,7 @@ Finally, you'll need to provide the `ACCESS_TOKEN` in the Authorization header i
 }
 ```
 
-Here's a few screenshots that demonstrate how to configure your MCP server in MCP Manager:
+Use these screenshots as an example if you're connecting your MCP server to a centralized Gateway like [MCP Manager]():
 
 ![inbound server setup](./images/mcp_manager_inbound_server_setup.png)
 ![inbound server authorization](./images/mcp_manager_authorization.png)
