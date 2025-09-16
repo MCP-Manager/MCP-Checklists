@@ -67,7 +67,7 @@ pnpm ssh
 
 # Install Docker Engine: https://docs.docker.com/engine/install/
 
-# After Docker Engine setup run the following commands if you're running on Mac or Linux
+# After Docker Engine is installed, run the following commands if you're running on Mac or Linux
 sudo groupadd docker
 sudo usermod -aG docker ubuntu
 newgrp docker
