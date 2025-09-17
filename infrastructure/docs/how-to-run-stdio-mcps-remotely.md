@@ -49,7 +49,7 @@ SSH_PRIVATE_KEY_PASSWORD="passphrase-if-needed"
 After you finish this step, you should be able to establish an interactive SSH connection to your remote using our `ssh` utility script:
 
 ```bash
-# Connect to the remote host using ssh NPM script, and print: "working" 
+# Connect to the remote host using ssh NPM script, and print: "working"
 pnpm ssh echo working
 
 # Should print: working
@@ -104,7 +104,7 @@ Configure your domain's DNS records to point to your Dokku server:
 
 This wildcard CNAME allows Dokku to serve apps on subdomains like `appname.yourdomain.com`.
 
-*Note:* Your DNS configuration may be different depending on your cloud service provider.
+_Note:_ Your DNS configuration may be different depending on your cloud service provider.
 
 For AWS for example, you'd create records like so:
 
@@ -318,3 +318,10 @@ chmod 644 ~/.ssh/id_rsa.pub
 - Verify port mappings: `pnpm ssh dokku ports:report your-app-name`
 
 If you have any questions or run into any issues don't hesitate to open an [Issue](https://github.com/MCP-Manager/MCP-Checklists/issues), or start a [Discussion](https://github.com/MCP-Manager/MCP-Checklists/discussions).
+
+### `pnpm` errors
+
+**Problem**: ERR_PNPM_FETCH_404 GET https://registry.npmjs.org/[command name]: Not Found - 404
+
+- pnpm was looking for the command in the registry
+- add `run` before the command: `pnpm run [command name]`
