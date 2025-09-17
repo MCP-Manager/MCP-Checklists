@@ -21,7 +21,7 @@ npm install --global corepack@latest
 corepack enable pnpm
 ```
 
-## Step 2 (local): Setup SSH connection
+## Step 2 (local): Setup SSH connection and `.env` file
 
 Configure your SSH connection by setting up the required environment variables. Copy `.env.example` to `.env` and configure the SSH settings:
 
@@ -49,10 +49,17 @@ SSH_PRIVATE_KEY_PASSWORD="passphrase-if-needed"
 After you finish this step, you should be able to establish an interactive SSH connection to your remote using our `ssh` utility script:
 
 ```bash
-# Connect to the remote host using ssh NPM script, and print: "working" 
+# Connect to the remote host using ssh NPM script, and print: "working"
 pnpm ssh echo working
 
 # Should print: working
+```
+
+Inside your `.env` file, there should be the key `NPM_MCP`, which should be set to the npm package name for the MCP server you would like to run on your remote host.
+
+```env
+# Will deploy the server-filesystem MCP server to your remote host
+NPM_MCP="@modelcontextprotocol/server-filesystem"
 ```
 
 ## Step 3 (remote): Install Dokku on your server
@@ -104,7 +111,7 @@ Configure your domain's DNS records to point to your Dokku server:
 
 This wildcard CNAME allows Dokku to serve apps on subdomains like `appname.yourdomain.com`.
 
-*Note:* Your DNS configuration may be different depending on your cloud service provider.
+_Note:_ Your DNS configuration may be different depending on your cloud service provider.
 
 For AWS for example, you'd create records like so:
 
