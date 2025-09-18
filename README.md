@@ -34,8 +34,6 @@ We welcome contributions and suggestions - here's the [instructions for contribu
 - [How To Expose LocalHost MCPs To The Internet](./infrastructure/docs/how-to-expose-localhost-mcps-to-the-internet.md)
 - [How To Run STDIO MCPs On Remote Servers](./infrastructure/docs/how-to-run-stdio-mcps-remotely.md)
 
-Sometimes running MCP servers inside a docker conatiner is not an option, either due to the specifics of the MCP server you are using, or 
-
 ### 🐳 Using Docker to Run Local MCP Servers Securely
 
 > TLDR: [How to Run MCP Servers Securely](./infrastructure/docs/how-to-run-mcp-servers-securely.md)
