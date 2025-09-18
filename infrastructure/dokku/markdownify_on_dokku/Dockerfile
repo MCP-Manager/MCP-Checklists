@@ -1,4 +1,3 @@
-# TODO: This is WIP (Work in Progress)
 #
 # Build:
 #   docker build \
@@ -10,17 +9,17 @@
 #
 # Run (shell):
 #   docker run \
-#       -e NGINX_ACCESS_TOKEN="secret_key__please_change" \
+#       -e ACCESS_TOKEN="secret_key__please_change" \
 #       -p 80:443 -p 443:443 -i -t mcp
 #
 # Run (detached):
 #   docker run \
-#       -e NGINX_ACCESS_TOKEN="secret_key__please_change" \
+#       -e ACCESS_TOKEN="secret_key__please_change" \
 #       -p 80:443 -p 443:443 -i -t -d mcp
 #
 # If you need a specific version of Node you can specify this build var
 ARG NODE_VERSION="lts"
-FROM node:$NODE_VERSION-alpine
+FROM node:$NODE_VERSION-slim
 
 # NPM MCP server package
 ARG NPM_MCP=""
@@ -33,26 +32,28 @@ ENV NPM_MCP_ARGS=${NPM_MCP_ARGS}
 ENV NODE_VERSION=${NODE_VERSION}
 ENV SUPERGATEWAY_EXTRA_ARGS=${SUPERGATEWAY_EXTRA_ARGS}
 
+RUN npm install pnpm@latest -g
 RUN npm install supergateway@latest -g
-RUN npm install $NPM_MCP@latest -g
 
 # Install dependencies
-RUN apk add dumb-init nginx openssl gettext
+RUN apt-get update
+RUN apt-get install dumb-init nginx openssl gettext git bash curl -y
+# RUN apk add dumb-init nginx openssl gettext git bash curl
+
+WORKDIR /var/www
+RUN git clone https://github.com/zcaceres/markdownify-mcp
+WORKDIR /var/www/markdownify-mcp
+
+RUN pnpm install
+RUN pnpm build
 
 # Copy nginx configuration and startup script
-COPY nginx.conf /etc/nginx/nginx.conf
-COPY startup.sh /usr/local/bin/startup.sh
+COPY infrastructure/dokku/nginx.conf /etc/nginx/nginx.conf
+COPY infrastructure/docker/node/startup.sh /usr/local/bin/startup.sh
 RUN chmod +x /usr/local/bin/startup.sh
 RUN mkdir -p /etc/ssl/certs /etc/ssl/private
 
-#
-# Python (optional if using a node based MCP server)
-#
-
-## Install uv / uvx for Python based MCP servers
-# COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
-
 ENTRYPOINT ["/usr/local/bin/startup.sh"]
 
-# Nginx will listen on port 443 (HTTPS)
-EXPOSE 443
+# Nginx will listen on port 5000
+EXPOSE 5000

@@ -46,7 +46,7 @@ const commands = [
   ...Object.entries(envVars).reduce((accumulator, [key, value]) => {
     if (value) {
       accumulator.push('--build-arg');
-      accumulator.push(`${key}=${value}`);
+      accumulator.push(`${key}="${value}"`);
     }
     return accumulator;
   }, []),

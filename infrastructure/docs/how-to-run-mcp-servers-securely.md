@@ -57,9 +57,9 @@ npm run start
 
 In order to help you run your containerized MCP servers, we've created three Docker files that allow you to launch and expose any Node JS MCP server securely (Python servers will follow later). Here are your three options:
 
-1. [NGinx proxy](../docker/node_mcp/nginx_proxy/Dockerfile): By creating a self-signed SSL certificate, and using a combination of [NGinx](https://nginx.org/) with [Supergateway](https://github.com/supercorp-ai/supergateway), we can safely expose port 443 (HTTPS traffic), and protect it with a secret token.
-2. [NGrok secure tunnel](../docker/node_mcp/ngrok_tunnel/Dockerfile): [NGrok](https://ngrok.com/) is an established leader in network security. They offer Secure Tunnel support with many methods of securing the connection, including Basic Auth, OAuth, OIDC, and JWTs. For our simple use case, we demonstrate how to secure the connection with [Basic Auth](https://ngrok.com/docs/agent/cli/#ngrok-http).
-3. [Pinggy secure tunnel](../docker/node_mcp/pinggy_tunnel/Dockerfile): [Pinggy](https://pinggy.io/) is a smaller provider with a focused Security Tunnelling offering. Their pricing is lower, and the user interface is simpler and more intuitive to use than NGrok. While we were impressed with their web application, we cannot speak to their long-term performance or reliability.
+1. [NGinx proxy](../docker/node/nginx_proxy/Dockerfile): By creating a self-signed SSL certificate, and using a combination of [NGinx](https://nginx.org/) with [Supergateway](https://github.com/supercorp-ai/supergateway), we can safely expose port 443 (HTTPS traffic), and protect it with a secret token.
+2. [NGrok secure tunnel](../docker/node/ngrok_tunnel/Dockerfile): [NGrok](https://ngrok.com/) is an established leader in network security. They offer Secure Tunnel support with many methods of securing the connection, including Basic Auth, OAuth, OIDC, and JWTs. For our simple use case, we demonstrate how to secure the connection with [Basic Auth](https://ngrok.com/docs/agent/cli/#ngrok-http).
+3. [Pinggy secure tunnel](../docker/node/pinggy_tunnel/Dockerfile): [Pinggy](https://pinggy.io/) is a smaller provider with a focused Security Tunnelling offering. Their pricing is lower, and the user interface is simpler and more intuitive to use than NGrok. While we were impressed with their web application, we cannot speak to their long-term performance or reliability.
 
 ## What are the differences between using NGinx proxy vs tunneling?
 
@@ -67,7 +67,7 @@ Both proxy and tunnelling approaches use the same core security model. Docker sa
 
 ### NGinx Proxy
 
-The [NGinx Dockerfile](../docker/node_mcp/nginx_proxy/Dockerfile) creates a self-signed SSL certificate, and launches a webserver that listens to traffic from port 443 (the HTTPS port), and forwards it along to port 8000 if the request is correctly authorized with a Bearer token (aka provides a `authorization: Bearer {SECRET_KEY}` header). This is the simplest and most cost-effective solution to secure your MCP servers, but it doesn't offer added benefits like logging and remote disconnect that a secure tunnel provides. 
+The [NGinx Dockerfile](../docker/node/nginx_proxy/Dockerfile) creates a self-signed SSL certificate, and launches a webserver that listens to traffic from port 443 (the HTTPS port), and forwards it along to port 8000 if the request is correctly authorized with a Bearer token (aka provides a `authorization: Bearer {SECRET_KEY}` header). This is the simplest and most cost-effective solution to secure your MCP servers, but it doesn't offer added benefits like logging and remote disconnect that a secure tunnel provides. 
 
 <img width="360" alt="NGinx Proxy Technical Diagram" src="../docs/images/Secured_MCP_via_Nginx_Proxy_Mermaid_Chart-2025-08-10-043951.png">
 
@@ -75,7 +75,7 @@ The [NGinx Dockerfile](../docker/node_mcp/nginx_proxy/Dockerfile) creates a self
 
 A secure tunnel uses a combination of agents (one running inside the container, alongside your MCP server & Supergateway) and one on a remote data center. These agents connect on startup and form a tunnel that allows authorized traffic to enter the container. The Dockerfiles for secure tunnels work very similarly to NGinx, the only difference is that we don't need to open a port into the Docker container, since inbound traffic will always go to through the tunnel.
 
-The [NGrok Dockerfile](../docker/node_mcp/ngrok_tunnel/Dockerfile) and [Pinggy Dockerfile](../docker/node_mcp/pinggy_tunnel/Dockerfile) launch the tunneling agents on startup, using environment variables to authenticate your connection to their service. The tunnel listens to traffic from port 443 (the HTTPS port) and forwards it along to port 8000 if the request is correctly authorized with Basic Auth for NGrok or Bearer Token for Pinggy (using `authorization: Bearer {SECRET_KEY}` header).
+The [NGrok Dockerfile](../docker/node/ngrok_tunnel/Dockerfile) and [Pinggy Dockerfile](../docker/node/pinggy_tunnel/Dockerfile) launch the tunneling agents on startup, using environment variables to authenticate your connection to their service. The tunnel listens to traffic from port 443 (the HTTPS port) and forwards it along to port 8000 if the request is correctly authorized with Basic Auth for NGrok or Bearer Token for Pinggy (using `authorization: Bearer {SECRET_KEY}` header).
 
 <img width="360" alt="Secure Tunnel Technical Diagram" src="../docs/images/Secured_MCP_via_Tunnel_Proxy_Mermaid_Chart-2025-08-10-043849.png">
 
@@ -117,7 +117,7 @@ NPM_MCP="@modelcontextprotocol/server-filesystem"
 SUPERGATEWAY_EXTRA_ARGS="--stateful"
 
 # (Required if using NGinx Proxy) Set this if you're using nginx proxy to secure your connection
-NGINX_ACCESS_TOKEN="secret_key__please_change"
+ACCESS_TOKEN="secret_key__please_change"
 
 # (Required if using NGrok Secure Tunnel) Set this if you're using NGrok tunnel to secure your connection
 NGROK_URL="example-url.ngrok.app"
@@ -129,11 +129,11 @@ PINGGY_ACCESS_TOKEN="secret_key__please_change"
 PINGGY_BEARER_TOKEN="secret_key__please_change"
 ```
 
-**Step 3:** Depending on which approach you want to take, select one of the 3 Dockerfiles we provide and place it at the root of this repository (replacing the existing Dockerfile, which is a copy of the [NGinx proxy Dockerfile](../docker/node_mcp/nginx_proxy/Dockerfile)):
+**Step 3:** Depending on which approach you want to take, select one of the 3 Dockerfiles we provide and place it at the root of this repository (replacing the existing Dockerfile, which is a copy of the [NGinx proxy Dockerfile](../docker/node/nginx_proxy/Dockerfile)):
 
-- [NGinx proxy](../docker/node_mcp/nginx_proxy/Dockerfile)
-- [NGrok secure tunnel](../docker/node_mcp/ngrok_tunnel/Dockerfile)
-- [Pinggy secure tunnel](../docker/node_mcp/pinggy_tunnel/Dockerfile)
+- [NGinx proxy](../docker/node/nginx_proxy/Dockerfile)
+- [NGrok secure tunnel](../docker/node/ngrok_tunnel/Dockerfile)
+- [Pinggy secure tunnel](../docker/node/pinggy_tunnel/Dockerfile)
 
 **Step 4:** Build the docker image: `npm run build`
 

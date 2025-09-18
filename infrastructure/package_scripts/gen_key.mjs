@@ -5,7 +5,8 @@ import { resolve } from 'node:path';
 import { parseArgsWithHelp } from './utilities/parse_args_with_help.mjs';
 
 /** @description Generate a cryptographically secure key using Node's built in crypto module. */
-/** @example pnpm gen_key               ~ Print key to the console. */
+/** @example pnpm gen_key ~ Print key to the console. */
+/** @example pnpm gen_key -s 64 ~ Change the size of the secret (default is 32). */
 /** @example pnpm gen_key -f secret.key ~ Save key to a file. */
 const { outputPrefix, values: argv } = parseArgsWithHelp(import.meta.url, {
   options: {

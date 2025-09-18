@@ -1,0 +1,3 @@
+onlyBuiltDependencies:
+  - cpu-features
+  - ssh2

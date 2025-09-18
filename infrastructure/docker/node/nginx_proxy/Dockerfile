@@ -9,12 +9,12 @@
 #
 # Run (shell):
 #   docker run \
-#       -e NGINX_ACCESS_TOKEN="secret_key__please_change" \
+#       -e ACCESS_TOKEN="secret_key__please_change" \
 #       -p 80:443 -p 443:443 -i -t mcp
 #
 # Run (detached):
 #   docker run \
-#       -e NGINX_ACCESS_TOKEN="secret_key__please_change" \
+#       -e ACCESS_TOKEN="secret_key__please_change" \
 #       -p 80:443 -p 443:443 -i -t -d mcp
 #
 # If you need a specific version of Node you can specify this build var
@@ -39,8 +39,8 @@ RUN npm install $NPM_MCP@latest -g
 RUN apk add dumb-init nginx openssl gettext
 
 # Copy nginx configuration and startup script
-COPY infrastructure/nginx/nginx.conf /etc/nginx/nginx.conf
-COPY infrastructure/docker/node_mcp/nginx_proxy/startup.sh /usr/local/bin/startup.sh
+COPY infrastructure/docker/nginx.conf /etc/nginx/nginx.conf
+COPY infrastructure/docker/node/startup.sh /usr/local/bin/startup.sh
 RUN chmod +x /usr/local/bin/startup.sh
 RUN mkdir -p /etc/ssl/certs /etc/ssl/private
 

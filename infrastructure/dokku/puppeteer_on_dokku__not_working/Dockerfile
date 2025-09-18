@@ -19,7 +19,7 @@
 #
 # If you need a specific version of Node you can specify this build var
 ARG NODE_VERSION="lts"
-FROM node:$NODE_VERSION-alpine
+FROM node:$NODE_VERSION-slim
 
 # NPM MCP server package
 ARG NPM_MCP=""
@@ -36,15 +36,34 @@ RUN npm install supergateway@latest -g
 RUN npm install $NPM_MCP@latest -g
 
 # Install dependencies
-RUN apk add dumb-init nginx openssl gettext
+# Update package lists and install necessary dependencies
+RUN apt-get update && apt-get install -y \
+    dumb-init \
+    nginx \
+    openssl \
+    gettext \
+    wget \
+    gnupg \
+    ca-certificates \
+    libssl-dev \
+    --no-install-recommends
+
+RUN wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | gpg --no-default-keyring --keyring gnupg-ring:/etc/apt/trusted.gpg.d/google.gpg --import && \
+    chmod 644 /etc/apt/trusted.gpg.d/google.gpg && \
+    echo "deb https://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list
+
+# Update package lists again and install Google Chrome
+RUN apt-get update && apt-get install -y google-chrome-stable
 
 # Copy nginx configuration and startup script
 COPY infrastructure/dokku/nginx.conf /etc/nginx/nginx.conf
 COPY infrastructure/docker/node/startup.sh /usr/local/bin/startup.sh
+COPY infrastructure/docker/node/nginx_proxy_puppeteer/setup_virtual_display_then_run.sh /usr/local/bin/setup_virtual_display_then_run.sh
+RUN chmod +x /usr/local/bin/setup_virtual_display_then_run.sh
 RUN chmod +x /usr/local/bin/startup.sh
 RUN mkdir -p /etc/ssl/certs /etc/ssl/private
 
-ENTRYPOINT ["/usr/local/bin/startup.sh"]
+ENTRYPOINT ["/usr/local/bin/setup_virtual_display_then_run.sh", "/usr/local/bin/startup.sh"]
 
 # Nginx will listen on port 5000
 EXPOSE 5000
