@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-- A remote server (Ubuntu/Debian recommended) with sudo access
+- A remote server (Ubuntu 22.04/24.04 recommended) with sudo access
 - A domain name that you control
 - SSH key pair for authentication
 - Node.js version 18 or greater
