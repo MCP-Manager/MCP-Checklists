@@ -10,7 +10,10 @@ We welcome contributions and suggestions - here's the [instructions for contribu
 
 ## 📚 Table of Contents
 
-- **[Using Docker to Secure Local MCP servers](#-using-docker-to-run-local-mcp-servers-securely)**
+- **[MCP Deployment Infrastructure](#-MCP Deployment Infrastructure)**
+    - [Using Docker to Secure Local MCP servers](#-using-docker-to-run-local-mcp-servers-securely)
+    - [How To Expose LocalHost MCPs To The Internet](./infrastructure/docs/how-to-expose-localhost-mcps-to-the-internet.md)
+    - [How To Run STDIO Servers Remotely](./infrastructure/docs/how-to-run-stdio-mcps-remotely.md)
 - **[Authentication and Authorization](#-authentication-and-authorization)**
     - [Troubleshooting OAuth in MCP Checklist](./infrastructure/docs/troubleshooting-oauth.md)
     - [MCP Identity Management Checklist](./infrastructure/docs/mcp-identity-management-checklist.md)
@@ -25,7 +28,15 @@ We welcome contributions and suggestions - here's the [instructions for contribu
     - [How to Improve MCP Tool Selection](./infrastructure/docs/improving-tool-selection.md)
     - [AI Agents Build Checklist](./infrastructure/docs/ai-agent-building.md)
 
-## 🐳 Using Docker to Run Local MCP Servers Securely
+## 🔌 MCP Deployment Infrastructure
+
+- [Using Docker to Run Local MCP Servers Securely](./infrastructure/docs/how-to-run-mcp-servers-securely.md)
+- [How To Expose LocalHost MCPs To The Internet](./infrastructure/docs/how-to-expose-localhost-mcps-to-the-internet.md)
+- [How To Run STDIO Servers Remotely](./infrastructure/docs/how-to-run-stdio-mcps-remotely.md)
+
+Sometimes running MCP servers inside a docker conatiner is not an option, either due to the specifics of the MCP server you are using, or 
+
+### 🐳 Using Docker to Run Local MCP Servers Securely
 
 > TLDR: [How to Run MCP Servers Securely](./infrastructure/docs/how-to-run-mcp-servers-securely.md)
 
@@ -33,17 +44,17 @@ Installing and running MCP servers locally is equivalent to installing and runni
 
 [Docker](https://www.docker.com/get-started/) is a containerization solution that is free, open source, and widely supported across all major operating systems.
 
-### Why You Should Use Docker to Containerize Local MCP Servers
+#### Why You Should Use Docker to Containerize Local MCP Servers
 
 Running MCP servers inside Docker containers allows you to run them in a sandboxed environment that you have complete control over. You decide which files and folders to expose to the container, can define rules for HTTP and WebSocket traffic, and selectively expose environment variables instead of unintentionally leaking secrets.
 
 Using Docker to containerize your MCP servers reduces security risks and gives you more control over what data and capabilities the server has access to. It's not a complete bulletproof solution, however, because if you're not careful, you can still give Docker containers running locally unfettered access to your VPN / private networks.
 
-### Guide and Docker Files
+#### Guide and Docker Files
 
 We understand that learning complex technologies like Docker can be intimidating, but we've made our best effort to provide you with examples, documentation, and helpful scripts to get you started running MCPs securely.
 
-Use [How to Run MCP Servers Securely](./infrastructure/docs/how-to-run-mcp-servers-securely.md) to learn about our helpful scripts and Dockerfiles that will get you started running local MCP Servers securely in no time.
+Use [How to Run Local MCP Servers Securely](./infrastructure/docs/how-to-run-mcp-servers-securely.md) to learn about our helpful scripts and Dockerfiles that will get you started running local MCP Servers securely in no time.
 
 ## 🔐 Authentication and Authorization 
 
