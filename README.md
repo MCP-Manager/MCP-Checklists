@@ -10,7 +10,7 @@ We welcome contributions and suggestions - here's the [instructions for contribu
 
 ## 📚 Table of Contents
 
-- **[MCP Deployment Infrastructure](#-MCP Deployment Infrastructure)**
+- **[MCP Deployment Infrastructure](#-MCP-Deployment-Infrastructure)**
     - [Using Docker to Secure Local MCP servers](#-using-docker-to-run-local-mcp-servers-securely)
     - [How To Expose LocalHost MCPs To The Internet](./infrastructure/docs/how-to-expose-localhost-mcps-to-the-internet.md)
     - [How To Run STDIO Servers Remotely](./infrastructure/docs/how-to-run-stdio-mcps-remotely.md)
