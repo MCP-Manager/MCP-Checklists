@@ -41,11 +41,11 @@ RUN npm install -g supergateway
 # Install dependencies
 RUN apk add --no-cache dumb-init gettext curl bash
 
-# Copy Python virtual environment from builder
-COPY --from=builder /opt/venv /opt/venv
-
 # Copy ZenMCP application
 COPY --from=builder /build/zen-mcp-server /app/zen-mcp-server
+
+# Install Python dependencies in Alpine
+RUN pip install --no-cache-dir --break-system-packages mcp google-genai openai pydantic uvicorn
 
 # Copy infrastructure files
 COPY infrastructure/dokku/nginx.conf /etc/nginx/nginx.conf
@@ -56,7 +56,6 @@ RUN mkdir -p /var/log/supervisor /var/run/nginx /tmp && \
     chmod +x /usr/local/bin/startup.sh
 
 # Environment variables
-ENV PATH="/opt/venv/bin:$PATH"
 ENV PYTHONPATH="/app/zen-mcp-server"
 ENV PYTHONUNBUFFERED=1
 ENV PYTHONDONTWRITEBYTECODE=1
@@ -65,7 +64,7 @@ ENV NGINX_PORT=5000
 ENV NPM_MCP="python"
 ENV NPM_MCP_ARGS="/app/zen-mcp-server/server.py"
 ENV ACCESS_TOKEN=""
-ENV SUPERGATEWAY_EXTRA_ARGS=""
+ENV SUPERGATEWAY_EXTRA_ARGS="--stateful"
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
