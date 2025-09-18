@@ -79,8 +79,6 @@ sudo DOKKU_TAG=v0.36.7 bash bootstrap.sh
 # Install dokku letsencrypt plugin (for SSL): https://github.com/dokku/dokku-letsencrypt
 sudo dokku plugin:install https://github.com/dokku/dokku-letsencrypt.git
 sudo dokku letsencrypt:cron-job --add
-
-
 ```
 
 ### Configure Dokku domain and SSH access
