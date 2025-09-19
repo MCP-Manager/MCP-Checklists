@@ -424,12 +424,14 @@ SSH_HOST=hostname
 # Check container status
 pnpm run ssh dokku ps:report app-name
 
-# View logs
-pnpm run ssh dokku logs app-name -t
+# View logs (NEVER use -t/--tail flag - it will hang indefinitely)
+pnpm run ssh dokku logs app-name
 
 # Execute shell in container
 pnpm run ssh dokku enter app-name
 ```
+
+**IMPORTANT**: When accessing logs, never use the `-t` or `--tail` flag as this will cause the command to hang indefinitely waiting for new log entries, preventing the AI agent from returning a response to the user.
 
 ## Target Use Cases
 Complex MCPs requiring:
