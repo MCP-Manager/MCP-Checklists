@@ -42,7 +42,15 @@ npx supergateway --port 8000 --outputTransport streamableHttp $SUPERGATEWAY_EXTR
 ## Dockerfile Customization Rules
 
 ### MANDATORY: Study Reference Implementation First
-Before creating/modifying any MCP Dockerfile, read the reference files listed above.
+Before creating/modifying any MCP Dockerfile:
+
+1. **Check for existing Dockerfile**: Ask the user what MCP server they're installing and check if there's a corresponding Dockerfile in `infrastructure/dokku/` directory
+2. **If found**: Copy that specific Dockerfile to the root directory and use it as-is
+3. **If not found**: Create a new Dockerfile based on the appropriate reference:
+   - For Node.js/npm MCP servers (npx): Base on `infrastructure/dokku/node/nginx_proxy_on_dokku/Dockerfile`
+   - For Python MCP servers (uvx): Base on `infrastructure/dokku/python/nginx_proxy_on_dokku/Dockerfile`
+
+Always read the reference files listed above before making any modifications.
 
 ### Core Principles
 1. **Preserve Security Architecture**: Use existing Nginx config, maintain token-based auth (SSL handled by Dokku)
@@ -193,7 +201,7 @@ pnpm run ssh dokku redis:link myapp-cache myapp
 **1. SSH Connection Verification**
 ```bash
 # Test basic SSH connectivity
-ssh user@your-server-ip
+ssh -o IdentitiesOnly=yes user@your-server-ip
 exit
 ```
 ✅ **Success criteria**: Should connect without password prompts (using SSH keys)
@@ -212,6 +220,10 @@ Please install Dokku by following the official installation guide:
 https://dokku.com/docs/getting-started/installation/#1-install-dokku
 
 Follow ALL steps in the installation guide, including the initial setup.
+
+After installing Dokku, also install the Let's Encrypt plugin:
+sudo dokku plugin:install https://github.com/dokku/dokku-letsencrypt.git
+sudo dokku letsencrypt:cron-job --add
 ```
 
 **3. Let's Encrypt Plugin Verification**
@@ -361,7 +373,7 @@ cat ~/.ssh/mcp_deploy_key.pub
 # Copy this entire output - you'll need it for the next step
 
 # 3. Connect to your remote server and add the key
-ssh user@your-server-ip
+ssh -o IdentitiesOnly=yes user@your-server-ip
 echo "{KEY_VALUE}" >> ~/.ssh/authorized_keys
 
 # 4. Set proper permissions on the remote server
