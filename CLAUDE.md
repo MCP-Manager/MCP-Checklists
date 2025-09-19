@@ -206,7 +206,22 @@ exit
 ```
 ✅ **Success criteria**: Should connect without password prompts (using SSH keys)
 
-**If SSH fails**: Follow [SSH Key Generation Guidance](#ssh-key-generation-guidance) below
+**If SSH fails**: Try common usernames first:
+```bash
+# Try with root user
+ssh -o IdentitiesOnly=yes root@your-server-ip
+
+# Try with ubuntu user
+ssh -o IdentitiesOnly=yes ubuntu@your-server-ip
+```
+
+**If both fail**: Stop trying and ask user to verify:
+- SSH username (root, ubuntu, or their specific username)
+- SSH private key path in `.env` file
+- Server IP address/hostname
+- That they have access to the server
+
+**Only after user confirms details are correct**: Follow [SSH Key Generation Guidance](#ssh-key-generation-guidance) below
 
 **2. Dokku Installation Verification**
 ```bash
