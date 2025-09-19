@@ -30,7 +30,7 @@ ARG NPM_MCP=""
 # Extra args to send to NPM MCP Server
 ARG NPM_MCP_ARGS=""
 # Set to --stateful for stateful MCP servers, otherwise leave blank
-ARG SUPERGATEWAY_EXTRA_ARGS=""
+ARG SUPERGATEWAY_EXTRA_ARGS="--stateful"
 # If you need a specific version of Node you can specify this build var
 ENV NPM_MCP=${NPM_MCP}
 ENV NPM_MCP_ARGS=${NPM_MCP_ARGS}

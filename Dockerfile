@@ -1,77 +1,50 @@
-# Multi-stage build for ZenMCP with Supergateway integration
-FROM python:3.11-slim AS builder
+#
+# Build:
+#   docker build \
+#       --build-arg NPM_MCP="@modelcontextprotocol/server-filesystem" \
+#       --build-arg NPM_MCP_ARGS="/home" \
+#       --build-arg NODE_VERSION="lts" \
+#       --build-arg SUPERGATEWAY_EXTRA_ARGS="--stateful" \
+#        -t mcp .
+#
+# Run (shell):
+#   docker run \
+#       -e ACCESS_TOKEN="secret_key__please_change" \
+#       -p 80:443 -p 443:443 -i -t mcp
+#
+# Run (detached):
+#   docker run \
+#       -e ACCESS_TOKEN="secret_key__please_change" \
+#       -p 80:443 -p 443:443 -i -t -d mcp
+#
+# If you need a specific version of Node you can specify this build var
+ARG NODE_VERSION="lts"
+FROM node:$NODE_VERSION-alpine
 
-# Build stage: Install dependencies and build ZenMCP
-WORKDIR /build
+# NPM MCP server package
+ARG NPM_MCP=""
+# Extra args to send to NPM MCP Server
+ARG NPM_MCP_ARGS=""
+# Set to --stateful for stateful MCP servers, otherwise leave blank
+ARG SUPERGATEWAY_EXTRA_ARGS=""
+ENV NPM_MCP=${NPM_MCP}
+ENV NPM_MCP_ARGS=${NPM_MCP_ARGS}
+ENV NODE_VERSION=${NODE_VERSION}
+ENV SUPERGATEWAY_EXTRA_ARGS=${SUPERGATEWAY_EXTRA_ARGS}
 
-# Install build dependencies
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
-        build-essential \
-        git \
-        ca-certificates && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
-
-# Clone ZenMCP repository
-RUN git clone https://github.com/BeehiveInnovations/zen-mcp-server.git /build/zen-mcp-server
-
-WORKDIR /build/zen-mcp-server
-
-# Create virtual environment and install dependencies
-RUN python -m venv /opt/venv
-ENV PATH="/opt/venv/bin:$PATH"
-RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir -r requirements.txt
-
-# Runtime stage: Combine ZenMCP with Supergateway infrastructure
-FROM node:lts-alpine AS runtime
-
-# Install system dependencies
-RUN apk add --no-cache \
-    python3 \
-    py3-pip \
-    nginx \
-    supervisor \
-    ca-certificates
-
-# Install Supergateway globally
-RUN npm install -g supergateway
+RUN npm install supergateway@latest -g
+RUN npm install $NPM_MCP@latest -g
 
 # Install dependencies
-RUN apk add --no-cache dumb-init gettext curl bash
+RUN apk add dumb-init nginx openssl gettext
 
-# Copy ZenMCP application
-COPY --from=builder /build/zen-mcp-server /app/zen-mcp-server
+# Copy nginx configuration and startup script
+COPY infrastructure/docker/nginx.conf /etc/nginx/nginx.conf
+COPY infrastructure/docker/node/startup.sh /usr/local/bin/startup.sh
+RUN chmod +x /usr/local/bin/startup.sh
+RUN mkdir -p /etc/ssl/certs /etc/ssl/private
 
-# Install Python dependencies in Alpine
-RUN pip install --no-cache-dir --break-system-packages mcp google-genai openai pydantic uvicorn
+ENTRYPOINT ["/usr/local/bin/startup.sh"]
 
-# Copy infrastructure files
-COPY infrastructure/dokku/nginx.conf /etc/nginx/nginx.conf
-COPY zen-mcp-startup.sh /usr/local/bin/startup.sh
-
-# Set up directories and permissions
-RUN mkdir -p /var/log/supervisor /var/run/nginx /tmp && \
-    chmod +x /usr/local/bin/startup.sh
-
-# Environment variables
-ENV PYTHONPATH="/app/zen-mcp-server"
-ENV PYTHONUNBUFFERED=1
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV SUPERGATEWAY_PORT=8000
-ENV NGINX_PORT=5000
-ENV NPM_MCP="python"
-ENV NPM_MCP_ARGS="/app/zen-mcp-server/server.py"
-ENV ACCESS_TOKEN=""
-ENV SUPERGATEWAY_EXTRA_ARGS="--stateful"
-
-# Health check
-HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-    CMD curl -f -H "Authorization: Bearer ${ACCESS_TOKEN}" http://localhost:5000/mcp || exit 1
-
-# Only expose Nginx port - Supergateway port 8000 remains internal
-EXPOSE 5000
-
-# Use bash startup script
-CMD ["/bin/bash", "/usr/local/bin/startup.sh"]
+# Nginx will listen on port 443 (HTTPS)
+EXPOSE 443
