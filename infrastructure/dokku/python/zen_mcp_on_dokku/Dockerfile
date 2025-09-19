@@ -19,37 +19,28 @@
 #
 # If you need a specific version of Node you can specify this build var
 ARG NODE_VERSION="lts"
-FROM node:$NODE_VERSION-slim
+FROM node:$NODE_VERSION-alpine
 
 # NPM MCP server package
 ARG NPM_MCP=""
 # Extra args to send to NPM MCP Server
 ARG NPM_MCP_ARGS=""
 # Set to --stateful for stateful MCP servers, otherwise leave blank
-ARG SUPERGATEWAY_EXTRA_ARGS=""
+ARG SUPERGATEWAY_EXTRA_ARGS="--stateful"
 ENV NPM_MCP=${NPM_MCP}
 ENV NPM_MCP_ARGS=${NPM_MCP_ARGS}
 ENV NODE_VERSION=${NODE_VERSION}
 ENV SUPERGATEWAY_EXTRA_ARGS=${SUPERGATEWAY_EXTRA_ARGS}
 
-RUN npm install pnpm@latest -g
 RUN npm install supergateway@latest -g
+RUN npm install $NPM_MCP@latest -g
 
 # Install dependencies
-RUN apt-get update
-RUN apt-get install dumb-init nginx openssl gettext git bash curl -y
-# RUN apk add dumb-init nginx openssl gettext git bash curl
-
-WORKDIR /var/www
-RUN git clone https://github.com/zcaceres/markdownify-mcp
-WORKDIR /var/www/markdownify-mcp
-
-RUN pnpm install
-RUN pnpm build
+RUN apk add dumb-init nginx openssl gettext
 
 # Copy nginx configuration and startup script
 COPY infrastructure/dokku/nginx.conf /etc/nginx/nginx.conf
-COPY infrastructure/docker/node/startup.sh /usr/local/bin/startup.sh
+COPY infrastructure/docker/python/startup.sh /usr/local/bin/startup.sh
 RUN chmod +x /usr/local/bin/startup.sh
 RUN mkdir -p /etc/ssl/certs /etc/ssl/private
 
