@@ -277,6 +277,65 @@ ACCESS_TOKEN=your-secure-token
 
 **Only after all prerequisites are verified should you proceed with [Local Testing](#local-testing-required)**
 
+## New Server Setup
+
+**For users setting up a fresh server**: Complete these steps in order before running Prerequisites verification.
+
+### 1. Establish SSH Connection
+
+First, verify you can connect to your server:
+```bash
+# Test connection with your credentials
+ssh username@your-server-ip
+```
+
+**If this fails**: You need to resolve server access issues before proceeding. Common solutions:
+- Verify server IP address and username
+- Check that SSH is enabled on the server
+- Ensure your SSH key is properly configured
+
+**Once connected successfully**, exit and proceed to dependency installation.
+
+### 2. Install Core Dependencies
+
+After verifying SSH access, install required software on your server:
+
+**Install Dokku**:
+```bash
+# Connect to your server
+ssh username@your-server-ip
+
+# Follow the complete Dokku installation guide:
+# https://dokku.com/docs/getting-started/installation/#1-install-dokku
+#
+# Make sure to complete ALL steps including the initial setup
+```
+
+**Install Let's Encrypt Plugin**:
+```bash
+# Still connected to your server, run:
+sudo dokku plugin:install https://github.com/dokku/dokku-letsencrypt.git
+
+# Enable auto-renewal
+sudo dokku letsencrypt:cron-job --add
+
+# Exit server
+exit
+```
+
+### 3. Verify Installation
+
+Test that everything is working:
+```bash
+# Test Dokku installation
+ssh username@your-server-ip "dokku --version"
+
+# Test Let's Encrypt plugin
+ssh username@your-server-ip "dokku letsencrypt:list"
+```
+
+**Once both commands succeed**, your server is ready. Proceed to [Prerequisites Verification](#prerequisites-verification) to complete the setup.
+
 ## Development Workflow
 
 ### Local Testing (Required)
