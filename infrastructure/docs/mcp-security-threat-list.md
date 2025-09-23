@@ -157,6 +157,6 @@ Attackers exploit session management flaws, compromised MCP server code, malware
 
 - **Robust Authentication and Authorization Methods:** Implement robust authentication and authorization between MCP hosts, clients, and servers. Use OAuth 2.0, which uses short-lived access tokens (instead of static API keys)
 - **Just-In-Time (JIT) Access Tokens:** Implement authorization methods that support JIT task-specific tokens, which are short-lived and expire after the completion of the task they were generated to facilitate.
-- **Sender-Constrained Tokens:** Use proof-of-posession authentication methods (such as DPoP or mTLS) that require both the access token and a unique cryptographic key pair
+- **Sender-Constrained Tokens:** Use proof-of-possession authentication methods (such as DPoP or mTLS) that require both the access token and a unique cryptographic key pair
 
 ⬆️ [Back to Threat-List/Contents](#-threat-listcontents)
