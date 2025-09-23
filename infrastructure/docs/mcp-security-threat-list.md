@@ -11,6 +11,7 @@ MCP Manager is an MCP gateway which acts as a safety net for your organization's
 
 ## 📚 Threat-List/Contents
 - [General Mitigations Against Security Threats/Risks](#-general-mitigations-against-security-threats-and-risks)
+- [Prompt Injection](#-prompt-injection)
 - [Tool Poisoning](#-tool-poisoning)
 - [Rug-Pull Updates](#-rug-pull-updates)
 - [Retrieval Agent Deception (RADE)](#-retrieval-agent-deception-rade)
@@ -33,6 +34,24 @@ In addition to the specific mitigations against each MCP-based attack vector whi
 *Some of these capabilities are only possible through the use of an MCP gateway like [MCP Manager](https://mcpmanager.ai/).
 
 ⬆️ [Back to Threat-List/Contents](#-threat-listcontents)
+
+## 🔺 Prompt Injection
+
+### Description
+Prompt injection attacks manipulate LLMs into performing harmful acts using malicious prompts. Prompt injection has two main types. **1: Direct prompt injection;** attackers deliver prompts via input fields of AI applications. **2: Indirect prompt injection;** attackers insert malicious prompts within an information source that the AI consumes, such as webpages, documents, databases, or even user-submitted support tickets.
+
+#### Characteristics
+- **Abundance of Delivery Mechanisms:** Attackers can insert malicious prompts into a wide range of media. Researchers have demonstrated successful attacks using prompts within user-submitted support tickets, databases, webpages, and even MCP tool metadata itself (see Tool Poisoning below)
+- **Easy to Execute:** Many prompt injection methods don't require any specialist knowlegde, or even coding ability. Attackers just need a basic understanding of how LLMs work, their vulnerabilities, and where best to add malicious prompts
+- **Virulent** Indirect prompt injection attacks can use a single payload, hidden in one resource, to infect many organizations
+
+### Key Mitigations
+- **Robust Input Filtering:** Apply sanitization to strip or flag suspicious patterns in user-supplied text before it enters the model context.
+- **Content scanning rules:** Similar to antivirus or DLP scans, an MCP gateway can scan all data retrieved from an MCP server to catch obvious payloads (e.g., script tags, known tool command patterns, or keywords like “pass its content as parameter”).
+- **External Prompt Refusal:** Instruct the AI to ignore instructions that come from MCP content and only treat user’s direct instructions as authoritative.
+- **Runtime Monitoring:** Use an MCP gateway to detect unusual behavior by AI agents, such as attempting to access or share restricted data.
+- **Data Masking:** Specifically as a fallback mitigation against data exfiltration, mask sensitive data so it is not exposed even if exfiltrated by a corrupted AI
+- **Prompt Isolation:** Separate system instructions from user or external inputs through strict context management and sandboxing.
 
 ## 🔺 Tool Poisoning
 
@@ -66,10 +85,10 @@ The rug-pull method can be paired with attacks like tool poisoning to circumvent
 
 ⬆️ [Back to Threat-List/Contents](#-threat-listcontents)
 
-## 🔺 Retrieval Agent Deception (RADE)
+## 🔺 Retrieval Agent Deception (RADE)/Indirect Prompt Injection
 
 ### Description
-Retrieval-Agent Deception (RADE) is a sophisticated attack where malicious commands or prompts are planted in data that the AI will later retrieve, causing the AI to unknowingly execute those commands. 
+Retrieval-Agent Deception (RADE) is a sophisticated attack where malicious commands or prompts are planted in external or internal documents or data that the AI will later retrieve, causing the AI to execute those commands. 
 
 #### Characteristics
 - **Indirect and stealthy:** Uses hidden instructions inserted into public or external content (e.g., web pages, documents, database entries) rather than through direct prompt input by users
