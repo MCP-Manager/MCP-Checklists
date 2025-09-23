@@ -29,7 +29,7 @@ In addition to the specific mitigations against each MCP-based attack vector whi
 - **Principle of Least Privilege:** Use an MCP gateway or similar tool to establish multiple identities for MCP servers with varying levels of access. Identities are then assigned such that an MCP outbound server (a gateway) uses the identity with the least access needed to accomplish its goals. 
 - **Runtime Monitoring:** Automated, continuous monitoring of MCP traffic and AI agent behavior for suspicious patterns
 - **Robust, High-Fidelity Logging:** Detailed audit trails of all interactions enable response teams to monitor routine behaviors, empower incident recovery teams to diagnose and resolve issues, and support automated systems to detect anomalous behavior.
-- **Fine Grained Policies:** Act as guardrails against a range of attack vectors and harmful or unwanted agent behaviors. These policies can govern the actions that AI agents and human users alike can take when interracting with MCP servers, your tools, and your data.
+- **Fine Grained Policies:** Act as guardrails against a range of attack vectors and harmful or unwanted agent behaviors. These policies can govern the actions that AI agents and human users alike can take when interacting with MCP servers, your tools, and your data.
 
 *Some of these capabilities are only possible through the use of an MCP gateway like [MCP Manager](https://mcpmanager.ai/).
 
