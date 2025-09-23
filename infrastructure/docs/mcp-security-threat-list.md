@@ -42,7 +42,7 @@ Prompt injection attacks manipulate LLMs into performing harmful acts using mali
 
 #### Characteristics
 - **Abundance of Delivery Mechanisms:** Attackers can insert malicious prompts into a wide range of media. Researchers have demonstrated successful attacks using prompts within user-submitted support tickets, databases, webpages, and even MCP tool metadata itself (see Tool Poisoning below)
-- **Easy to Execute:** Many prompt injection methods don't require any specialist knowlegde, or even coding ability. Attackers just need a basic understanding of how LLMs work, their vulnerabilities, and where best to add malicious prompts
+- **Easy to Execute:** Many prompt injection methods don't require any specialist knowledge, or even coding ability. Attackers just need a basic understanding of how LLMs work, their vulnerabilities, and where best to add malicious prompts
 - **Virulent** Indirect prompt injection attacks can use a single payload, hidden in one resource, to infect many organizations
 
 ### Key Mitigations
