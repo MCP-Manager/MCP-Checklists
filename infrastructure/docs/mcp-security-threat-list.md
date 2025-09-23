@@ -25,7 +25,7 @@ In addition to the specific mitigations against each MCP-based attack vector whi
 
 ### Chief amongst these general mitigations are*:
 - **Data Masking:** Replacing sensitive data (e.g., social security numbers) with user-defined masks before transmission to MCP servers as a fallback protection in the case of successful data exfiltration
-- **Tool Access Controls:** Limit the servers and tools/fearures each AI agent can access based on the agent's "role" and relevance/requirement to complete its specified tasks 
+- **Tool Access Controls:** Limit the servers and tools/features each AI agent can access based on the agent's "role" and relevance/requirement to complete its specified tasks 
 - **Principle of Least Privilege:** Use an MCP gateway or similar tool to establish multiple identities for MCP servers with varying levels of access. Identities are then assigned such that an MCP outbound server (a gateway) uses the identity with the least access needed to accomplish its goals. 
 - **Runtime Monitoring:** Automated, continuous monitoring of MCP traffic and AI agent behavior for suspicious patterns
 - **Robust, High-Fidelity Logging:** Detailed audit trails of all interactions enable response teams to monitor routine behaviors, empower incident recovery teams to diagnose and resolve issues, and support automated systems to detect anomalous behavior.
@@ -43,7 +43,7 @@ Prompt injection attacks manipulate LLMs into performing harmful acts using mali
 #### Characteristics
 - **Abundance of Delivery Mechanisms:** Attackers can insert malicious prompts into a wide range of media. Researchers have demonstrated successful attacks using prompts within user-submitted support tickets, databases, webpages, and even MCP tool metadata itself (see Tool Poisoning below)
 - **Easy to Execute:** Many prompt injection methods don't require any specialist knowledge, or even coding ability. Attackers just need a basic understanding of how LLMs work, their vulnerabilities, and where best to add malicious prompts
-- **Virulent** Indirect prompt injection attacks can use a single payload, hidden in one resource, to infect many organizations
+- **Virulent:** Indirect prompt injection attacks can use a single payload, hidden in one resource, to infect many organizations
 
 ### Key Mitigations
 - **Robust Input Filtering:** Apply sanitization to strip or flag suspicious patterns in user-supplied text before it enters the model context.
