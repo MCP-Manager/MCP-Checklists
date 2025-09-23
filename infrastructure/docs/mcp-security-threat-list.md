@@ -14,7 +14,7 @@ MCP Manager is an MCP gateway which acts as a safety net for your organization's
 - [Prompt Injection](#-prompt-injection)
 - [Tool Poisoning](#-tool-poisoning)
 - [Rug-Pull Updates](#-rug-pull-updates)
-- [Retrieval Agent Deception (RADE)](#-retrieval-agent-deception-rade)
+- [Retrieval Agent Deception (RADE)/Indirect Prompt Injection](#-retrieval-agent-deception-radeindirect-prompt-injection) 
 - [Cross-Server Shadowing](#-cross-server-shadowing)
 - [Server Spoofing](#-server-spoofing)
 - [Token Theft and Account Takeover](#-token-theft-and-account-takeover)
