@@ -7,5 +7,5 @@ envsubst '${ACCESS_TOKEN}' < /etc/nginx/nginx.conf > /tmp/nginx.conf && mv /tmp/
 # Start nginx in background
 nginx -g 'daemon on;'
 
-# Start Supergateway to proxy ZenMCP as a streamableHttp server on port 8000
-exec dumb-init npx supergateway --port 8000 --outputTransport streamableHttp $SUPERGATEWAY_EXTRA_ARGS --stdio "$NPM_MCP $NPM_MCP_ARGS"
+# Start Node-based mcp-proxy to proxy ZenMCP as a streamableHttp server on port 8000
+exec dumb-init npx mcp-proxy --port 8000 $MCP_PROXY_EXTRA_ARGS python /app/zen-mcp-server/server.py

@@ -1,4 +1,4 @@
-# Multi-stage build for ZenMCP with Supergateway integration
+# Multi-stage build for ZenMCP with mcp-proxy integration
 FROM python:3.11-slim AS builder
 
 # Build stage: Install dependencies and build ZenMCP
@@ -24,7 +24,7 @@ ENV PATH="/opt/venv/bin:$PATH"
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
 
-# Runtime stage: Combine ZenMCP with Supergateway infrastructure
+# Runtime stage: Combine ZenMCP with mcp-proxy infrastructure
 FROM node:lts-alpine AS runtime
 
 # Install system dependencies
@@ -35,8 +35,8 @@ RUN apk add --no-cache \
     supervisor \
     ca-certificates
 
-# Install Supergateway globally
-RUN npm install -g supergateway
+# Install Node-based mcp-proxy globally
+RUN npm install -g mcp-proxy
 
 # Install dependencies
 RUN apk add --no-cache dumb-init gettext curl bash
@@ -49,7 +49,7 @@ RUN pip install --no-cache-dir --break-system-packages mcp google-genai openai p
 
 # Copy infrastructure files
 COPY infrastructure/dokku/nginx.conf /etc/nginx/nginx.conf
-COPY infrastructure/dokku/node/zenmcp_on_dokku/startup.sh /usr/local/bin/startup.sh
+COPY infrastructure/dokku/python/zenmcp_on_dokku/startup.sh /usr/local/bin/startup.sh
 
 # Set up directories and permissions
 RUN mkdir -p /var/log/supervisor /var/run/nginx /tmp && \
@@ -59,18 +59,16 @@ RUN mkdir -p /var/log/supervisor /var/run/nginx /tmp && \
 ENV PYTHONPATH="/app/zen-mcp-server"
 ENV PYTHONUNBUFFERED=1
 ENV PYTHONDONTWRITEBYTECODE=1
-ENV SUPERGATEWAY_PORT=8000
+ENV MCP_PROXY_PORT=8000
 ENV NGINX_PORT=5000
-ENV NPM_MCP="python"
-ENV NPM_MCP_ARGS="/app/zen-mcp-server/server.py"
 ENV ACCESS_TOKEN=""
-ENV SUPERGATEWAY_EXTRA_ARGS="--stateful"
+ENV MCP_PROXY_EXTRA_ARGS=""
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
     CMD curl -f -H "Authorization: Bearer ${ACCESS_TOKEN}" http://localhost:5000/mcp || exit 1
 
-# Only expose Nginx port - Supergateway port 8000 remains internal
+# Only expose Nginx port - mcp-proxy port 8000 remains internal
 EXPOSE 5000
 
 # Use bash startup script
