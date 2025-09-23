@@ -53,6 +53,8 @@ Prompt injection attacks manipulate LLMs into performing harmful acts using mali
 - **Data Masking:** Specifically as a fallback mitigation against data exfiltration, mask sensitive data so it is not exposed even if exfiltrated by a corrupted AI
 - **Prompt Isolation:** Separate system instructions from user or external inputs through strict context management and sandboxing.
 
+⬆️ [Back to Threat-List/Contents](#-threat-listcontents)
+
 ## 🔺 Tool Poisoning
 
 ### Description
