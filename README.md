@@ -20,7 +20,7 @@ We welcome contributions and suggestions - here's the [instructions for contribu
 - **[Logging, Auditing, and Observability](#-logging-auditing-and-observability)**
     - [MCP Logging, Auditing, and Observability Checklist](./infrastructure/docs/logging-auditing-observability.md)
 - **[Security Threats and Mitigation](#%EF%B8%8F-threats-and-mitigation)**
-    - [Detecting & Prevening Shadow MCP Use](./infrastructure/docs/shadow-mcp-detect-prevent.md)
+    - [Detecting & Preventing Shadow MCP Use](./infrastructure/docs/shadow-mcp-detect-prevent.md)
     - [MCP Server Cybersecurity Threat-List (With Mitigations)](./infrastructure/docs/mcp-security-threat-list.md)
     - [MCP Server Reported Vulnerabilities Index](./infrastructure/docs/reported-vulnerability-index.md)
     - [Evaluating MCP Servers For Threats and Risks](./infrastructure/docs/security-screening-mcp-servers.md)
@@ -66,7 +66,7 @@ Use [How to Run Local MCP Servers Securely](./infrastructure/docs/how-to-run-mcp
 ### Checklists
 
 - [MCP Logging, Auditing, and Observability Checklist](./infrastructure/docs/logging-auditing-observability.md)
-- [Detecting & Prevening Shadow MCP Use](./infrastructure/docs/shadow-mcp-detect-prevent.md)
+- [Detecting & Preventing Shadow MCP Use](./infrastructure/docs/shadow-mcp-detect-prevent.md)
 
 ## 🛡️ Threats and Mitigation
 
