@@ -28,7 +28,9 @@ ENV SUPERGATEWAY_EXTRA_ARGS=${SUPERGATEWAY_EXTRA_ARGS}
 ENV PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=0
 ENV PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
 
-RUN npm install supergateway@latest -g
+# Install Node-based mcp-proxy globally
+RUN npm install -g mcp-proxy
+
 RUN npm install @playwright/mcp@latest -g
 
 # Install dependencies
