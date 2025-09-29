@@ -139,7 +139,6 @@ try {
 
     // Delete build artifacts on remote server
     await sshCommand('rm -f *', { cwd: remoteDirectory });
-    await sshCommand(`docker image rm ${dockerImageTag}`);
   } catch {}
 
   ssh.dispose();
