@@ -1,4 +1,4 @@
-# MCP Security Threat-List - With Key Mitigations
+# MCP Security Threat List - With Key Mitigations
 
 We are using this list to compile a comprehensive index of attack methods and security threats which target the Model Context Protocol (MCP) ecosystem, to help MCP users, agent builders, and those responsible for cybersecurity to reduce vulnerabilities and stay up to date with the latest threats. 
 
