@@ -40,7 +40,7 @@ RUN apk add dumb-init nginx openssl gettext
 
 # Copy nginx configuration and startup script
 COPY infrastructure/dokku/nginx.conf /etc/nginx/nginx.conf
-COPY infrastructure/dokku/neo4j_on_dokku/startup.sh /usr/local/bin/startup.sh
+COPY infrastructure/dokku/python/neo4j_on_dokku/startup.sh /usr/local/bin/startup.sh
 RUN chmod +x /usr/local/bin/startup.sh
 RUN mkdir -p /etc/ssl/certs /etc/ssl/private
 
