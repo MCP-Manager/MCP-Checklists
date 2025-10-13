@@ -156,7 +156,7 @@ You can find the source code for the [build](../package_scripts/build.mjs) and [
 
 If you can, base your Docker images from Alpine (ex: `FROM node:$NODE_VERSION-alpine`) which offers the smallest image size and therefore better security.
 
-If you need `apt` package manager or run into compatibility issues, base your Docker images from Slim versions (ex: `node:$NODE_VERSION-slim`) which are usually Debian based and offer more utities and wider compatibility out of the box (for approx. 100MB more disk space consumed per docker image).
+If you need `apt` package manager or run into compatibility issues, base your Docker images from Slim versions (ex: `node:$NODE_VERSION-slim`) which are usually Debian based and offer more utilities and wider compatibility out of the box (for approx. 100MB more disk space consumed per docker image).
 
 If all else fails, basing your Docker image from a widely popular Linux distro like Ubuntu (ex: `FROM ubuntu:latest`) and then installing your needed dependencies is a solid idea.
 
